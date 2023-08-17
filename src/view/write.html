@@ -15,7 +15,7 @@
         />
         <link rel="stylesheet" href="/src/assets/css/reset.css" />
         <link rel="stylesheet" href="/src/assets/css/style.css" />
-        <link rel="stylesheet" href="/src/assets/css/board.css" />
+        <link rel="stylesheet" href="/src/assets/css/write.css" />
     </head>
     <body>
         <!-- header -->
@@ -57,46 +57,28 @@
         </header>
         <!-- main -->
         <main>
-            <section class="temp_board">
-                <div class="board_section">
-                    <a href="/src/view/write.html">
-                        <div class="write_post"></div>
-                    </a>
-                    <div class="post_list">
-                        <div class="post">
-                            <div class="post_owner">
-                            </div>
-                            <div class="post_content">
-                            </div>
-                            <div class="post_img"></div>
-                            <div class="post_reaction_info"></div>
-                            <div class="post_reaction"></div>
-                        </div>
-                        <div class="post">
-                            <div class="post_owner">
-                            </div>
-                            <div class="post_content">
-                            </div>
-                            <div class="post_img"></div>
-                            <div class="post_reaction_info"></div>
-                            <div class="post_reaction"></div>
-                        </div>
+            <section class="write-section">
+                <div class="post-header">
+                    <button class="post-back">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button class="post-save">완료</button>
+                </div>
+                <div class="post-image-div">
+                    <label for="img-input"><i class="fa-regular fa-image"></i></label>
+                    <input class="image-input" id="img-input" name="img-input" accept="image/gif,image/jpeg,image/png" type="file">
+                </div>
+                <div class="post-content">
+                    <input class="post-title" type="text" placeholder="제목을 입력하세요">
+                    <textarea class="post-contents" rows="1" placeholder="나누고 싶은 이야기나 생각을 적어주세요"></textarea>
+                    <div class="image-preview">
+                        <img class="post-image" alt="">
                     </div>
                 </div>
-                <aside class="board_side">
-                </aside>
             </section>
         </main>
         <!-- // main -->
-        <!-- footer -->
-        <footer>
-            <div class="footer_wrap">
-                <img src="/src/assets/img/logo.png" alt="ORGO">
-                <div class="footer_content">
-                    <p>Ormi 교육생들을 위한 커뮤니티 입니다.</p>
-                    <p>Copyright 2023. Chilli All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
+        <script src="/src/assets/js/write.js"></script>
     </body>
+
 </html>
