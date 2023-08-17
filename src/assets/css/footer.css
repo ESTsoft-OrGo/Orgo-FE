@@ -1,0 +1,32 @@
+footer {
+    background-color: rgb(236, 236, 236);
+    color: var(--maincolor)
+}
+
+.footer_wrap {
+    display: flex;
+    height: 100px;
+    padding: 50px;
+    align-items: center;
+}
+
+.footer_wrap img {
+    width: 200px;
+    margin-right: 20px;
+}
+
+.footer_content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-weight: bold;
+}
+
+.footer_content p:first-child {
+    font-size: 20px;
+    margin-bottom: 35px;
+}
+
+.footer_content p:last-child {
+    font-size: 12px;
+}

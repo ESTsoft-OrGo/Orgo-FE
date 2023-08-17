@@ -1,0 +1,98 @@
+.header {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(226, 226, 226);
+    z-index: 1;
+}
+
+.header h1 {
+    padding-left: 180px;
+}
+
+.header h1 a img {
+    margin-top: 10px;
+    width: 150px;
+}
+
+.header-search{
+	position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+	width: 100%;
+    margin-right: 80px;
+}
+
+.header-search__text {
+	border-radius: 5px;
+    font-size: 15px;
+    height: 28px;
+	width: 220px;
+	background-color: rgb(243, 243, 243);
+	border: none;
+	padding: 5px 20px 5px 10px;
+}
+
+.header-search__btn {
+	position: absolute;
+	background: none;
+	border: none;
+	padding: 0;
+	font-size: 18px;
+	top: 28px;
+	right: 6px;
+}
+
+.navbar__menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 400px;
+    list-style: none;
+    padding-right: 180px;
+}
+
+.navbar__menu li {
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.navbar__menu li:not(.always_show) {
+    display: none;
+}
+
+.always_show {
+    display: flex;
+}
+
+.navbar__menu li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.navbar__menu li a:hover:not(.avatar_img_li) {
+    padding: 7px 10px;
+    /* background-color: rgb(56, 135, 253); */
+    background-color: var(--maincolor);
+    color: white;
+    border-radius: 5px;
+}
+
+.navbar__toggle {
+    font-size: 30px;
+}
+
+.avatar_img {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
