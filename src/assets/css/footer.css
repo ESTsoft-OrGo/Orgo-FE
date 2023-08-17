@@ -5,7 +5,7 @@ footer {
 
 .footer_wrap {
     display: flex;
-    height: 100px;
+    height: 65px;
     padding: 50px;
     align-items: center;
 }
