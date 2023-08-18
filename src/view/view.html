@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ORGO - 메인</title>
+        <!-- fontawesome -->
+		<link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="/src/assets/css/reset.css" />
+        <link rel="stylesheet" href="/src/assets/css/style.css" />
+        <link rel="stylesheet" href="/src/assets/css/view.css" />
+    </head>
+    <body>
+        <!-- header -->
+        <header>
+            <nav class="header">
+                <h1>
+                    <a href="/index.html">
+                        <img src="/src/assets/img/logo.png" alt="ORGO">
+                    </a>
+                </h1>
+                <div class="header-search">
+                    <form method="get">
+                        <input class='header-search__text' placeholder="사람, 제목을 검색하세요" ,type="text" , name="keyword" , required>
+                        <button class='header-search__btn' type='submit'>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                </div>
+                <ul class="navbar__menu">
+                    <li class="always_show">
+                        <a href="/src/view/board.html">BOARD</a>
+                    </li>
+                    <li class="always_show">
+                        <a href="/src/view/login.html">LOGIN</a>
+                    </li>
+                    <li class="always_show">
+                        <a href="/src/view/join.html">JOIN</a>
+                    </li>
+                    <!-- <li class="always_show">
+                        <a class="logout_btn" href="#">LOGOUT</a>
+                    </li> -->
+                    <li class="always_show">
+                        <a href="#" class="avatar_img_li">
+                            <img src="/src/assets/img/profile_temp.png" class="avatar_img" alt="프로필">
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!-- main -->
+        <main>
+            <section class="temp_view">
+                <div class="view_section">
+                    <div class="view">
+                        <div class="post_owner">
+                            <div class="post_owner_img">
+                                <img src="/src/assets/img/profile_temp.png" alt="profile">
+                            </div>
+                            <div class="post_owner_info">
+                                <p>ORGO</p>
+                                <p>Back-End ORMI 1기</p>
+                            </div>
+                            <div class="post_owner_follow">
+                                <button>팔로우</button>
+                            </div>
+                        </div>
+                        <div class="post_content">
+                            <h2>🙋‍♂️ Title </h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            <br>
+                            <br>
+                            Perspiciatis minus odit ea blanditiis atque, distinctio dolores iste. Dolor fugiat expedita ducimus doloremque et est, nisi porro harum tenetur consectetur ullam!
+                            </p>
+                        </div>
+                        <div class="post_img"></div>
+                        <div class="post_createdat">
+                            <p>2023년 8월 18일 오전 9:30</p>
+                        </div>
+                        <div class="post_reaction_info">
+                            <div class="reaction_info_div">
+                                <i class="fa-regular fa-heart like_icon"></i>
+                                <p>좋아요</p>
+                                <p class="like_count">0</p>
+                            </div>
+                            <div class="reaction_info_div">
+                                <p>조회</p>
+                                <p class="view_count">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="comment-title">댓글</p>
+                    <div class="comment-section">
+                        <div class="comment-write">
+                            <div class="comment_writer_img">
+                                <img src="/src/assets/img/profile_temp.png" alt="profile">
+                            </div>
+                            <input type="text" placeholder="댓글을 입력하세요">
+                            <button>등록</button>
+                        </div>
+                        <div class="comment-list">
+                            <div class="comment">
+                                <div class="comment_owner">
+                                    <div class="comment_owner_img">
+                                        <img src="/src/assets/img/profile_temp.png" alt="profile">
+                                    </div>
+                                    <div class="comment_owner_info">
+                                        <p>ORGO</p>
+                                        <p>Back-End ORMI 2기</p>
+                                    </div>
+                                </div>
+                                <div class="comment_content">
+                                    <p>댓글입니다.</p>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <div class="comment_owner">
+                                    <div class="comment_owner_img">
+                                        <img src="/src/assets/img/profile_temp.png" alt="profile">
+                                    </div>
+                                    <div class="comment_owner_info">
+                                        <p>ORGO</p>
+                                        <p>Back-End ORMI 1기</p>
+                                    </div>
+                                </div>
+                                <div class="comment_content">
+                                    <p>댓글 테스트 2</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="board_side">
+                </aside>
+            </section>
+        </main>
+        <!-- // main -->
+        <!-- footer -->
+        <footer>
+            <div class="footer_wrap">
+                <img src="/src/assets/img/logo.png" alt="ORGO">
+                <div class="footer_content">
+                    <p>Ormi 교육생들을 위한 커뮤니티 입니다.</p>
+                    <p>Copyright 2023. Chilli All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
