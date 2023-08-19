@@ -159,6 +159,36 @@ main {
     background-color: white;
 }
 
+.re-comment-write {
+    padding: 15px 15px 10px 60px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+}
+
+.re-comment-write input {
+    border: none;
+    height: 25px;
+    padding: 5px 10px 5px 10px;
+    background-color: rgb(247, 247, 247);
+    border-radius: 5px;
+    width: 620px;
+    margin-right: 30px;
+    font-size: 14px;
+}
+
+.re-comment-write button {
+    background-color: var(--maincolor);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 50px;
+    height: 33px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+}
+
 .comment-write {
     padding: 15px;
     background-color: white;
@@ -238,4 +268,26 @@ main {
     padding: 13px;
     border-radius: 5px;
     font-size: 14px;
+}
+
+.re-comment {
+    padding-left: 60px;
+}
+
+.comment-reply {
+    padding-left: 60px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.comment-reply a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+.comment-reply a img {
+    margin-right: 5px;
 }
