@@ -27,6 +27,7 @@ main {
     padding-left: 10px;
     padding-right: 10px;
     background-color: white;
+    position: relative;
 }
 
 .post_owner {
@@ -74,6 +75,42 @@ main {
 .post_owner_follow button:hover {
     color: white;
     background-color: rgb(15, 144, 183);
+}
+
+.post_list {
+    position: absolute;
+    right: 15px;
+    bottom: 55px;
+}
+.post_delete {
+    position: absolute;
+    right: 85px;
+    bottom: 55px;
+}
+.post_edit {
+    position: absolute;
+    right: 155px;
+    bottom: 55px;
+}
+.post_edit button,
+.post_list button ,
+.post_delete button {
+    background-color: white;
+    border: 1px solid rgb(109, 109, 109);
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    width: 60px;
+    height: 33px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.post_edit button:hover,
+.post_list button:hover,
+.post_delete button:hover {
+    color: white;
+    background-color: black
 }
 
 .post_content {
