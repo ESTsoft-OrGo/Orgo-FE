@@ -41,7 +41,7 @@
 	height: 40px;
 	border: none;
 	font-weight: bold;
-	background: rgb(102, 162, 253);
+	background: var(--maincolor);
 	padding: 0.5rem 1.8rem 0.5rem 1.8rem;
 	border-radius: 5px;
 	color: white;
@@ -51,7 +51,8 @@
 
 .user-login a {
 	margin-top: 3rem;
-	color: rgb(102, 162, 253);
+	color: var(--maincolor);
+	text-decoration: none;
 }
 
 
