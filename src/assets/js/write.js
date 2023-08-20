@@ -1,7 +1,7 @@
 const $textarea = document.querySelector('.post-contents');
-const $imageInput = document.querySelector('.image-input')
-const $postImage = document.querySelector('.post-image')
-const $backBtn = document.querySelector('.post-back')
+const $imageInput = document.querySelector('.image-input');
+const $postImage = document.querySelector('.post-image');
+const $backBtn = document.querySelector('.post-back');
 
 // 줄바꿈 시 자동으로 height 늘어나는 함수
 $textarea.oninput = (event) => {
@@ -11,6 +11,8 @@ $textarea.oninput = (event) => {
 };
 
 const previewImage = (event) => {
+    
+    
     const file = event.target.files[0];
 
     if (file.size > 250000){

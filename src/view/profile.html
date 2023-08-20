@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ORGO - 프로필</title>
+        <!-- fontawesome -->
+		<link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="/src/assets/css/reset.css" />
+        <link rel="stylesheet" href="/src/assets/css/style.css" />
+        <link rel="stylesheet" href="/src/assets/css/profile.css" />
+        <link rel="stylesheet" href="/src/assets/css/postlist.css" />
+    </head>
+    <body>
+        <!-- header -->
+        <header>
+            <nav class="header">
+                <h1>
+                    <a href="/index.html">
+                        <img src="/src/assets/img/logo.png" alt="ORGO">
+                    </a>
+                </h1>
+                <div class="header-search">
+                    <form method="get">
+                        <input class='header-search__text' placeholder="사람, 제목을 검색하세요" ,type="text" , name="keyword" , required>
+                        <button class='header-search__btn' type='submit'>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                </div>
+                <ul class="navbar__menu">
+                    <li class="always_show">
+                        <a href="/src/view/board.html">BOARD</a>
+                    </li>
+                    <li class="always_show">
+                        <a href="/src/view/login.html">LOGIN</a>
+                    </li>
+                    <li class="always_show">
+                        <a href="/src/view/join.html">JOIN</a>
+                    </li>
+                    <!-- <li class="always_show">
+                        <a class="logout_btn" href="#">LOGOUT</a>
+                    </li> -->
+                    <li class="always_show">
+                        <a href="/src/view/profile.html" class="avatar_img_li">
+                            <img src="/src/assets/img/profile_temp.png" class="avatar_img" alt="프로필">
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!-- main -->
+        <main>
+            <section class="profile_section">
+                <div class="user-image">
+                    <img class="user-profile-img" src="/src/assets/img/profile_temp.png" alt="프로필">
+                </div>
+                <div class="post-image-div">
+                    <label for="img-input"><p>프로필 이미지</p><i class="fa-regular fa-image"></i></label>
+                    <input class="image-input" id="img-input" name="img-input" accept="image/gif,image/jpeg,image/png" type="file">
+                </div>
+                <div class="user-info">
+                    <input type="text" value="유저 네임" placeholder="닉네임을 적어주세요."></input>
+                    <input type="text" value="유저 인사말" placeholder="자신을 소개해주세요."></input>
+                </div>
+                <div class="user-follow">
+                    <p href="#">게시물 2</p>
+                    <p href="#">팔로워 0</p>
+                    <p href="#">팔로잉 0</p>
+                </div>
+                <button class="user-profile-save">저장</button>
+            </section>
+            <section class="post_seciton">
+                <div class="my_related">
+                    <a class="related clicked" href="#">게시물</a>
+                    <a class="related" href="#">팔로워</a>
+                    <a class="related" href="#">팔로잉</a>
+                </div>
+                <p class="mypost">내 게시물</p>
+                <div class="post_list">
+                    <div class="post">
+                        <div class="post_owner">
+                            <div class="post_owner_img">
+                                <img src="/src/assets/img/profile_temp.png" alt="profile">
+                            </div>
+                            <div class="post_owner_info">
+                                <p>ORGO</p>
+                                <p>Back-End ORMI 1기</p>
+                            </div>
+                        </div>
+                        <div class="post_content">
+                            <a href="/src/view/view.html" class="post_title">🙋‍♂️ Title 2 </a>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            <br>
+                            <br>
+                            Perspiciatis minus odit ea blanditiis atque, distinctio dolores iste. Dolor fugiat expedita ducimus doloremque et est, nisi porro harum tenetur consectetur ullam!
+                            </p>
+                        </div>
+                        <div class="post_img"></div>
+                        <div class="post_createdat">
+                            <p>2023년 8월 18일 오전 9:30</p>
+                        </div>
+                        <div class="post_reaction_info">
+                            <div class="reaction_info_div">
+                                <p>좋아요</p>
+                                <p class="like_count">0</p>
+                            </div>
+                            <div class="reaction_info_div">
+                                <p>조회</p>
+                                <p class="view_count">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <div class="post_owner">
+                            <div class="post_owner_img">
+                                <img src="/src/assets/img/profile_temp.png" alt="profile">
+                            </div>
+                            <div class="post_owner_info">
+                                <p>ORGO</p>
+                                <p>Back-End ORMI 1기</p>
+                            </div>
+                        </div>
+                        <div class="post_content">
+                            <a class="post_title">🙋‍♂️ Title </a>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            <br>
+                            <br>
+                            Perspiciatis minus odit ea blanditiis atque, distinctio dolores iste. Dolor fugiat expedita ducimus doloremque et est, nisi porro harum tenetur consectetur ullam!
+                            </p>
+                        </div>
+                        <div class="post_img"></div>
+                        <div class="post_createdat">
+                            <p>2023년 8월 18일 오전 9:30</p>
+                        </div>
+                        <div class="post_reaction_info">
+                            <div class="reaction_info_div">
+                                <p>좋아요</p>
+                                <p class="like_count">0</p>
+                            </div>
+                            <div class="reaction_info_div">
+                                <p>조회</p>
+                                <p class="view_count">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+        </main>
+        <!-- // main -->
+        <script src="/src/assets/js/profile.js" type="module"></script>
+    </body>
+</html>
