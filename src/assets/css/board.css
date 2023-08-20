@@ -1,6 +1,6 @@
 main {
     background-color: rgba(243, 243, 243, 0.863);
-    padding-top: 135px;
+    padding-top: 115px;
     padding-bottom: 50px;
 }
 
@@ -17,7 +17,7 @@ main {
 
 .board_side {
     width: 300px;
-    height: 400px;
+    height: 430px;
     border: 1px solid rgb(182, 182, 182);
     background-color: white;
     padding: 20px;
@@ -34,6 +34,7 @@ main {
     align-items: center;
     margin-bottom: 25px;
 }
+
 .side_post p {
     font-size: 30px;
     font-weight: bold;
@@ -50,6 +51,7 @@ main {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    line-height: 24px;
 }
 
 .post-write {
