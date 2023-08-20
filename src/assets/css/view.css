@@ -1,6 +1,6 @@
 main {
     background-color: rgba(243, 243, 243, 0.863);
-    padding-top: 135px;
+    padding-top: 115px;
     padding-bottom: 50px;
 }
 
@@ -17,12 +17,8 @@ main {
 
 .view_section {
     width: 800px;
-}
-
-.board_side {
-    width: 350px;
-    height: 720px;
-    background-color: rgb(3, 80, 0);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .view {
