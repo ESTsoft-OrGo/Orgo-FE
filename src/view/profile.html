@@ -39,16 +39,16 @@
                     <li class="always_show">
                         <a href="/src/view/board.html">BOARD</a>
                     </li>
-                    <li class="always_show">
+                    <li class="is_not_logined">
                         <a href="/src/view/login.html">LOGIN</a>
                     </li>
-                    <li class="always_show">
+                    <li class="is_not_logined">
                         <a href="/src/view/join.html">JOIN</a>
                     </li>
-                    <!-- <li class="always_show">
+                    <li class="is_logined">
                         <a class="logout_btn" href="#">LOGOUT</a>
-                    </li> -->
-                    <li class="always_show">
+                    </li>
+                    <li class="is_logined">
                         <a href="/src/view/profile.html" class="avatar_img_li">
                             <img src="/src/assets/img/profile_temp.png" class="avatar_img" alt="프로필">
                         </a>
@@ -67,13 +67,13 @@
                     <input class="image-input" id="img-input" name="img-input" accept="image/gif,image/jpeg,image/png" type="file">
                 </div>
                 <div class="user-info">
-                    <input type="text" value="유저 네임" placeholder="닉네임을 적어주세요."></input>
-                    <input type="text" value="유저 인사말" placeholder="자신을 소개해주세요."></input>
+                    <input class="user-name" type="text" value="유저 네임" placeholder="닉네임을 적어주세요."></input>
+                    <input class="user-about" type="text" value="유저 인사말" placeholder="자신을 소개해주세요."></input>
                 </div>
                 <div class="user-follow">
-                    <p href="#">게시물 2</p>
-                    <p href="#">팔로워 0</p>
-                    <p href="#">팔로잉 0</p>
+                    <p class="user-posts">게시물 2</p>
+                    <p class="user-follower">팔로워 0</p>
+                    <p class="user-following">팔로잉 0</p>
                 </div>
                 <button class="user-profile-save">저장</button>
             </section>
@@ -83,79 +83,26 @@
                     <a class="related" href="#">팔로워</a>
                     <a class="related" href="#">팔로잉</a>
                 </div>
-                <p class="mypost">내 게시물</p>
-                <div class="post_list">
-                    <div class="post">
-                        <div class="post_owner">
-                            <div class="post_owner_img">
-                                <img src="/src/assets/img/profile_temp.png" alt="profile">
-                            </div>
-                            <div class="post_owner_info">
-                                <p>ORGO</p>
-                                <p>Back-End ORMI 1기</p>
-                            </div>
-                        </div>
-                        <div class="post_content">
-                            <a href="/src/view/view.html" class="post_title">🙋‍♂️ Title 2 </a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            <br>
-                            <br>
-                            Perspiciatis minus odit ea blanditiis atque, distinctio dolores iste. Dolor fugiat expedita ducimus doloremque et est, nisi porro harum tenetur consectetur ullam!
-                            </p>
-                        </div>
-                        <div class="post_img"></div>
-                        <div class="post_createdat">
-                            <p>2023년 8월 18일 오전 9:30</p>
-                        </div>
-                        <div class="post_reaction_info">
-                            <div class="reaction_info_div">
-                                <p>좋아요</p>
-                                <p class="like_count">0</p>
-                            </div>
-                            <div class="reaction_info_div">
-                                <p>조회</p>
-                                <p class="view_count">0</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <div class="post_owner">
-                            <div class="post_owner_img">
-                                <img src="/src/assets/img/profile_temp.png" alt="profile">
-                            </div>
-                            <div class="post_owner_info">
-                                <p>ORGO</p>
-                                <p>Back-End ORMI 1기</p>
-                            </div>
-                        </div>
-                        <div class="post_content">
-                            <a class="post_title">🙋‍♂️ Title </a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            <br>
-                            <br>
-                            Perspiciatis minus odit ea blanditiis atque, distinctio dolores iste. Dolor fugiat expedita ducimus doloremque et est, nisi porro harum tenetur consectetur ullam!
-                            </p>
-                        </div>
-                        <div class="post_img"></div>
-                        <div class="post_createdat">
-                            <p>2023년 8월 18일 오전 9:30</p>
-                        </div>
-                        <div class="post_reaction_info">
-                            <div class="reaction_info_div">
-                                <p>좋아요</p>
-                                <p class="like_count">0</p>
-                            </div>
-                            <div class="reaction_info_div">
-                                <p>조회</p>
-                                <p class="view_count">0</p>
-                            </div>
-                        </div>
+                <div class="choice_post">
+                    <p class="choice_title">내 게시물</p>
+                    <div class="post_list">
                     </div>
                 </div>
-            </div>
+                <div class="choice_follower hidden">
+                    <p class="choice_title">팔로워</p>
+                    <div class="follower_list">
+                    </div>
+                </div>
+                <div class="choice_following hidden">
+                    <p class="choice_title">팔로잉</p>
+                    <div class="following_list">
+                    </div>
+                </div>
             </section>
         </main>
         <!-- // main -->
+        <script src="/src/assets/js/auth.js"></script>
+        <script src="/src/assets/js/header.js"></script>
         <script src="/src/assets/js/profile.js" type="module"></script>
     </body>
 </html>

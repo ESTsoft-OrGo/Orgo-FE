@@ -11,8 +11,6 @@ $textarea.oninput = (event) => {
 };
 
 const previewImage = (event) => {
-    
-    
     const file = event.target.files[0];
 
     if (file.size > 250000){
