@@ -15,7 +15,7 @@
         />
         <link rel="stylesheet" href="/src/assets/css/reset.css" />
         <link rel="stylesheet" href="/src/assets/css/style.css" />
-        <link rel="stylesheet" href="/src/assets/css/login.css" />
+        <link rel="stylesheet" href="/src/assets/css/join.css" />
     </head>
     <body>
         <!-- header -->
@@ -30,14 +30,14 @@
         </header>
         <!-- main -->
         <main>
-            <form class="user-login" method="post">
+            <form class="user-join" method="post">
                 <h2>JOIN</h2>
-                <div class="login_input_wrap">
-                    <input class="user-login__email" name="email" type="email" placeholder="이메일 입력">
-                    <input class="user-login__password" name="password" type="password" placeholder="비밀번호 입력">
-                    <input class="user-login__password" name="password" type="password" placeholder="비밀번호 확인">
+                <div class="join_input_wrap">
+                    <input class="user-join__email" name="email" type="email" placeholder="이메일 입력">
+                    <input class="user-join__password" name="password" type="password" placeholder="비밀번호 입력">
+                    <input class="user-join__password_valid" name="password" type="password" placeholder="비밀번호 확인">
                 </div>
-                <input class="login_btn" type="submit" value="회원가입">
+                <input class="join_btn" type="submit" value="회원가입">
             </form>
         </main>
         <!-- // main -->
@@ -51,5 +51,6 @@
                 </div>
             </div>
         </footer>
+        <script src="/src/assets/js/join.js"></script>
     </body>
 </html>
