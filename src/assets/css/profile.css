@@ -128,8 +128,60 @@
     border-bottom: 2px solid black;
 }
 
-.mypost {
+.choice_title {
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 60px;
+}
+
+.follow {
+    position: relative;
+    height: 35px;
+    display: flex;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.follow_img img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.follow_info p:first-child {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.follow_info p:last-child {
+    font-size: 12px;
+    color: rgb(114, 114, 114);
+}
+
+.follow_cancle {
+    position: absolute;
+    right: 15px;
+}
+
+.follow_cancle button {
+    background-color: var(--maincolor);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 90px;
+    height: 33px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.follow_cancle button:hover {
+    color: white;
+    background-color: rgb(15, 144, 183);
+}
+
+.hidden {
+    display: none;
 }

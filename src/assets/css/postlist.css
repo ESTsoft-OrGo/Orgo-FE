@@ -58,9 +58,12 @@
 }
 
 .post_content {
+    display: block;
     min-height: 230px;
     width: 100%;
     padding: 15px;
+    text-decoration: none;
+    color: black;
 }
 
 .post_title {
@@ -68,8 +71,6 @@
     font-weight: bold;
     font-size: 22px;
     margin-bottom: 30px;
-    text-decoration: none;
-    color: black;
 }
 
 .post_content p {

@@ -50,7 +50,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 400px;
+    width: 350px;
     list-style: none;
     padding-right: 180px;
 }
@@ -79,8 +79,7 @@
 
 .navbar__menu li a:hover:not(.avatar_img_li) {
     padding: 7px 10px;
-    /* background-color: rgb(56, 135, 253); */
-    background-color: var(--maincolor);
+    background-color: rgb(56, 135, 253);
     color: white;
     border-radius: 5px;
 }
