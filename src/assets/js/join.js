@@ -31,9 +31,17 @@ const joinFunc = async (event) => {
     })
     .then((res) => res.json())
     .then((data) => {
-        console.log(data)
+        if (data.errors){
+            alert(data.errors[0])
+        } else{
+            alert('회원가입을 축하합니다.')
+            location.href= '/src/view/login.html'
+        }
+        
+    
     })
     .catch((err) => {
+        console.log('!')
         console.log(err);
     });
 }
