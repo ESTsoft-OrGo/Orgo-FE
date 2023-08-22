@@ -65,24 +65,20 @@
                                 <img src="/src/assets/img/profile_temp.png" alt="profile">
                             </div>
                             <div class="post_owner_info">
-                                <p>ORGO</p>
-                                <p>Back-End ORMI 1기</p>
+                                <p class="post_owner_nickname"></p>
+                                <p class="post_owner_about"></p>
                             </div>
                             <div class="post_owner_follow">
-                                <button>팔로우</button>
+                                <button>Follow</button>
                             </div>
                         </div>
                         <div class="post_content">
-                            <h2>🙋‍♂️ Title </h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            <br>
-                            <br>
-                            Perspiciatis minus odit ea blanditiis atque, distinctio dolores iste. Dolor fugiat expedita ducimus doloremque et est, nisi porro harum tenetur consectetur ullam!
-                            </p>
+                            <h2></h2>
+                            <p></p>
                         </div>
                         <div class="post_img"></div>
                         <div class="post_createdat">
-                            <p>2023년 8월 18일 오전 9:30</p>
+                            <p></p>
                         </div>
                         <div class="post_reaction_info">
                             <div class="reaction_info_div">
@@ -95,13 +91,10 @@
                                 <p class="view_count">0</p>
                             </div>
                         </div>
-                        <div class="post_edit">
+                        <div class="post_edit hidden">
                             <button>수정</button>
                         </div>
-                        <div class="post_list">
-                            <button>목록</button>
-                        </div>
-                        <div class="post_delete">
+                        <div class="post_delete hidden">
                             <button>삭제</button>
                         </div>
                     </div>
@@ -112,61 +105,9 @@
                                 <img src="/src/assets/img/profile_temp.png" alt="profile">
                             </div>
                             <input type="text" placeholder="댓글을 입력하세요">
-                            <button>등록</button>
+                            <button class="comment-write-btn">등록</button>
                         </div>
                         <div class="comment-list">
-                            <div class="comment">
-                                <div class="comment_owner">
-                                    <div class="comment_owner_img">
-                                        <img src="/src/assets/img/profile_temp.png" alt="profile">
-                                    </div>
-                                    <div class="comment_owner_info">
-                                        <p>ORGO</p>
-                                        <p>Back-End ORMI 2기</p>
-                                    </div>
-                                </div>
-                                <div class="comment_content">
-                                    <p>댓글입니다.</p>
-                                </div>
-                                <div class="comment-reply">
-                                    <a href="#"><img class="arrow" src="/src/assets/img/arrow.svg" alt="arrow"><p>답글 남기기</p></a>
-                                </div>
-                            </div>
-                            <div class="re-comment-write">
-                                <div class="comment_writer_img">
-                                    <img src="/src/assets/img/profile_temp.png" alt="profile">
-                                </div>
-                                <input type="text" placeholder="답글을 입력하세요">
-                                <button>등록</button>
-                            </div>
-                            <div class="re-comment">
-                                <div class="comment_owner">
-                                    <div class="comment_owner_img">
-                                        <img src="/src/assets/img/profile_temp.png" alt="profile">
-                                    </div>
-                                    <div class="comment_owner_info">
-                                        <p>ORGO</p>
-                                        <p>Back-End ORMI 1기</p>
-                                    </div>
-                                </div>
-                                <div class="comment_content">
-                                    <p>대댓글 테스트 2</p>
-                                </div>
-                            </div>
-                            <div class="re-comment">
-                                <div class="comment_owner">
-                                    <div class="comment_owner_img">
-                                        <img src="/src/assets/img/profile_temp.png" alt="profile">
-                                    </div>
-                                    <div class="comment_owner_info">
-                                        <p>ORGO</p>
-                                        <p>Back-End ORMI 45기</p>
-                                    </div>
-                                </div>
-                                <div class="comment_content">
-                                    <p>대댓글 테스트 3</p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -184,5 +125,6 @@
             </div>
         </footer>
         <script src="/src/assets/js/header.js"></script>
+        <script src="/src/assets/js/view.js" type="module"></script>
     </body>
 </html>

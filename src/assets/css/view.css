@@ -65,7 +65,7 @@ main {
     border: none;
     border-radius: 5px;
     color: white;
-    width: 60px;
+    width: 70px;
     height: 33px;
     font-weight: bold;
     font-size: 13px;
@@ -76,20 +76,15 @@ main {
     color: white;
     background-color: rgb(15, 144, 183);
 }
-
-.post_list {
+.post_delete {
     position: absolute;
     right: 15px;
     bottom: 55px;
-}
-.post_delete {
-    position: absolute;
-    right: 85px;
-    bottom: 55px;
+    
 }
 .post_edit {
     position: absolute;
-    right: 155px;
+    right: 85px;
     bottom: 55px;
 }
 .post_edit button,
@@ -178,6 +173,7 @@ main {
     cursor: pointer;
     color: rgb(255, 101, 101);
     margin-right: 5px;
+    cursor: pointer;
 }
 
 .comment-title {
@@ -193,7 +189,7 @@ main {
 }
 
 .re-comment-write {
-    padding: 15px 15px 10px 60px;
+    padding: 15px 15px 10px 0;
     background-color: white;
     display: flex;
     align-items: center;
@@ -260,10 +256,6 @@ main {
     cursor: pointer;
 }
 
-.comment-list {
-    min-height: 10px;
-}
-
 .comment_owner {
     position: relative;
     height: 35px;
@@ -290,15 +282,43 @@ main {
 }
 
 .comment_content {
+    position: relative;
     margin-left: 60px;
     margin-right: 15px;
     margin-bottom: 15px;
 }
 
+.recomment_delete,
+.comment_delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 6px;
+    border: none;
+    border-radius: 5px;
+    background: none;
+    cursor: pointer;
+}
+
+.recomment_delete i,
+.comment_delete i {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.recomment_delete i:hover,
+.comment_delete i:hover {
+    background-color: black;
+    color: white;
+}
+
 .comment_content p {
     display: block;
     background-color: rgb(247, 247, 247);
-    padding: 13px;
+    padding: 13px 30px 13px 13px;
     border-radius: 5px;
     font-size: 14px;
 }
@@ -308,6 +328,7 @@ main {
 }
 
 .comment-reply {
+    font-size: 11px;
     padding-left: 60px;
     margin-top: 5px;
     margin-bottom: 10px;
@@ -317,10 +338,15 @@ main {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: rgb(0, 0, 0);
     font-weight: bold;
+    color: black;
 }
 
 .comment-reply a img {
+    width: 13px;
     margin-right: 5px;
+}
+
+.hidden {
+    display: none;
 }
