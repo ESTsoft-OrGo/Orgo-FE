@@ -26,6 +26,7 @@ const api_login = async (event) => {
             setCookie('access',data.token.access)
             setCookie('refresh',data.token.refresh)
             localStorage.setItem('user', JSON.stringify(data.user_info));
+            localStorage.setItem('follow', JSON.stringify(data.follower));
             location.href= '/index.html'
         } else {
             alert(data.message)
