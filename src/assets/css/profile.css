@@ -128,6 +128,12 @@
     border-bottom: 2px solid black;
 }
 
+.post_list, 
+.follower_list, 
+.following_list {
+    min-height: 400px;
+}
+
 .choice_title {
     font-size: 28px;
     font-weight: bold;

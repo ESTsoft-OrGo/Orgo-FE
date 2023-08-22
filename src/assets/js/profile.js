@@ -1,4 +1,4 @@
-import { getCookie } from "./util.js"
+import { getCookie, detail_page } from "./util.js"
 import {create_post,create_follow} from "./createElement.js"
 
 const $imageInput = document.querySelector('.image-input')
@@ -51,8 +51,20 @@ const mypost_list = async () => {
         $user_following.innerText = '팔로잉 ' + data.following.length
         
         posts.forEach(post => {
-            const element = create_post(post,data.serializer)
+            const element = create_post(post,data.serializer,'profile')
             $post_list.append(element)
+        });
+
+        const articles = document.querySelectorAll('.post_content')
+        const $follow_btns = document.querySelectorAll('.post_owner_follow > button')
+        const follow_list = JSON.parse(localStorage.getItem('follow'))
+
+        articles.forEach(article => {
+            article.addEventListener('click',detail_page)
+        });
+
+        $follow_btns.forEach(btn => {
+            btn.remove()
         });
 
         followers.forEach(follower => {
@@ -63,6 +75,16 @@ const mypost_list = async () => {
         followings.forEach(following => {
             const element = create_follow(following[0])
             $following_list.append(element)
+        });
+
+        const $follow_cencles = document.querySelectorAll('.follow_cancle > button')
+        
+        $follow_cencles.forEach(btn => {
+            follow_list.forEach(follow => {
+                if (follow.target_id_id == btn.id) {
+                    btn.innerText = 'Unfollow'
+                }
+            });
         });
     })
     .catch((err) => {
@@ -127,6 +149,8 @@ const previewImage = (event) => {
 };
 
 const relatedClick = (e) => {
+    e.preventDefault()
+
     const target = e.target
     const $choice_post = document.querySelector('.choice_post')
     const $choice_follower = document.querySelector('.choice_follower')
