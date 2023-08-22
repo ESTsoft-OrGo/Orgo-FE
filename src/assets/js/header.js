@@ -29,8 +29,8 @@ const is_logined = () => {
 
 const logout = (event) => {
     event.preventDefault()
-    
     localStorage.removeItem('user');
+    localStorage.removeItem('follow');
     location.href = '/index.html'
 }
 
