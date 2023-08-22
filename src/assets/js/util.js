@@ -59,3 +59,16 @@ export const is_logined = () => {
         location.href= '/index.html'
     }
 }
+
+// 디테일 뷰 들어가기
+export const detail_page = (event) => {
+    let target = event.target
+
+    while (target.classList != 'post_content'){
+        target = target.parentNode
+    }
+    const pages = {
+        'pages': target.id
+    }
+    localStorage.setItem("renderPage", JSON.stringify(pages));
+}
