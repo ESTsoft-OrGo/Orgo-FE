@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ORGO - 글쓰기</title>
+        <!-- fontawesome -->
+		<link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="/src/assets/css/reset.css" />
+        <link rel="stylesheet" href="/src/assets/css/style.css" />
+        <link rel="stylesheet" href="/src/assets/css/write.css" />
+    </head>
+    <body>
+        <!-- header -->
+        <header>
+            <nav class="header">
+                <h1>
+                    <a href="/index.html">
+                        <img src="/src/assets/img/logo.png" alt="ORGO">
+                    </a>
+                </h1>
+                <div class="header-search">
+                    <form method="get">
+                        <input class='header-search__text' placeholder="사람, 제목을 검색하세요" ,type="text" , name="keyword" , required>
+                        <button class='header-search__btn' type='submit'>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                </div>
+                <ul class="navbar__menu">
+                    <li class="always_show">
+                        <a href="/src/view/board.html">BOARD</a>
+                    </li>
+                    <li class="is_not_logined">
+                        <a href="/src/view/login.html">LOGIN</a>
+                    </li>
+                    <li class="is_not_logined">
+                        <a href="/src/view/join.html">JOIN</a>
+                    </li>
+                    <li class="is_logined">
+                        <a class="logout_btn" href="#">LOGOUT</a>
+                    </li>
+                    <li class="is_logined">
+                        <a href="/src/view/profile.html" class="avatar_img_li">
+                            <img src="/src/assets/img/profile_temp.png" class="avatar_img" alt="프로필">
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!-- main -->
+        <main>
+            <section class="write-section">
+                <div class="post-header">
+                    <button class="post-back">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button class="post-save">완료</button>
+                </div>
+                <div class="post-image-div">
+                    <label for="img-input"><i class="fa-regular fa-image"></i></label>
+                    <input class="image-input" id="img-input" name="img-input" accept="image/gif,image/jpeg,image/png" type="file">
+                </div>
+                <div class="post-content">
+                    <input class="post-title" type="text" placeholder="제목을 입력하세요">
+                    <textarea class="post-contents" rows="1" placeholder="나누고 싶은 이야기나 생각을 적어주세요"></textarea>
+                    <div class="image-preview">
+                        <img class="post-image" alt="">
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- // main -->
+        <script src="/src/assets/js/auth.js"></script>
+        <script src="/src/assets/js/header.js"></script>
+        <script src="/src/assets/js/edit.js" type="module"></script>
+    </body>
+
+</html>

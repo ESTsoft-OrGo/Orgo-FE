@@ -11,7 +11,8 @@ export const create_post = (post,owner,where,likes) => {
     const post_content = document.createElement('a');
     const post_title = document.createElement('p');
     const post_contents = document.createElement('p');
-    const post_img = document.createElement('div');
+    const post_img_div = document.createElement('div');
+    const post_img = document.createElement('img');
     const post_createdat_div = document.createElement('div');
     const post_createdat = document.createElement('p');
     const post_reaction_info = document.createElement('div');
@@ -57,9 +58,14 @@ export const create_post = (post,owner,where,likes) => {
     post_title.innerText = post.title
     post_contents.innerText = post.content
 
-    post_content.append(post_title,post_contents)
+    post_content.append(post_title,post_contents,post_img_div)
 
-    post_img.className = 'post_img'
+    if(post.postImage){
+        let media_url = 'http://127.0.0.1:8000/media/';
+        post_img.src = media_url + post.postImage
+    }
+    post_img_div.append(post_img)
+    post_img_div.className = 'post_img'
 
     post_createdat_div.className = 'post_createdat'
     
@@ -87,7 +93,7 @@ export const create_post = (post,owner,where,likes) => {
     reaction_info_div2.append(reaction_info_div2_p1,reaction_info_div2_p2)
     post_reaction_info.append(reaction_info_div1,reaction_info_div2)
 
-    post_div.append(post_owner,post_content,post_img,post_createdat_div,post_reaction_info);
+    post_div.append(post_owner,post_content,post_createdat_div,post_reaction_info);
 
     return post_div
 }
