@@ -1,4 +1,4 @@
-import {setCookie, is_logined} from "./util.js"
+import {setCookie, is_logined, setWithExpire} from "./util.js"
 
 const $login_btn = document.querySelector('.login_btn')
 
@@ -25,8 +25,8 @@ const api_login = async (event) => {
         if (data.token){
             setCookie('access',data.token.access)
             setCookie('refresh',data.token.refresh)
-            localStorage.setItem('user', JSON.stringify(data.user_info));
             localStorage.setItem('follow', JSON.stringify(data.follower));
+            setWithExpire('user',data.user_info)
             location.href= '/index.html'
         } else {
             alert(data.message)

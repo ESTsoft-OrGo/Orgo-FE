@@ -1,4 +1,4 @@
-import { getCookie,detail_page } from "./util.js"
+import { detail_page,getWithExpire } from "./util.js"
 import { create_post } from "./createElement.js"
 import { followFunc } from "./follow.js"
 
@@ -38,8 +38,8 @@ const post_list = async () => {
 
         const $follow_btns = document.querySelectorAll('.post_owner_follow > button')
 
-        if (localStorage.getItem('user')) {
-            const profile = JSON.parse(localStorage.getItem('user'))
+        if (getWithExpire('user')) {
+            const profile = JSON.parse(getWithExpire('user'))
             const follow_list = JSON.parse(localStorage.getItem('follow'))
 
             $follow_btns.forEach(btn => {
@@ -94,8 +94,8 @@ const create_sidepost = (data,n) => {
 
 const is_logined = () => {
 
-    if (localStorage.getItem('user')) {
-        const profile = JSON.parse(localStorage.getItem('user'))
+    if (getWithExpire('user')) {
+        const profile = JSON.parse(getWithExpire('user'))
         const $writer_img = document.querySelector('.post_writer_img > img')
         
         if (profile.profileImage){

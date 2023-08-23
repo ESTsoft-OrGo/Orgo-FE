@@ -37,8 +37,7 @@ const joinFunc = async (event) => {
             alert('회원가입을 축하합니다.')
             location.href= '/src/view/login.html'
         }
-        
-    
+
     })
     .catch((err) => {
         console.log('!')
@@ -49,7 +48,7 @@ $join_btn.addEventListener('click',joinFunc)
 // 로그인이 되있으면 홈으로
 const is_logined = () => {
 
-    if (sessionStorage.getItem('user')) {
+    if (getWithExpire('user')) {
         location.href = '/index.html'
     }
 }

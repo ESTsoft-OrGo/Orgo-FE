@@ -1,11 +1,13 @@
+import {getWithExpire,deleteCookie} from "./util.js"
+
 const $logout_btn = document.querySelector('.logout_btn')
 
 // 로그인이 되있는지 확인
 const is_logined = () => {
 
-    if (localStorage.getItem('user')) {
+    if (getWithExpire('user')) {
         const is_logined = document.querySelectorAll('.is_logined')
-        const profile = JSON.parse(localStorage.getItem('user'))
+        const profile = JSON.parse(getWithExpire('user'))
         const $avatar_img = document.querySelector('.avatar_img')
         
         is_logined.forEach(element => {
@@ -31,6 +33,8 @@ const logout = (event) => {
     event.preventDefault()
     localStorage.removeItem('user');
     localStorage.removeItem('follow');
+    deleteCookie('access')
+    deleteCookie('refresh')
     location.href = '/index.html'
 }
 

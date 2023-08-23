@@ -1,4 +1,4 @@
-import { getCookie, detail_page } from "./util.js"
+import { getCookie, detail_page, getWithExpire,setWithExpire} from "./util.js"
 import { create_post,create_follow } from "./createElement.js"
 import { followFunc } from "./follow.js"
 
@@ -11,7 +11,7 @@ const $profileimg = document.querySelector('.user-profile-img')
 const $profile_save = document.querySelector('.user-profile-save')
 
 const profile_setting = () => {
-    let user = localStorage.getItem('user');
+    let user = getWithExpire('user');
     const user_profile = JSON.parse(user)
     
     $user_name.value = user_profile.nickname
@@ -124,7 +124,7 @@ const profile_save = async (event) => {
     .then((data) => {
         if (data) {
             alert('프로필 변경이 완료되었습니다.')
-            localStorage.setItem('user', JSON.stringify(data));
+            setWithExpire('user', data);
             location.reload()
         }
     })
