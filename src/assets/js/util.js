@@ -32,6 +32,9 @@ export const throttling = (func, delay) => {
     };
 };
 
+export const deleteCookie = (name) => {
+    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
 
 /**
  * @param {string} cookie_name 저장될 쿠키 이름
@@ -51,6 +54,35 @@ export const setCookie = (cookie_name, value) => {
 export const getCookie = function(name){
     const value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null;
+}
+
+
+export const setWithExpire = (key, data) => {
+    let now = new Date()
+    let item = data
+    item['expires'] = now.getTime() + (2*60*60*1000) - 1000
+    localStorage.setItem(key,JSON.stringify(item))
+}
+
+export const getWithExpire = (key) => {
+    
+    const itemStr = localStorage.getItem(key)
+
+    if(!itemStr){
+        return null
+    }
+
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if(now.getTime() > item.expires) {
+        localStorage.removeItem(key)
+        deleteCookie('access')
+        deleteCookie('refresh')
+        alert('로그인 시간이 만료되어 로그아웃 되었습니다.')
+        return null
+    }
+    return itemStr
 }
 
 // 로그인이 되있으면 홈으로
