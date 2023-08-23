@@ -1,5 +1,6 @@
 import { getCookie, detail_page } from "./util.js"
-import {create_post,create_follow} from "./createElement.js"
+import { create_post,create_follow } from "./createElement.js"
+import { followFunc } from "./follow.js"
 
 const $imageInput = document.querySelector('.image-input')
 const $userImage = document.querySelector('.user-profile-img');
@@ -51,7 +52,7 @@ const mypost_list = async () => {
         $user_following.innerText = '팔로잉 ' + data.following.length
         
         posts.forEach(post => {
-            const element = create_post(post,data.serializer,'profile')
+            const element = create_post(post.post,data.serializer,'profile',post.likes)
             $post_list.append(element)
         });
 
@@ -80,6 +81,7 @@ const mypost_list = async () => {
         const $follow_cencles = document.querySelectorAll('.follow_cancle > button')
         
         $follow_cencles.forEach(btn => {
+            btn.addEventListener('click',followFunc)
             follow_list.forEach(follow => {
                 if (follow.target_id_id == btn.id) {
                     btn.innerText = 'Unfollow'

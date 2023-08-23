@@ -1,4 +1,5 @@
 import { getCookie } from "./util.js";
+import { followFunc } from "./follow.js"
 
 const renderPage = JSON.parse(localStorage.getItem("renderPage"));
 const $post_owner_img = document.querySelector('.post_owner_img > img')
@@ -6,10 +7,12 @@ const $post_owner_nickname = document.querySelector('.post_owner_nickname')
 const $post_owner_about = document.querySelector('.post_owner_about')
 const $post_content_title = document.querySelector('.post_content h2')
 const $post_content_content = document.querySelector('.post_content p')
+const $post_img = document.querySelector('.post_img > img')
 const $post_createdat = document.querySelector('.post_createdat p')
 const $like_count = document.querySelector('.like_count')
 const $comment_list = document.querySelector('.comment-list')
 const $post_delete = document.querySelector('.post_delete > button')
+const $post_edit = document.querySelector('.post_edit > button')
 const $like_btn = document.querySelector('.like_icon')
 
 // Django Server에서 Post Detail 가져온 후 DOM 생성
@@ -35,7 +38,9 @@ const postLoad = async () => {
             $post_owner_about.innerText = data.writer.about
             $post_content_title.innerText = data.post.title
             $post_content_content.innerText = data.post.content
-
+            if(data.post.postImage){
+                $post_img.src = 'http://127.0.0.1:8000/media/' + data.post.postImage
+            }
             const time = new Date(data.post.created_at)
             const year = time.getFullYear();
             const month = time.getMonth() +1;
@@ -56,10 +61,11 @@ const postLoad = async () => {
                     const div = commentRead(data)
                     $comment_list.append(div)
                 }
-                
             });
 
             $post_delete.addEventListener('click',postDelete)
+            $post_edit.addEventListener('click',() => postEdit(data.post))
+
             const $comment_write_btn = document.querySelector('.comment-write-btn')
             const $recomment_write_buttons = document.querySelectorAll('.recomment_write_button')
             const $comment_delete_buttons = document.querySelectorAll('.comment_delete')
@@ -72,6 +78,10 @@ const postLoad = async () => {
                 const profile = JSON.parse(localStorage.getItem('user'))
                 const follow_list = JSON.parse(localStorage.getItem('follow'))
                 const $comment_writer_imgs = document.querySelectorAll('.comment_writer_img > img')
+
+                if($follow_btn.id == profile.id) {
+                    $follow_btn.remove()
+                }
 
                 $comment_write_btn.addEventListener('click',commentWrite)
                 
@@ -147,6 +157,11 @@ const postLoad = async () => {
             console.log(err);
         });
 };
+
+const postEdit = (post) => {
+    localStorage.setItem('edit', JSON.stringify(post));
+    location.href = '/src/view/edit.html'
+}
 
 // Post 삭제
 const postDelete = async () => {
