@@ -1,4 +1,4 @@
-import { getCookie } from "./util.js";
+import { getCookie, getWithExpire } from "./util.js";
 import { followFunc } from "./follow.js"
 
 const renderPage = JSON.parse(localStorage.getItem("renderPage"));
@@ -74,8 +74,8 @@ const postLoad = async () => {
 
             $follow_btn.id = data.writer.id
 
-            if (localStorage.getItem('user')) {
-                const profile = JSON.parse(localStorage.getItem('user'))
+            if (getWithExpire('user')) {
+                const profile = JSON.parse(getWithExpire('user'))
                 const follow_list = JSON.parse(localStorage.getItem('follow'))
                 const $comment_writer_imgs = document.querySelectorAll('.comment_writer_img > img')
 
@@ -509,6 +509,5 @@ const replyShow = (event) => {
     $reply_write.classList.toggle('hidden')
 }
 
-is_logined()
 postLoad()
 

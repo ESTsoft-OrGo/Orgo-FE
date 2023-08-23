@@ -60,6 +60,7 @@ const setEdit = () => {
     }
     $post_title.value = postdata.title
     content_hight()
+    localStorage.removeItem('edit');
 };
 
 const previewImage = (event) => {
