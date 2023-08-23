@@ -126,9 +126,16 @@ main {
 }
 
 .post_img {
-    display: none;
-    height: 150px;
-    background-color: brown;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.post_img img {
+    max-width: 550px;
+    border-radius: 5px;
 }
 
 .post_createdat {
