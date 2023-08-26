@@ -1,9 +1,12 @@
 import {getWithExpire,deleteCookie} from "./util.js"
 
 const $logout_btn = document.querySelector('.logout_btn')
+const $avatarBtn = document.querySelector('.avatar_img_li')
+
+export let notisocket ;
 
 // 로그인이 되있는지 확인
-const is_logined = () => {
+const is_logined = async() => {
 
     if (getWithExpire('user')) {
         const is_logined = document.querySelectorAll('.is_logined')
@@ -18,6 +21,13 @@ const is_logined = () => {
             $avatar_img.src = 'http://127.0.0.1:8000'+ profile.profileImage
         } else {
             $avatar_img.src = '/src/assets/img/profile_temp.png'
+        }
+
+        notisocket = new WebSocket(`ws://127.0.0.1:8000/chat/${profile.id}`)
+        notisocket.onmessage = (e) => {
+            const receiveData = JSON.parse(e.data)
+            console.log('ssad')
+            // localStorage.setItem('myNotify', JSON.stringify(receiveData.message));
         }
 
     } else {
@@ -38,5 +48,11 @@ const logout = (event) => {
     location.href = '/index.html'
 }
 
+const toggleFunc = () => {
+    const $toggle_menu = document.querySelector('.toggle_menu')
+    $toggle_menu.classList.toggle('hidden')
+}
+
 is_logined()
 $logout_btn.addEventListener('click',logout)
+$avatarBtn.addEventListener('click',toggleFunc)

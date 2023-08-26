@@ -47,10 +47,18 @@
                     <li class="is_logined">
                         <a class="logout_btn" href="#">LOGOUT</a>
                     </li>
-                    <li class="is_logined">
-                        <a href="/src/view/profile.html" class="avatar_img_li">
+                    <li class="is_logined toggle_parent">
+                        <a class="avatar_img_li">
                             <img src="/src/assets/img/profile_temp.png" class="avatar_img" alt="프로필">
                         </a>
+                        <ul class="toggle_menu hidden">
+                            <li class="toggle_list">
+                                <a href="/src/view/profile.html">내 프로필</a>
+                            </li>
+                            <li class="toggle_list">
+                                <a href="/src/view/chat.html">메시지</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
