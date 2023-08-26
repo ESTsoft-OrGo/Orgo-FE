@@ -55,15 +55,18 @@
     padding-right: 180px;
 }
 
-.navbar__menu li {
+.navbar__menu li:not(.toggle_list) {
     justify-content: center;
     align-items: center;
-    width: 90px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.navbar__menu li:not(.always_show) {
+.navbar__menu li:not(.chat_icon,.toggle_list) {
+    width: 90px;
+}
+
+.navbar__menu li:not(.always_show,.toggle_list) {
     display: none;
 }
 
@@ -75,9 +78,10 @@
     text-decoration: none;
     font-weight: bold;
     color: black;
+    cursor: pointer;
 }
 
-.navbar__menu li a:hover:not(.avatar_img_li) {
+.navbar__menu li a:hover:not(.avatar_img_li,.toggle_list a) {
     padding: 7px 10px;
     background-color: rgb(56, 135, 253);
     color: white;
@@ -88,6 +92,9 @@
     font-size: 30px;
 }
 
+.chat_icon {
+    width: 40px;
+}
 .avatar_img {
     width: 42px;
     height: 42px;
@@ -95,3 +102,40 @@
     border-radius: 50%;
 }
 
+.toggle_parent {
+    position: relative;
+}
+
+.toggle_menu {
+    border: 1px solid rgb(211, 211, 211);
+    background-color: rgb(255, 255, 255);
+    z-index: 2;
+    position: absolute;
+    top: 55px;
+    right: -35px;
+    width: 130px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 5px;
+}
+
+.toggle_list {
+    display: block;
+    width: 120px;
+    font-size: 14px;
+    height: 30px;
+    padding-left: 10px;
+    line-height: 30px;
+}
+
+.toggle_list:hover {
+    background-color: rgb(243, 243, 243);
+}
+
+.toggle_menu.hidden {
+    display: none;
+}

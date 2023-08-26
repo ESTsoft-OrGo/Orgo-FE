@@ -2,7 +2,9 @@ import { getCookie } from "./util.js"
 // 팔로우
 export const followFunc = async(event) => {
 
-    const target_id = event.target.id
+    const target = event.target
+    const target_id = target.id
+
     const access = getCookie('access')
     const formData = new FormData();
 
@@ -26,7 +28,7 @@ export const followFunc = async(event) => {
             } else {
                 localStorage.setItem('follow', JSON.stringify({}));
             }
-            location.reload()
+            // location.reload()
         }
     })
     .catch((err) => {

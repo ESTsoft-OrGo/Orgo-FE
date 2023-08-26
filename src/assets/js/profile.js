@@ -74,7 +74,7 @@ const mypost_list = async () => {
         });
 
         followings.forEach(following => {
-            const element = create_follow(following[0])
+            const element = create_follow(following[0],'Follow')
             $following_list.append(element)
         });
 
