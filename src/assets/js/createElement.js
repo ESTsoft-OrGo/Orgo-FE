@@ -87,7 +87,7 @@ export const create_post = (post,owner,where,likes) => {
     reaction_info_div2.className = 'reaction_info_div'
     reaction_info_div2_p1.innerText = '조회'
     reaction_info_div2_p2.className = 'view_count'
-    reaction_info_div2_p2.innerText = '0'
+    reaction_info_div2_p2.innerText = post.views
 
     reaction_info_div1.append(reaction_info_div1_p1,reaction_info_div1_p2)
     reaction_info_div2.append(reaction_info_div2_p1,reaction_info_div2_p2)
@@ -98,7 +98,7 @@ export const create_post = (post,owner,where,likes) => {
     return post_div
 }
 
-export const create_follow = (data) => {
+export const create_follow = (data,type) => {
     const follow = document.createElement('div')
     const follow_img_div = document.createElement('div')
     const follow_img = document.createElement('img')
@@ -124,9 +124,16 @@ export const create_follow = (data) => {
     follow_info_p2.innerText = data.about
     follow_info.append(follow_info_p1,follow_info_p2)
 
-    follow_cancle.className = 'follow_cancle'
+    if (type == 'Chat'){
+        follow_cancle.className = 'followChat'
+        follow_cancle_btn.innerText = type
+    } else {
+        follow_cancle.className = 'follow_cancle'
+        follow_cancle_btn.innerText = 'Follow'
+    }
+
     follow_cancle_btn.id = data.user_id
-    follow_cancle_btn.innerText = 'Follow'
+    
     follow_cancle.append(follow_cancle_btn)
 
     follow.append(follow_img_div,follow_info,follow_cancle)

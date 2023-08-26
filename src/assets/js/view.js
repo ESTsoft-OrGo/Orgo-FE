@@ -10,6 +10,7 @@ const $post_content_content = document.querySelector('.post_content p')
 const $post_img = document.querySelector('.post_img > img')
 const $post_createdat = document.querySelector('.post_createdat p')
 const $like_count = document.querySelector('.like_count')
+const $view_count = document.querySelector('.view_count')
 const $comment_list = document.querySelector('.comment-list')
 const $post_delete = document.querySelector('.post_delete > button')
 const $post_edit = document.querySelector('.post_edit > button')
@@ -50,7 +51,8 @@ const postLoad = async () => {
             
             $post_createdat.innerText = `${year}년 ${month}월 ${date}일 ${hours}시 ${minutes}분 `
             $like_count.innerText = like_users.length
-
+            $view_count.innerText = data.post.views
+            
             comments.forEach(data => {
                 if(data.comment.parent_comment_id) {
                     const parent_id = data.comment.parent_comment_id
