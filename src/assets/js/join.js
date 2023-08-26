@@ -1,3 +1,5 @@
+import {getWithExpire} from './util.js'
+
 const $join_btn= document.querySelector('.join_btn')
 
 const joinFunc = async (event) => {
