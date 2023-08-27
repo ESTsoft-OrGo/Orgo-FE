@@ -51,10 +51,14 @@ const mypost_list = async () => {
         $user_follower.innerText = '팔로워 ' + data.follower.length
         $user_following.innerText = '팔로잉 ' + data.following.length
         
-        posts.forEach(post => {
-            const element = create_post(post.post,data.serializer,'profile',post.likes)
-            $post_list.append(element)
-        });
+        if(posts.length > 0){
+            const $post_none = document.querySelector('.post_none')
+            $post_none.remove()
+            posts.forEach(post => {
+                const element = create_post(post.post,data.serializer,'profile',post.likes)
+                $post_list.append(element)
+            });
+        }
 
         const articles = document.querySelectorAll('.post_content')
         const $follow_btns = document.querySelectorAll('.follow_btn_div > button')
@@ -68,19 +72,27 @@ const mypost_list = async () => {
             btn.remove()
         });
 
-        followers.forEach(follower => {
-            const element = create_follow(follower[0])
-            $follower_list.append(element)
-        });
+        if(followers.length > 0){
+            const $follower_none = document.querySelector('.follower_none')
+            $follower_none.remove()
+            followers.forEach(follower => {
+                const element = create_follow(follower[0])
+                $follower_list.append(element)
+            });
+        }
 
-        followings.forEach(following => {
-            const element = create_follow(following[0],'Follow')
-            $following_list.append(element)
-        });
+        if(followings.length > 0){
+            const $following_none = document.querySelector('.following_none')
+            $following_none.remove()
+            followings.forEach(following => {
+                const element = create_follow(following[0],'Follow')
+                $following_list.append(element)
+            });
+        }
 
-        const $follow_cencles = document.querySelectorAll('.follow_btn_div > button')
+        const $follow_btn_divs = document.querySelectorAll('.follow_btn_div > button')
         
-        $follow_cencles.forEach(btn => {
+        $follow_btn_divs.forEach(btn => {
             btn.addEventListener('click',followFunc)
             follow_list.forEach(follow => {
                 if (follow.target_id_id == btn.id) {
@@ -125,7 +137,6 @@ const profile_save = async (event) => {
         if (data) {
             alert('프로필 변경이 완료되었습니다.')
             setWithExpire('user', data);
-            location.reload()
         }
     })
     .catch((err) => {
@@ -176,8 +187,6 @@ const relatedClick = (e) => {
 
     target.classList = 'related clicked'
 }
-
-
 
 profile_setting()
 mypost_list()

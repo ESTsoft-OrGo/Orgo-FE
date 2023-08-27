@@ -140,6 +140,8 @@
     margin-bottom: 60px;
 }
 
+.follower_none,
+.following_none,
 .follow {
     position: relative;
     height: 35px;
@@ -190,4 +192,32 @@
 
 .hidden {
     display: none;
+}
+
+.post_none {
+    position: relative;
+    height: 35px;
+    display: flex;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: white;
+    border: 1px solid rgb(182, 182, 182);
+}
+
+.sender_img img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.sender_info {
+    display: flex;
+    align-items: center;
+}
+
+.sender_info p {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
 }
