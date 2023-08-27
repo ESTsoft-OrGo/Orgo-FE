@@ -160,3 +160,39 @@ export const create_follow = (data,type) => {
 
     return follow
 }
+
+export const create_notify = (data) => {
+    const notify = document.createElement('div')
+    const sender_img_div = document.createElement('div')
+    const sender_img = document.createElement('img')
+    const sender_info = document.createElement('div')
+    const sender_info_p = document.createElement('p')
+    const accept_div = document.createElement('div')
+    const accept_btn = document.createElement('button')
+
+    notify.className = 'notify'
+    sender_img_div.className = 'sender_img'
+
+    if (data.sender.profileImage){
+        sender_img.src = 'http://127.0.0.1:8000'+ data.sender.profileImage
+    } else {
+        sender_img.src = '/src/assets/img/profile_temp.png'
+    }
+    
+    sender_img_div.append(sender_img)
+
+    sender_info.className = 'sender_info'
+    sender_info_p.innerText = `${data.sender.nickname}님이 ${data.notify.content}`
+    sender_info.append(sender_info_p)
+    
+    accept_div.className = 'accept_div'
+    accept_btn.innerText = '읽음'
+    accept_btn.id = data.notify.id
+
+    
+    accept_div.append(accept_btn)
+
+    notify.append(sender_img_div,sender_info,accept_div)
+
+    return notify
+}
