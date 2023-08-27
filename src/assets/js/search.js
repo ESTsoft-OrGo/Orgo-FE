@@ -24,20 +24,33 @@ const post_list = async () => {
         const $post_list = document.querySelector('.post_list')
         const $profile_list = document.querySelector('.profile_list')
         const $search_result = document.querySelector('.search-result > p')
+        const $post_search = document.querySelector('.post_search')
+        const $profile_search = document.querySelector('.profile_search')
+        const $post_none = document.querySelector('.post_none')
+        const $profile_none = document.querySelector('.profile_none')
         const posts = data.posts
         const profiles = data.profiles
 
         $search_result.innerText = `${query} 검색 결과 ${data.posts.length + data.profiles.length}건`
 
-        posts.forEach(data => {
-            const element = create_post(data.post,data.writer,'search',data.post.likes.length)
-            $post_list.append(element)
-        });
+        $post_search.innerText = `게시물 ${data.posts.length}건`
+        $profile_search.innerText = `프로필 ${data.profiles.length}건`
 
-        profiles.forEach(profile => {
-            const element = create_follow(profile,'search')
-            $profile_list.append(element)
-        });
+        if(posts.length > 0){
+            $post_none.remove()
+            posts.forEach(data => {
+                const element = create_post(data.post,data.writer,'search',data.post.likes.length)
+                $post_list.append(element)
+            });
+        }
+
+        if(profiles.length > 0){
+            $profile_none.remove()
+            profiles.forEach(profile => {
+                const element = create_follow(profile,'search')
+                $profile_list.append(element)
+            });
+        }
 
         const articles = document.querySelectorAll('.post_content')
 
@@ -86,9 +99,9 @@ const relatedClick = (e) => {
     $choice_post.classList = 'choice_post hidden'
     $choice_profile.classList = 'choice_profile hidden'
 
-    if(target.innerText == '게시물'){
+    if(target.innerText.includes('게시물')){
         $choice_post.classList = 'choice_post'
-    } else if(target.innerText == '프로필'){
+    } else if(target.innerText.includes('프로필')){
         $choice_profile.classList = 'choice_profile'
     } 
 
