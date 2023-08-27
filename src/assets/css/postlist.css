@@ -35,12 +35,12 @@
     color: rgb(114, 114, 114);
 }
 
-.post_owner_follow {
+.follow_btn_div {
     position: absolute;
     right: 15px;
 }
 
-.post_owner_follow button {
+.follow_btn_div button {
     background-color: var(--maincolor);
     border: none;
     border-radius: 5px;
@@ -52,7 +52,7 @@
     cursor: pointer;
 }
 
-.post_owner_follow button:hover {
+.follow_btn_div button:hover {
     color: white;
     background-color: rgb(15, 144, 183);
 }
@@ -76,6 +76,12 @@
 .post_content p {
     width: 95%;
     font-size: 17px;
+    display:-webkit-box; 
+    word-wrap:break-word; 
+    -webkit-line-clamp:11; 
+    -webkit-box-orient:vertical; 
+    overflow:hidden; 
+    text-overflow:ellipsis; 
 }
 
 .post_img {

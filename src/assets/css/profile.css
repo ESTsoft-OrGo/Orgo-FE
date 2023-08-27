@@ -166,12 +166,12 @@
     color: rgb(114, 114, 114);
 }
 
-.follow_cancle {
+.follow_btn_div {
     position: absolute;
     right: 15px;
 }
 
-.follow_cancle button {
+.follow_btn_div button {
     background-color: var(--maincolor);
     border: none;
     border-radius: 5px;
@@ -183,7 +183,7 @@
     cursor: pointer;
 }
 
-.follow_cancle button:hover {
+.follow_btn_div button:hover {
     color: white;
     background-color: rgb(15, 144, 183);
 }

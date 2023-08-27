@@ -40,7 +40,7 @@ const postLoad = async () => {
             $post_content_title.innerText = data.post.title
             $post_content_content.innerText = data.post.content
             if(data.post.postImage){
-                $post_img.src = 'http://127.0.0.1:8000/media/' + data.post.postImage
+                $post_img.src = 'http://127.0.0.1:8000' + data.post.postImage
             }
             const time = new Date(data.post.created_at)
             const year = time.getFullYear();
@@ -448,12 +448,15 @@ const recommentDelete = async (event) => {
 };
 
 // Like 기능
-const likeFunc = async () => {
+const likeFunc = async (event) => {
     const url = `http://127.0.0.1:8000/post/like/`;
     
     const access = getCookie('access')
     const formData = new FormData();
     const post_id = renderPage.pages
+    const target = event.target
+    const parent = target.parentNode
+    const like_count = parent.querySelector('.like_count')
 
     formData.append('post_id', post_id);
 
@@ -466,20 +469,26 @@ const likeFunc = async () => {
     })
         .then((res) => res.json())
         .then((data) => {
-            location.reload()
+            target.classList = 'fa-solid fa-heart like_icon'
+            like_count.innerText = parseInt(like_count.innerText) + 1
+            target.removeEventListener('click',likeFunc);
+            target.addEventListener('click',unlikeFunc)
         })
         .catch((err) => {
             console.log(err);
         });
 };
 
-const unlikeFunc = async () => {
+const unlikeFunc = async (event) => {
     const url = `http://127.0.0.1:8000/post/unlike/`;
     
     const access = getCookie('access')
     const formData = new FormData();
     const post_id = renderPage.pages
-
+    const target = event.target
+    const parent = target.parentNode
+    const like_count = parent.querySelector('.like_count')
+    
     formData.append('post_id', post_id);
 
     await fetch(url, {
@@ -491,7 +500,10 @@ const unlikeFunc = async () => {
     })
         .then((res) => res.json())
         .then((data) => {
-            location.reload()
+            target.classList = 'fa-regular fa-heart like_icon'
+            like_count.innerText = parseInt(like_count.innerText) - 1
+            target.removeEventListener('click',unlikeFunc);
+            target.addEventListener('click',likeFunc)
         })
         .catch((err) => {
             console.log(err);

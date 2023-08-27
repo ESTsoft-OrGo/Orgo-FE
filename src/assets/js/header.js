@@ -23,11 +23,10 @@ const is_logined = async() => {
             $avatar_img.src = '/src/assets/img/profile_temp.png'
         }
 
-        notisocket = new WebSocket(`ws://127.0.0.1:8000/chat/${profile.id}`)
+        notisocket = new WebSocket(`ws://127.0.0.1:8000/notify/${profile.id}`)
         notisocket.onmessage = (e) => {
             const receiveData = JSON.parse(e.data)
-            console.log('ssad')
-            // localStorage.setItem('myNotify', JSON.stringify(receiveData.message));
+            localStorage.setItem('myNotify', JSON.stringify(receiveData.message));
         }
 
     } else {

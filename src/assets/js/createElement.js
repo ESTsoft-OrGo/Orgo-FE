@@ -27,14 +27,17 @@ export const create_post = (post,owner,where,likes) => {
     post_owner.className = 'post_owner';
     post_owner_div.className = 'post_owner_img'
     if (owner.profileImage){
-        let media_url;
+        let profile_url;
         if (where == "board") {
-            media_url = 'http://127.0.0.1:8000/media/'
+            profile_url = 'http://127.0.0.1:8000/media/'
         }
         else if(where == "profile"){
-            media_url = 'http://127.0.0.1:8000'
+            profile_url = 'http://127.0.0.1:8000'
         }
-        post_owner_img.src = media_url + owner.profileImage
+        else if(where == "search"){
+            profile_url = 'http://127.0.0.1:8000'
+        }
+        post_owner_img.src = profile_url + owner.profileImage
     } else {
         post_owner_img.src = '/src/assets/img/profile_temp.png'
     }
@@ -42,8 +45,12 @@ export const create_post = (post,owner,where,likes) => {
     post_owner_info_p1.innerText = owner.nickname
     post_owner_info_p2.innerText = owner.about
 
-    post_owner_follow.className = 'post_owner_follow'
-    post_owner_follow_btn.id = owner.user_id
+    post_owner_follow.className = 'follow_btn_div'
+    if(where == "search"){
+        post_owner_follow_btn.id = owner.id
+    } else {
+        post_owner_follow_btn.id = owner.user_id
+    }
     post_owner_follow_btn.innerText = 'Follow'
 
     post_owner.append(post_owner_div,post_owner_info,post_owner_follow)
@@ -60,8 +67,14 @@ export const create_post = (post,owner,where,likes) => {
 
     post_content.append(post_title,post_contents,post_img_div)
 
+    let media_url
+
     if(post.postImage){
-        let media_url = 'http://127.0.0.1:8000/media/';
+        if(where == "search"){
+            media_url = 'http://127.0.0.1:8000'
+        } else{
+            media_url = 'http://127.0.0.1:8000/media/';
+        }
         post_img.src = media_url + post.postImage
     }
     post_img_div.append(post_img)
@@ -88,7 +101,6 @@ export const create_post = (post,owner,where,likes) => {
     reaction_info_div2_p1.innerText = '조회'
     reaction_info_div2_p2.className = 'view_count'
     reaction_info_div2_p2.innerText = post.views
-
     reaction_info_div1.append(reaction_info_div1_p1,reaction_info_div1_p2)
     reaction_info_div2.append(reaction_info_div2_p1,reaction_info_div2_p2)
     post_reaction_info.append(reaction_info_div1,reaction_info_div2)
@@ -105,14 +117,18 @@ export const create_follow = (data,type) => {
     const follow_info = document.createElement('div')
     const follow_info_p1 = document.createElement('p')
     const follow_info_p2 = document.createElement('p')
-    const follow_cancle = document.createElement('div')
-    const follow_cancle_btn = document.createElement('button')
+    const follow_btn_div = document.createElement('div')
+    const follow_btn = document.createElement('button')
 
     follow.className = 'follow'
     follow_img_div.className = 'follow_img'
 
     if (data.profileImage){
-        follow_img.src = 'http://127.0.0.1:8000/media/'+ data.profileImage
+        if(type == 'search'){
+            follow_img.src = 'http://127.0.0.1:8000'+ data.profileImage
+        } else {
+            follow_img.src = 'http://127.0.0.1:8000/media/'+ data.profileImage
+        }
     } else {
         follow_img.src = '/src/assets/img/profile_temp.png'
     }
@@ -125,18 +141,22 @@ export const create_follow = (data,type) => {
     follow_info.append(follow_info_p1,follow_info_p2)
 
     if (type == 'Chat'){
-        follow_cancle.className = 'followChat'
-        follow_cancle_btn.innerText = type
+        follow_btn_div.className = 'followChat'
+        follow_btn.innerText = type
     } else {
-        follow_cancle.className = 'follow_cancle'
-        follow_cancle_btn.innerText = 'Follow'
+        follow_btn_div.className = 'follow_btn_div'
+        follow_btn.innerText = 'Follow'
     }
 
-    follow_cancle_btn.id = data.user_id
+    if(type == 'search'){
+        follow_btn.id = data.id
+    } else {
+        follow_btn.id = data.user_id
+    }
     
-    follow_cancle.append(follow_cancle_btn)
+    follow_btn_div.append(follow_btn)
 
-    follow.append(follow_img_div,follow_info,follow_cancle)
+    follow.append(follow_img_div,follow_info,follow_btn_div)
 
     return follow
 }

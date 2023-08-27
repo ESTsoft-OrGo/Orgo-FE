@@ -36,7 +36,7 @@ const post_list = async () => {
             article.addEventListener('click',detail_page)
         });
 
-        const $follow_btns = document.querySelectorAll('.post_owner_follow > button')
+        const $follow_btns = document.querySelectorAll('.follow_btn_div > button')
 
         if (getWithExpire('user')) {
             const profile = JSON.parse(getWithExpire('user'))

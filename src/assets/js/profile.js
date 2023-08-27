@@ -57,7 +57,7 @@ const mypost_list = async () => {
         });
 
         const articles = document.querySelectorAll('.post_content')
-        const $follow_btns = document.querySelectorAll('.post_owner_follow > button')
+        const $follow_btns = document.querySelectorAll('.follow_btn_div > button')
         const follow_list = JSON.parse(localStorage.getItem('follow'))
 
         articles.forEach(article => {
@@ -78,7 +78,7 @@ const mypost_list = async () => {
             $following_list.append(element)
         });
 
-        const $follow_cencles = document.querySelectorAll('.follow_cancle > button')
+        const $follow_cencles = document.querySelectorAll('.follow_btn_div > button')
         
         $follow_cencles.forEach(btn => {
             btn.addEventListener('click',followFunc)

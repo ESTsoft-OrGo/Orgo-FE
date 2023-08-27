@@ -5,6 +5,12 @@ export const followFunc = async(event) => {
     const target = event.target
     const target_id = target.id
 
+    if(target.innerText.toUpperCase() == "UNFOLLOW") {
+        target.innerText = "Follow"
+    }else {
+        target.innerText = "Unfollow"
+    }
+
     const access = getCookie('access')
     const formData = new FormData();
 
@@ -28,7 +34,7 @@ export const followFunc = async(event) => {
             } else {
                 localStorage.setItem('follow', JSON.stringify({}));
             }
-            // location.reload()
+            location.reload()
         }
     })
     .catch((err) => {
