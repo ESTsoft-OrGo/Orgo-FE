@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ORGO - 메인</title>
+        <title>ORGO - 프로필</title>
         <!-- fontawesome -->
 		<link
         rel="stylesheet"
@@ -15,6 +15,7 @@
         />
         <link rel="stylesheet" href="/src/assets/css/reset.css" />
         <link rel="stylesheet" href="/src/assets/css/style.css" />
+        <link rel="stylesheet" href="/src/assets/css/notify.css" />
     </head>
     <body>
         <!-- header -->
@@ -70,21 +71,15 @@
         </header>
         <!-- main -->
         <main>
-            <section class="temp_section1">
-                <div class="temp_div">
+            <section class="notify_seciton">
+                <p class="notify_title">알림</p>
+                <div class="notify_list">
+                    <div class="notify_none"><div class="sender_img"><img src="/src/assets/img/profile_temp.png"></div><div class="sender_info"><p>새로운 알림이 없습니다.</p>
+                    </div>
                 </div>
-            </section>
-            <section class="temp_section2">
-                <div class="temp_div">
-                </div>
-            </section>
-            <section class="temp_section3">
-                <div class="temp_div">
                 </div>
             </section>
         </main>
-        <!-- // main -->
-        <!-- footer -->
         <footer>
             <div class="footer_wrap">
                 <img src="/src/assets/img/logo.png" alt="ORGO">
@@ -94,6 +89,9 @@
                 </div>
             </div>
         </footer>
+        <!-- // main -->
+        <script src="/src/assets/js/auth.js" type="module"></script>
         <script src="/src/assets/js/header.js" type="module"></script>
+        <script src="/src/assets/js/notify.js" type="module"></script>
     </body>
 </html>
