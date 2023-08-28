@@ -43,7 +43,9 @@ main {
 .sender_info p {
     font-weight: bold;
     font-size: 16px;
+    line-height: 18px;
     margin-bottom: 5px;
+    width: 550px;
 }
 
 .accept_div {
