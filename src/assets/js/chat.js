@@ -1,6 +1,5 @@
 import { getCookie, getWithExpire } from "./util.js"
 import { create_follow } from "./createElement.js"
-import { notisocket } from "./header.js"
 
 const $chat_room_list = document.querySelector('.chat-room-list')
 const $chat_add_btn = document.querySelector('.chat-list-header button')
@@ -68,6 +67,17 @@ const chatlist = async () => {
             $chat_room_list.append(room)
         });
 
+        const $room_more_btns = document.querySelectorAll('.room_more_btn')
+        const $room_delete_btn = document.querySelectorAll('.room_delete')
+
+        $room_more_btns.forEach(btn => {
+            btn.addEventListener('click',roomMore)
+        });
+
+        $room_delete_btn.forEach(btn => {
+            btn.addEventListener('click',removeChat)
+        });
+
         $search_input.addEventListener('input',searchRoom)
 
     })
@@ -83,6 +93,11 @@ const create_roomdiv = (element) => {
     const room_info = document.createElement('div')
     const room_info_p = document.createElement('p')
     const room_info_p2 = document.createElement('p')
+    const room_more = document.createElement('div')
+    const room_more_btn = document.createElement('button')
+    const room_more_btn_i = document.createElement('i')
+    const room_menu = document.createElement('div')
+    const room_delete = document.createElement('button')
 
     room.className = 'room_div'
     room.id = element.room.title
@@ -101,8 +116,19 @@ const create_roomdiv = (element) => {
 
     room_img_div.append(room_img)
     room_info.append(room_info_p,room_info_p2)
-    room.append(room_img_div,room_info)
+    
+    room_more_btn_i.classList = 'fa-solid fa-ellipsis'
+    room_more_btn.classList = 'room_more_btn'
+    room_more_btn.append(room_more_btn_i)
+    room_delete.innerText = '채팅방 삭제'
+    room_delete.classList = 'room_delete'
+    room_delete.id = element.room.id
+    room_menu.classList = 'room_menu hidden'
+    room_menu.append(room_delete)
+    room_more.classList = 'room_more'
+    room_more.append(room_more_btn,room_menu)
 
+    room.append(room_img_div,room_info,room_more)
     return room
 }
 
@@ -133,6 +159,46 @@ const addChat = async (event) => {
     });
 }
 
+const removeChat = async (event) => {
+    event.preventDefault()
+
+    const access = getCookie('access')
+    const url = 'http://127.0.0.1:8000/chat/delete/'
+    const chatTarget = event.target.id
+    const formData = new FormData();
+
+    formData.append('target', chatTarget);
+
+    await fetch(url, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${access}`,
+        },
+        body: formData,
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        alert(data.message)
+        location.reload()
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
+const roomMore = async (event) => {
+    event.preventDefault()
+    
+    let target = event.target
+
+    while (target.classList != 'room_more'){
+        target = target.parentNode
+    }
+
+    const $room_menu = target.querySelector('.room_menu')
+    $room_menu.classList.toggle('hidden')
+}
+
 const chatViewSet = () => {
 
     if(!is_first){
@@ -150,6 +216,12 @@ const chatjoin = (event,room_target) => {
 
     event.preventDefault()
 
+    let target = event.target
+
+    while (target.classList != 'room_div'){
+        target = target.parentNode
+    }
+
     const $chatTitleImg = document.querySelector('.chat-room-header > img')
     const $chatTitle = document.querySelector('.chat-room-header > p')
     const $chatMessageList = document.querySelector('.chat-message-list')
@@ -164,11 +236,7 @@ const chatjoin = (event,room_target) => {
 
     $chatTitle.innerText = room_target.nickname
 
-    let target = event.target
-
-    while (target.classList != 'room_div'){
-        target = target.parentNode
-    }
+    
 
     const chatlist = document.querySelector(".chat-room-list");
     const rooms = chatlist.querySelectorAll(".room_div");
@@ -183,6 +251,7 @@ const chatjoin = (event,room_target) => {
 
     let is_action = false;
     target.classList.add('joined')
+    target.removeEventListener('click',chatjoin)
     const title = target.id.toString()
     socket = new WebSocket(`ws://127.0.0.1:8000/chat/${title}`)
 
