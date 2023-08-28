@@ -39,7 +39,6 @@ const joinFunc = async (event) => {
             alert('회원가입을 축하합니다.')
             location.href= '/src/view/login.html'
         }
-
     })
     .catch((err) => {
         console.log('!')

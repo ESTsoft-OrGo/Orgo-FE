@@ -1,0 +1,58 @@
+.change_password {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 80px;
+	padding-bottom: 40px;
+	width: 350px;
+	min-height: 70vh;
+}
+
+.change_password h2 {
+	font-size: 50px;
+	font-weight: bold;
+	margin-bottom: 60px;
+}
+
+.change_input_wrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 40px;
+}
+
+.change_input_wrap input{
+	width: 250px;
+	height: 30px;
+	border: none;
+	padding: 0.5rem 1.8rem 0.5rem 1.8rem;
+	background-color: rgb(230, 230, 230);
+	margin-top: 10px;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+.change_btn {
+	width: 310px;
+	height: 40px;
+	border: none;
+	font-weight: bold;
+	background: var(--maincolor);
+	padding: 0.5rem 1.8rem 0.5rem 1.8rem;
+	border-radius: 5px;
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+
+
+/* .github_btn {
+	margin-top: 1rem;
+	background-color: black;
+	color: white;
+} */
