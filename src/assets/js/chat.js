@@ -215,7 +215,6 @@ const chatViewSet = () => {
 const chatjoin = (event,room_target) => {
 
     event.preventDefault()
-
     let target = event.target
 
     while (target.classList != 'room_div'){
@@ -251,11 +250,8 @@ const chatjoin = (event,room_target) => {
 
     let is_action = false;
     target.classList.add('joined')
-    target.removeEventListener('click',chatjoin)
     const title = target.id.toString()
     socket = new WebSocket(`ws://127.0.0.1:8000/chat/${title}`)
-
-    // const $ch = document.querySelector('.chat_room')
 
     socket.onopen = function (e) {
         socket.send(JSON.stringify({
@@ -271,9 +267,13 @@ const chatjoin = (event,room_target) => {
                 return false;
             } else {
                 const datas = receiveData.message
-                datas.forEach(element => {
-                    printMessage(element)
-                });
+                // JavaScript 예시 코드
+                for (const day in datas) {
+                    if (datas.hasOwnProperty(day)) {
+                        const messages = datas[day];
+                        joinPrintMessage(day,messages);
+                    }
+                }
                 is_action = true;
             }
         } else {
@@ -287,7 +287,6 @@ const chatjoin = (event,room_target) => {
     }
 
     const $message_submit = document.querySelector('.message-input-box button')
-    // const $close = document.querySelector('.chat-message-close')
     const $ms = document.querySelector('.message-input')
 
     const msSend = () => {
@@ -310,6 +309,37 @@ const chatjoin = (event,room_target) => {
 
     $message_submit.addEventListener('click',msSend)
 
+}
+
+const joinPrintMessage = (day,messages) => {
+    const $message_section = document.querySelector('.chat-message-list')
+    const ms_days = document.createElement('div')
+    const ms_day = document.createElement('div')
+
+    const time = new Date(day)
+    const year = time.getFullYear();
+    const month = time.getMonth() +1;
+    const date = time.getDate();
+
+    ms_days.classList = 'message-days'
+    ms_day.classList = 'message-day'
+    ms_day.innerText = `${year}년 ${month}월 ${date}일`
+    ms_days.append(ms_day)
+
+    $message_section.append(ms_days)
+
+    messages.forEach(data => {
+        const writer = data.writer
+        const login_user = user.id
+        if (writer == login_user) {
+            const ms = sendMessage(data)
+            $message_section.append(ms)
+        } else {
+            const ms = getMssage(data)
+            $message_section.append(ms)
+        }
+    });
+    
 }
 
 const printMessage = (data) => {
@@ -367,8 +397,8 @@ const timeRead = (data) => {
     const date = time.getDate();
     const hours = time.getHours();
     const minutes = time.getMinutes();
-
-    return `${year}년 ${month}월 ${date}일 ${hours}시 ${minutes}분 `
+    // ${year}년 ${month}월 ${date}일 
+    return `${hours}시 ${minutes}분 `
 }
 
 const modalOpenBtn = () => {
