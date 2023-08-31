@@ -12,7 +12,7 @@ export const create_post = (post,owner,where,likes) => {
     const post_title = document.createElement('p');
     const post_contents = document.createElement('p');
     const post_img_div = document.createElement('div');
-    const post_img = document.createElement('img');
+    const post_img_box = document.createElement('div');
     const post_createdat_div = document.createElement('div');
     const post_createdat = document.createElement('p');
     const post_reaction_info = document.createElement('div');
@@ -28,15 +28,7 @@ export const create_post = (post,owner,where,likes) => {
     post_owner_div.className = 'post_owner_img'
     if (owner.profileImage){
         let profile_url;
-        if (where == "board") {
-            profile_url = 'http://127.0.0.1:8000/media/'
-        }
-        else if(where == "profile"){
-            profile_url = 'http://127.0.0.1:8000'
-        }
-        else if(where == "search"){
-            profile_url = 'http://127.0.0.1:8000'
-        }
+        profile_url = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'
         post_owner_img.src = profile_url + owner.profileImage
     } else {
         post_owner_img.src = '/src/assets/img/profile_temp.png'
@@ -46,11 +38,7 @@ export const create_post = (post,owner,where,likes) => {
     post_owner_info_p2.innerText = owner.about
 
     post_owner_follow.className = 'follow_btn_div'
-    if(where == "search"){
-        post_owner_follow_btn.id = owner.id
-    } else {
-        post_owner_follow_btn.id = owner.user_id
-    }
+    post_owner_follow_btn.id = owner.id
     post_owner_follow_btn.innerText = 'Follow'
 
     post_owner.append(post_owner_div,post_owner_info,post_owner_follow)
@@ -65,20 +53,39 @@ export const create_post = (post,owner,where,likes) => {
     post_title.innerText = post.title
     post_contents.innerText = post.content
 
-    post_content.append(post_title,post_contents,post_img_div)
+    post_content.append(post_title,post_contents)
+
+    post_img_div.className = 'post_img'
+    post_img_box.classList = 'post_img_box'
 
     let media_url
-
-    if(post.postImage){
-        if(where == "search"){
-            media_url = 'http://127.0.0.1:8000'
-        } else{
-            media_url = 'http://127.0.0.1:8000/media/';
+    if(post.images.length > 0){
+        const images = post.images
+        let n = 0
+        for (const image of images) {
+            n = n + 1
+            const post_img = document.createElement('img');
+            media_url = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com';
+            if(n > 1){
+                post_img.classList = 'hidden'
+            }
+            post_img.src = media_url + image.image
+            post_img_box.append(post_img)
         }
-        post_img.src = media_url + post.postImage
+        const next_btn = document.createElement('button')
+        const next_icon = document.createElement('i')
+        const prev_btn = document.createElement('button')
+        const prev_icon = document.createElement('i')
+        next_btn.classList = 'img_next'
+        next_icon.classList = 'fa-solid fa-chevron-right'
+        next_btn.append(next_icon)
+        
+        prev_btn.classList = 'img_prev'
+        prev_icon.classList = 'fa-solid fa-chevron-left'
+        prev_btn.append(prev_icon)
+
+        post_img_div.append(post_img_box,prev_btn,next_btn)
     }
-    post_img_div.append(post_img)
-    post_img_div.className = 'post_img'
 
     post_createdat_div.className = 'post_createdat'
     
@@ -105,7 +112,7 @@ export const create_post = (post,owner,where,likes) => {
     reaction_info_div2.append(reaction_info_div2_p1,reaction_info_div2_p2)
     post_reaction_info.append(reaction_info_div1,reaction_info_div2)
 
-    post_div.append(post_owner,post_content,post_createdat_div,post_reaction_info);
+    post_div.append(post_owner,post_content,post_img_div,post_createdat_div,post_reaction_info);
 
     return post_div
 }
@@ -125,9 +132,9 @@ export const create_follow = (data,type) => {
 
     if (data.profileImage){
         if(type == 'search'){
-            follow_img.src = 'http://127.0.0.1:8000'+ data.profileImage
+            follow_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.profileImage
         } else {
-            follow_img.src = 'http://127.0.0.1:8000/media/'+ data.profileImage
+            follow_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.profileImage
         }
     } else {
         follow_img.src = '/src/assets/img/profile_temp.png'
@@ -174,7 +181,7 @@ export const create_notify = (data) => {
     sender_img_div.className = 'sender_img'
 
     if (data.sender.profileImage){
-        sender_img.src = 'http://127.0.0.1:8000'+ data.sender.profileImage
+        sender_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.sender.profileImage
     } else {
         sender_img.src = '/src/assets/img/profile_temp.png'
     }
@@ -195,4 +202,68 @@ export const create_notify = (data) => {
     notify.append(sender_img_div,sender_info,accept_div)
 
     return notify
+}
+
+export const create_study = (data) => {
+    const study = document.createElement('a')
+    // 태그 추가
+    let tags = '';
+    for (const tag of data.tags) {
+        const tag_html = `<div class="study_tag">${tag.name}</div>`
+        tags += tag_html
+    }
+
+    // 온 오프라인 구분
+    let division;
+    if (data.study.online_offline == "ON"){
+        division = `<p class="study_division">💻 Online</p>`
+    } else {
+        division = `<p class="study_division">🏙️ Offline</p>`
+    }
+    // 상태 구분
+    let status;
+    if(data.study.status == "진행중"){
+        status = `<p class="study_Proceeding">진행중</p>`
+    } else if (data.study.status == "종료") {
+        status = `<p class="study_deadline">종료</p>`
+    } else {
+        status = `<p class="study_recruiting">모집중</p>`
+    }
+    
+    const startDate = data.study.start_date.split("T")[0];
+    const endDate = data.study.end_date.split("T")[0];
+
+    study.className = 'study_div'
+    study.id = data.study.id
+    study.href = '/src/view/studyView.html'
+    
+    study.innerHTML = `
+        <div class="study_status">
+            ${division}
+            ${status}
+        </div>
+        <div class="study_title">
+            <p>${data.study.title}</p>
+        </div>
+        <div class="study_schedule">
+            <p>모임 기간 |</p>
+            <p>${startDate}</p>
+            <p>~</p>
+            <p>${endDate}</p>
+        </div>
+        <div class="study_location">
+            <p>모임 장소 |</p>
+            <p>${data.study.location}</p>
+        </div>
+        <div class="study_participants">
+            <p>참여 인원 |</p>
+            <p>${data.study.participants.length} / ${data.study.max_participants}</p>
+        </div>
+        <div class="study_tags">${tags}</div>
+        <div class="study_leader">
+            <img class="study_leader_img" src="https://myorgobucket.s3.ap-northeast-2.amazonaws.com${data.leader.profileImage}" alt="leader_img">
+            <p class="study_leader_name">${data.leader.nickname}</p>
+        </div>
+    `
+    return study
 }

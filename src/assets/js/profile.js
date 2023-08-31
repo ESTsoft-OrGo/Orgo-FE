@@ -1,4 +1,4 @@
-import { getCookie, detail_page, getWithExpire,setWithExpire} from "./util.js"
+import { getCookie, detail_page, getWithExpire,setWithExpire,slide_func} from "./util.js"
 import { create_post,create_follow } from "./createElement.js"
 import { followFunc } from "./follow.js"
 
@@ -18,7 +18,7 @@ const profile_setting = () => {
     $user_about.value = user_profile.about
 
     if (user_profile.profileImage){
-        $profileimg.src = 'http://127.0.0.1:8000'+ user_profile.profileImage
+        $profileimg.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ user_profile.profileImage
     } else {
         $profileimg.src = '/src/assets/img/profile_temp.png'
     }
@@ -56,6 +56,9 @@ const mypost_list = async () => {
             $post_none.remove()
             posts.forEach(post => {
                 const element = create_post(post.post,data.serializer,'profile',post.likes)
+                if(post.post.images.length > 0){
+                    slide_func(element)
+                }
                 $post_list.append(element)
             });
         }
@@ -122,6 +125,7 @@ const profile_save = async (event) => {
 
     formData.append('nickname', nickname);
     formData.append('about', about);
+    formData.append('is_active', true);
 
     const url = 'http://127.0.0.1:8000/user/profile/update/'
 
@@ -135,6 +139,7 @@ const profile_save = async (event) => {
     .then((res) => res.json())
     .then((data) => {
         if (data) {
+            console.log(data)
             alert('프로필 변경이 완료되었습니다.')
             setWithExpire('user', data);
         }

@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ORGO - 글쓰기</title>
+        <title>ORGO - 스터디 등록</title>
         <!-- fontawesome -->
 		<link
         rel="stylesheet"
@@ -15,7 +15,7 @@
         />
         <link rel="stylesheet" href="/src/assets/css/reset.css" />
         <link rel="stylesheet" href="/src/assets/css/style.css" />
-        <link rel="stylesheet" href="/src/assets/css/write.css" />
+        <link rel="stylesheet" href="/src/assets/css/studyEdit.css" />
     </head>
     <body>
         <!-- header -->
@@ -78,29 +78,69 @@
         </header>
         <!-- main -->
         <main>
-            <section class="write-section">
-                <div class="post-header">
-                    <button class="post-back">
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </button>
-                    <button class="post-save">완료</button>
-                </div>
-                <div class="post-image-div">
-                    <label for="img-input"><i class="fa-regular fa-image"></i></label>
-                    <input class="image-input" id="img-input" name="img-input" accept="image/gif,image/jpeg,image/png" type="file" multiple>
-                </div>
-                <div class="post-content">
-                    <input class="post-title" type="text" placeholder="제목을 입력하세요">
-                    <textarea class="post-contents" rows="1" placeholder="나누고 싶은 이야기나 생각을 적어주세요"></textarea>
-                    <div class="image-preview">
+            <section class="create-section">
+                <h2>1️⃣ 스터디의 기본 정보를 입력해주세요.</h2>
+                <div class="study_info">
+                    <div>
+                        <label for="start_date">시작일</label>
+                        <input type="date" id="start_date">
+                    </div>
+                    <div>
+                        <label for="end_date">종료일</label>
+                        <input type="date" name="end_date" id="end_date">
+                    </div>
+                    <div>
+                        <label for="division">온/오프라인</label>
+                        <select name="division" id="division">
+                            <option value="ON" selected>온라인</option>
+                            <option value="OFF">오프라인</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="location">장소</label>
+                        <input type="text" id="location" placeholder=" Discord, Zoom , 오프라인 주소 ">
+                    </div>
+                    <div>
+                        <label for="status">현재 상태</label>
+                        <select name="status" id="status">
+                            <option value="모집중" selected>모집중</option>
+                            <option value="진행중">진행중</option>
+                            <option value="종료">종료</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="max">최대 인원</label>
+                        <input type="number" id="max" min="1" value="1">
                     </div>
                 </div>
+                <h2>2️⃣ 스터디를 소개해주세요</h2>
+                <div class="study_description">
+                    <div>
+                        <label for="title">제목</label>
+                        <input type="text" id="title" placeholder="스터디의 제목을 입력해주세요!">
+                    </div>
+                    <div>
+                        <p class="tag_title">태그</p>
+                        <div class="tag_div">
+                            <button class="tag_add"><i class="fa-regular fa-square-plus"></i></button>
+                            <div class="tag_list">
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div>
+                        <label for="content">스터디 설명</label>
+                        <textarea type="text" id="content" placeholder="스터디에 대한 설명을 작성해주세요!"></textarea>
+                    </div>
+                </div>
+                <div class="study_save"><button>스터디 저장</button></div>
             </section>
         </main>
         <!-- // main -->
         <script src="/src/assets/js/auth.js" type="module"></script>
         <script src="/src/assets/js/header.js" type="module"></script>
-        <script src="/src/assets/js/edit.js" type="module"></script>
+        <script src="/src/assets/js/studyEdit.js" type="module"></script>
     </body>
 
 </html>

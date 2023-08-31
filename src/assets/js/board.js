@@ -1,4 +1,4 @@
-import { detail_page,getWithExpire } from "./util.js"
+import { detail_page,getWithExpire,slide_func } from "./util.js"
 import { create_post } from "./createElement.js"
 import { followFunc } from "./follow.js"
 
@@ -14,19 +14,22 @@ const post_list = async () => {
         const $post_list = document.querySelector('.post_list')
         const $board_side = document.querySelector('.board_side')
         const datas = data.posts
-        const recent_posts = data.recent_posts
+        // const recent_posts = data.recent_posts
         
         let n = 0
         
-        recent_posts.forEach(post=> {
-            n = n + 1
-            const side = create_sidepost(post,n)
-            side.addEventListener('click', recent_page)
-            $board_side.append(side)
-        })
+        // recent_posts.forEach(post=> {
+        //     n = n + 1
+        //     const side = create_sidepost(post,n)
+        //     side.addEventListener('click', recent_page)
+        //     $board_side.append(side)
+        // })
 
         datas.forEach(data => {
             const element = create_post(data.post,data.writer,'board',data.likes)
+            if(data.post.images.length > 0){
+                slide_func(element)
+            }
             $post_list.append(element)
         });
 
@@ -68,13 +71,13 @@ const post_list = async () => {
 }
 
 // 최근 게시물 뷰 들어가기
-const recent_page = (event) => {
-    let target = event.target
-    const pages = {
-        'pages': target.id
-    }
-    localStorage.setItem("renderPage", JSON.stringify(pages));
-}
+// const recent_page = (event) => {
+//     let target = event.target
+//     const pages = {
+//         'pages': target.id
+//     }
+//     localStorage.setItem("renderPage", JSON.stringify(pages));
+// }
 
 const create_sidepost = (data,n) => {
     const div = document.createElement('div')
@@ -99,7 +102,7 @@ const is_logined = () => {
         const $writer_img = document.querySelector('.post_writer_img > img')
         
         if (profile.profileImage){
-            $writer_img.src = 'http://127.0.0.1:8000'+ profile.profileImage
+            $writer_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ profile.profileImage
         } else {
             $writer_img.src = '/src/assets/img/profile_temp.png'
         }

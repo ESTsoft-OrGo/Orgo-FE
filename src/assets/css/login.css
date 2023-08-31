@@ -47,8 +47,33 @@
 	color: white;
 	font-size: 16px;
 	cursor: pointer;
+	margin-bottom: 10px;
 }
-
+.google_btn {
+	width: 310px;
+	height: 40px;
+	border: none;
+	font-weight: bold;
+	background: rgb(236, 236, 236);
+	padding: 0.5rem 1.8rem 0.5rem 1.8rem;
+	border-radius: 5px;
+	color: rgb(0, 0, 0);
+	font-size: 16px;
+	cursor: pointer;
+	margin-bottom: 10px;
+}
+.github_btn {
+	width: 310px;
+	height: 40px;
+	border: none;
+	font-weight: bold;
+	background: black;
+	padding: 0.5rem 1.8rem 0.5rem 1.8rem;
+	border-radius: 5px;
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+}
 .user-login a {
 	margin-top: 3rem;
 	color: var(--maincolor);

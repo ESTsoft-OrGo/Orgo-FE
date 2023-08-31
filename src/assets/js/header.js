@@ -27,7 +27,7 @@ const is_logined = async() => {
         });
         
         if (profile.profileImage){
-            $avatar_img.src = 'http://127.0.0.1:8000'+ profile.profileImage
+            $avatar_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ profile.profileImage
         } else {
             $avatar_img.src = '/src/assets/img/profile_temp.png'
         }

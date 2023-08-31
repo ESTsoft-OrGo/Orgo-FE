@@ -1,4 +1,4 @@
-import { getCookie, getWithExpire } from "./util.js";
+import { getCookie, getWithExpire,slide_func } from "./util.js";
 import { followFunc } from "./follow.js"
 
 const renderPage = JSON.parse(localStorage.getItem("renderPage"));
@@ -7,7 +7,8 @@ const $post_owner_nickname = document.querySelector('.post_owner_nickname')
 const $post_owner_about = document.querySelector('.post_owner_about')
 const $post_content_title = document.querySelector('.post_content h2')
 const $post_content_content = document.querySelector('.post_content p')
-const $post_img = document.querySelector('.post_img > img')
+const $post_img_div = document.querySelector('.post_img')
+const $post_img_box = document.querySelector('.post_img_box')
 const $post_createdat = document.querySelector('.post_createdat p')
 const $like_count = document.querySelector('.like_count')
 const $view_count = document.querySelector('.view_count')
@@ -27,11 +28,11 @@ const postLoad = async () => {
         },
     })
         .then((res) => res.json())
-        .then((data) => { 
+        .then((data) => {
             const comments = data.comments
             const like_users = data.likes
             if (data.writer.profileImage){
-                $post_owner_img.src = 'http://127.0.0.1:8000/media/'+ data.writer.profileImage
+                $post_owner_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.writer.profileImage
             } else {
                 $post_owner_img.src = '/src/assets/img/profile_temp.png'
             }
@@ -39,9 +40,38 @@ const postLoad = async () => {
             $post_owner_about.innerText = data.writer.about
             $post_content_title.innerText = data.post.title
             $post_content_content.innerText = data.post.content
-            if(data.post.postImage){
-                $post_img.src = 'http://127.0.0.1:8000' + data.post.postImage
+
+            if(data.post.images.length > 0){
+                const images = data.post.images
+                let n = 0
+                let media_url;
+                for (const image of images) {
+                    n = n + 1
+                    const post_img = document.createElement('img');
+                    media_url = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com';
+                    if(n > 1){
+                        post_img.classList = 'hidden'
+                    }
+                    post_img.src = media_url + image.image
+                    $post_img_box.append(post_img)
+                }
+                $post_img_box.classList.add('get_img')
+                const next_btn = document.createElement('button')
+                const next_icon = document.createElement('i')
+                const prev_btn = document.createElement('button')
+                const prev_icon = document.createElement('i')
+                next_btn.classList = 'img_next'
+                next_icon.classList = 'fa-solid fa-chevron-right'
+                next_btn.append(next_icon)
+                
+                prev_btn.classList = 'img_prev'
+                prev_icon.classList = 'fa-solid fa-chevron-left'
+                prev_btn.append(prev_icon)
+        
+                $post_img_div.append($post_img_box,prev_btn,next_btn)
+                slide_func($post_img_div)
             }
+
             const time = new Date(data.post.created_at)
             const year = time.getFullYear();
             const month = time.getMonth() +1;
@@ -75,7 +105,8 @@ const postLoad = async () => {
             const $follow_btn = document.querySelector('.post_owner_follow > button')
 
             $follow_btn.id = data.writer.id
-
+            $follow_btn.addEventListener('click',followFunc)
+            
             if (getWithExpire('user')) {
                 const profile = JSON.parse(getWithExpire('user'))
                 const follow_list = JSON.parse(localStorage.getItem('follow'))
@@ -115,7 +146,7 @@ const postLoad = async () => {
 
                 $comment_writer_imgs.forEach(img => {
                     if (profile.profileImage) {
-                        img.src = 'http://127.0.0.1:8000'+ profile.profileImage
+                        img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ profile.profileImage
                     } else {
                         img.src = '/src/assets/img/profile_temp.png'
                     }
@@ -131,7 +162,7 @@ const postLoad = async () => {
                     }
                 });
 
-                if(profile.id == data.writer.user_id){
+                if(profile.id == data.writer.id){
                     const $post_edit = document.querySelector('.post_edit')
                     const $post_delete = document.querySelector('.post_delete')
                     $post_edit.classList.toggle('hidden')
@@ -285,7 +316,7 @@ const commentRead = (data) => {
     comment_owner_img_div.className = 'comment_owner_img'
     comment_owner_img_div.append(comment_owner_img)
     if (data.writer.profileImage) {
-        comment_owner_img.src = 'http://127.0.0.1:8000/media/'+ data.writer.profileImage
+        comment_owner_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.writer.profileImage
     } else {
         comment_owner_img.src = '/src/assets/img/profile_temp.png'
     }
@@ -354,7 +385,7 @@ const recommentRead = (data) => {
     comment_owner_img_div.className = 'comment_owner_img'
     comment_owner_img_div.append(comment_owner_img)
     if (data.writer.profileImage) {
-        comment_owner_img.src = 'http://127.0.0.1:8000/media/'+ data.writer.profileImage
+        comment_owner_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.writer.profileImage
     } else {
         comment_owner_img.src = '/src/assets/img/profile_temp.png'
     }

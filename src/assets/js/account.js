@@ -1,20 +1,23 @@
 import {getCookie, deleteCookie,getWithExpire} from "./util.js"
 
 const $withdraw_btn = document.querySelector('.withdraw > button')
-
+const user = getWithExpire('user');
+const profile = JSON.parse(user)
 
 const account_setting = () => {
-    let user = getWithExpire('user');
-    const profile = JSON.parse(user)
     const $user_join_email = document.querySelector('.user_join_info p:first-child')
     const $user_join_method = document.querySelector('.user_join_info p:last-child')
     const $user_account_email = document.querySelector('.user_email p:last-child')
     const $user_account_nickname = document.querySelector('.user_nickname p:last-child')
+    const $user_password = document.querySelector('.user_password > a')
 
     $user_join_email.innerText = profile.email
     $user_join_method.innerText = `${profile.login_method} 가입`
     $user_account_email.innerText = profile.email
     $user_account_nickname.innerText = profile.nickname
+    if(profile.login_method != 'email'){
+        $user_password.href = ''
+    }
 }
 
 const user_withdraw = async (event) => {

@@ -1,0 +1,192 @@
+main {
+    padding-top: 73px;
+}
+
+.create-section {
+    width: 1150px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 92vh;
+    padding: 80px;
+}
+
+.create-section h2 {
+    font-size: 28px;
+    font-weight: bold;
+    border-bottom: 1px solid rgb(187, 187, 187);
+    padding-bottom: 20px;
+}
+
+.study_info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 40px;
+    column-gap: 120px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.study_info div {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.study_info div label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: rgb(92, 92, 92);
+}
+
+.study_info div select,
+.study_info div input {
+    padding: 5px 10px 5px 10px;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid rgb(189, 189, 189);
+    color: rgb(8, 5, 43);
+}
+
+.study_info div input {
+    height: 30px;
+}
+
+.study_info div select {
+    height: 44px;
+}
+
+.study_description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.study_description div:not(.new_tag ,.usually_tag,.tag_list ) {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.study_description div label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: rgb(92, 92, 92);
+}
+
+.study_description div input:not(.usually_tag input,.new_tag input) {
+    height: 30px;
+    padding: 5px 10px 5px 10px;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid rgb(189, 189, 189);
+    margin-bottom: 10px;
+}
+
+.study_description div textarea {
+    padding: 10px;
+    min-height: 300px;
+    resize: none;
+    border-radius: 5px;
+    border: 1px solid rgb(189, 189, 189);
+}
+
+.study_save {
+    display: flex;
+    margin-top: 20px;
+    margin-right: 60px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.study_save button {
+    background: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.study_save button:hover {
+    background-color: black;
+    color: white;
+}
+
+.tag_title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: rgb(92, 92, 92);
+}
+
+.tag_div {
+    height: 30px;
+    display: flex;
+    margin: 0;
+    position: relative;
+    justify-content: center;
+}
+
+.tag_list {
+    display: flex;
+}
+
+.tag_add {
+    background: none;
+    border: none;
+    width: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    color: forestgreen;
+    position: absolute;
+    left: -40px;
+    top: 6px;
+}
+
+.new_tag,
+.usually_tag {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.new_tag input,
+.usually_tag input {
+    display: flex;
+    height: 13px;
+    padding: 3px 15px 3px 3px;
+    margin-right: 5px;
+    width: 30px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid rgb(168, 168, 168);
+}
+
+.new_tag button,
+.usually_tag button {
+    position: absolute;
+    right: 5px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    top: 2px;
+}
+
+.new_tag button i {
+    color: green;
+    font-size: 12px;
+}
+
+.usually_tag button i {
+    font-size: 10px;
+    color: red;
+}

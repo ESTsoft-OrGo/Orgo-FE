@@ -104,7 +104,7 @@ const create_roomdiv = (element) => {
     room_img_div.className = 'room_img'
 
     if(element.target.profileImage){
-        room_img.src = 'http://127.0.0.1:8000'+ element.target.profileImage
+        room_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ element.target.profileImage
     } else {
         room_img.src = '/src/assets/img/profile_temp.png'
     }

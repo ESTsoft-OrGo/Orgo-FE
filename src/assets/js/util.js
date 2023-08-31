@@ -104,3 +104,59 @@ export const detail_page = (event) => {
     }
     localStorage.setItem("renderPage", JSON.stringify(pages));
 }
+
+// 스터디 뷰 들어가기
+export const study_page = (event) => {
+    let target = event.target
+
+    while (target.classList != 'study_div'){
+        target = target.parentNode
+    }
+    const pages = {
+        'pages': target.id
+    }
+    localStorage.setItem("studyPage", JSON.stringify(pages));
+}
+
+export const slide_func = (element) => {
+    let curr_index = 0;
+
+    const $nextButton = element.querySelector(".img_next");
+    const $prevButton = element.querySelector(".img_prev");
+    const $img_box = element.querySelector('.post_img_box')
+    const content_Els = $img_box.querySelectorAll('img');
+
+    if (content_Els.length > 1){
+
+        // 슬라이드의 Next 기능
+        const handleNext = () => {
+            if (curr_index < content_Els.length - 1) {
+                const curr = content_Els[curr_index]
+                curr_index += 1
+                const next = content_Els[curr_index]
+                curr.classList.toggle("hidden")
+                next.classList.toggle("hidden")
+            } 
+        }
+
+        // 슬라이드의 Prev 기능
+        const handlePrev = () => {
+            if (content_Els.length - 1 >= curr_index && curr_index > 0) {
+                const curr = content_Els[curr_index]
+
+                curr_index -= 1
+
+                const prev = content_Els[curr_index]
+
+                curr.classList.toggle("hidden")
+                prev.classList.toggle("hidden")
+            }
+        }
+
+        $nextButton.addEventListener("click",handleNext)
+        $prevButton.addEventListener("click",handlePrev)
+    } else {
+        $nextButton.remove()
+        $prevButton.remove()
+    }   
+}
