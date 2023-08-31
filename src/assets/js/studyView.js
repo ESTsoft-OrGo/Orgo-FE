@@ -14,11 +14,13 @@ const $study_participants = document.querySelector('.study_participants')
 const $study_location = document.querySelector('.study_location')
 const $study_status = document.querySelector('.study_status')
 const $study_tags = document.querySelector('.study_tags')
+const $study_in_people = document.querySelector('.study_in_people')
 const $study_desc = document.querySelector('.study_desc')
 const $study_join = document.querySelector('.study_join')
 const $study_cancle = document.querySelector('.study_cancle')
 const $study_edit = document.querySelector('.study_edit')
 const $study_delete = document.querySelector('.study_delete')
+const $study_attend_btns = document.querySelector('.study_attend_btns')
 
 const studyLoad = async () => {
     const url = `http://127.0.0.1:8000/study/detail/`;
@@ -36,48 +38,85 @@ const studyLoad = async () => {
             $study_title.innerText = data.study.title
             $study_leader_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.leader.profileImage
             $study_leader_name.innerText = data.leader.nickname
+            
+            
 
             const time = new Date(data.study.created_at)
             const year = time.getFullYear();
             const month = time.getMonth() +1;
             const date = time.getDate();
-
+            
             const startDate = data.study.start_date.split("T")[0];
             const endDate = data.study.end_date.split("T")[0];
+            
+            
 
             $study_edit.addEventListener('click',() => studyEdit(data.study,data.tags))
             $study_delete.addEventListener('click',studyDelete)
-
+            
             if(user_profile.id != data.leader.id) {
                 $study_edit.remove()
                 $study_delete.remove()
+            } else {
+                $study_attend_btns.remove()
             }
-
+            
             $study_createdAt.innerText = `${year}년 ${month}월 ${date}일`
-
+            
             if(data.study.online_offline == "OFF"){
                 $study_proceed.innerText = "오프라인"
             } else {
                 $study_proceed.innerText = "온라인"
             }
-
             
-
             $study_date.innerText = `${startDate} ~ ${endDate}`
             $study_participants.innerText = `${data.study.participants.length} / ${data.study.max_participants}`
             $study_location.innerText = data.study.location
             $study_status.innerText = data.study.status
             $study_desc.innerText = data.study.description
+
             const tags = data.tags
             tags.forEach(tag => {
                 const tag_div = create_tag(tag)
                 $study_tags.append(tag_div)
             });
+
+            const participants = data.participants
+            participants.forEach(participant => {
+                const participant_div = create_participant(participant)
+                $study_in_people.append(participant_div)
+            });
+
         })
         .catch((err) => {
             console.log(err);
         });
 };
+
+const create_participant = (data) => {
+
+    const div = document.createElement('div')
+
+    let pf_img;
+
+    if(data.profileImage) {
+        pf_img = `https://myorgobucket.s3.ap-northeast-2.amazonaws.com${data.profileImage}`
+    } else {
+        pf_img = '/src/assets/img/profile_temp.png'
+    }
+
+    div.className = 'participant'
+    div.innerHTML = `
+    <div class="participant_img">
+        <img src="${pf_img}">
+    </div>
+    <div class="participant_info">
+        <p>${data.nickname}</p>
+        <p>${data.about}</p>
+    </div>`
+
+    return div
+}
 
 const create_tag = (data) => {
     const div = document.createElement('div')
