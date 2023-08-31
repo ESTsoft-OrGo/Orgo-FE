@@ -12,18 +12,7 @@ const post_list = async () => {
     .then((res) => res.json())
     .then((data) => {
         const $post_list = document.querySelector('.post_list')
-        const $board_side = document.querySelector('.board_side')
         const datas = data.posts
-        // const recent_posts = data.recent_posts
-        
-        let n = 0
-        
-        // recent_posts.forEach(post=> {
-        //     n = n + 1
-        //     const side = create_sidepost(post,n)
-        //     side.addEventListener('click', recent_page)
-        //     $board_side.append(side)
-        // })
 
         datas.forEach(data => {
             const element = create_post(data.post,data.writer,'board',data.likes)
@@ -70,14 +59,40 @@ const post_list = async () => {
     });
 }
 
+const api_recent = async() => {
+    const url = 'http://127.0.0.1:8000/post/recent/'
+
+    await fetch(url, {
+        method: "POST",
+        headers: {},
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        const $board_side = document.querySelector('.board_side')
+        const recent_posts = data.recent_posts
+        
+        let n = 0
+        
+        recent_posts.forEach(post=> {
+            n = n + 1
+            const side = create_sidepost(post,n)
+            side.addEventListener('click', recent_page)
+            $board_side.append(side)
+        })
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
 // 최근 게시물 뷰 들어가기
-// const recent_page = (event) => {
-//     let target = event.target
-//     const pages = {
-//         'pages': target.id
-//     }
-//     localStorage.setItem("renderPage", JSON.stringify(pages));
-// }
+const recent_page = (event) => {
+    let target = event.target
+    const pages = {
+        'pages': target.id
+    }
+    localStorage.setItem("renderPage", JSON.stringify(pages));
+}
 
 const create_sidepost = (data,n) => {
     const div = document.createElement('div')
@@ -112,3 +127,4 @@ const is_logined = () => {
 
 is_logined()
 post_list()
+api_recent()
