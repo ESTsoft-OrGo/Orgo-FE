@@ -79,7 +79,7 @@ const mypost_list = async () => {
             const $follower_none = document.querySelector('.follower_none')
             $follower_none.remove()
             followers.forEach(follower => {
-                const element = create_follow(follower[0])
+                const element = create_follow(follower)
                 $follower_list.append(element)
             });
         }
@@ -88,7 +88,7 @@ const mypost_list = async () => {
             const $following_none = document.querySelector('.following_none')
             $following_none.remove()
             followings.forEach(following => {
-                const element = create_follow(following[0],'Follow')
+                const element = create_follow(following,'Follow')
                 $following_list.append(element)
             });
         }

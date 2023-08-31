@@ -131,11 +131,7 @@ export const create_follow = (data,type) => {
     follow_img_div.className = 'follow_img'
 
     if (data.profileImage){
-        if(type == 'search'){
-            follow_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.profileImage
-        } else {
-            follow_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.profileImage
-        }
+        follow_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.profileImage
     } else {
         follow_img.src = '/src/assets/img/profile_temp.png'
     }
@@ -155,12 +151,7 @@ export const create_follow = (data,type) => {
         follow_btn.innerText = 'Follow'
     }
 
-    if(type == 'search'){
-        follow_btn.id = data.id
-    } else {
-        follow_btn.id = data.user_id
-    }
-    
+    follow_btn.id = data.id
     follow_btn_div.append(follow_btn)
 
     follow.append(follow_img_div,follow_info,follow_btn_div)

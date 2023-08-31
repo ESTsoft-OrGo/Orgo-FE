@@ -29,7 +29,7 @@ const folloingList = async() => {
     .then((data) => {
         const followings = data.following
         followings.forEach(following => {
-            const element = create_follow(following[0],'Chat')
+            const element = create_follow(following,'Chat')
             $following_list.append(element)
         });
 
