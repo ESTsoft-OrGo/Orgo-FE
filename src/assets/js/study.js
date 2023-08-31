@@ -3,6 +3,7 @@ import { create_study } from "./createElement.js"
 
 const $study_list = document.querySelector('.study_list')
 const page = localStorage.getItem('pageNumber')
+const $loading = document.querySelector('.loading')
 
 const study_list = async () => {
 
@@ -50,6 +51,7 @@ const study_list = async () => {
                 }
             }
             localStorage.removeItem('pageNumber')
+            $loading.style.display = "none"
         }
     })
     .catch((err) => {
@@ -61,7 +63,7 @@ const pageNumber = (event) => {
     const target = event.target
     const page = target.innerText
     localStorage.setItem('pageNumber',page)
-    location.reload()
+    location.href = `/src/view/study.html?page=${page}`
 }
 
 study_list()
