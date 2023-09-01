@@ -336,7 +336,7 @@ const commentRead = (data) => {
         comment_content.append(comment_content_p)
     }
 
-    comment_delete_button.id = data.writer.user_id
+    comment_delete_button.id = data.writer.id
     comment_delete_button.className = 'comment_delete hidden'
     comment_delete_button_i.classList = 'fa-solid fa-trash-can'
     comment_delete_button.append(comment_delete_button_i)
