@@ -1,0 +1,122 @@
+main {
+    padding-top: 73px;
+}
+
+.create-section {
+    width: 1150px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 92vh;
+    padding: 80px;
+}
+
+.create-section h2 {
+    font-size: 28px;
+    font-weight: bold;
+    border-bottom: 1px solid rgb(187, 187, 187);
+    padding-bottom: 20px;
+}
+
+.study_info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 40px;
+    column-gap: 120px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.study_info div {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.study_info div label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: rgb(92, 92, 92);
+}
+
+.study_info div select,
+.study_info div input {
+    padding: 5px 10px 5px 10px;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid rgb(189, 189, 189);
+    color: rgb(8, 5, 43);
+}
+
+.study_info div input {
+    height: 30px;
+}
+
+.study_info div select {
+    height: 44px;
+}
+
+.study_description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.study_description div {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.study_description div label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: rgb(92, 92, 92);
+}
+
+.study_description div input {
+    height: 30px;
+    padding: 5px 10px 5px 10px;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid rgb(189, 189, 189);
+    margin-bottom: 10px;
+}
+
+.study_description div textarea {
+    padding: 10px;
+    min-height: 300px;
+    resize: none;
+    border-radius: 5px;
+    border: 1px solid rgb(189, 189, 189);
+}
+
+.study_create {
+    display: flex;
+    margin-top: 20px;
+    margin-right: 60px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.study_create button {
+    background: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.study_create button:hover {
+    background-color: black;
+    color: white;
+}

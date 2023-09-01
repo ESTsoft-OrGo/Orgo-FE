@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ORGO - 메인</title>
+        <title>ORGO - 글쓰기</title>
         <!-- fontawesome -->
 		<link
         rel="stylesheet"
@@ -13,22 +13,22 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
         />
-        <link rel="stylesheet" href="/Orgo-FE/src/assets/css/reset.css" />
-        <link rel="stylesheet" href="/Orgo-FE/src/assets/css/style.css" />
-        <link rel="stylesheet" href="/Orgo-FE/src/assets/css/write.css" />
+        <link rel="stylesheet" href="/src/assets/css/reset.css" />
+        <link rel="stylesheet" href="/src/assets/css/style.css" />
+        <link rel="stylesheet" href="/src/assets/css/write.css" />
     </head>
     <body>
         <!-- header -->
         <header>
             <nav class="header">
                 <h1>
-                    <a href="/Orgo-FE/index.html">
-                        <img src="/Orgo-FE/src/assets/img/logo.png" alt="ORGO">
+                    <a href="/index.html">
+                        <img src="/src/assets/img/logo.png" alt="ORGO">
                     </a>
                 </h1>
                 <div class="header-search">
-                    <form method="get">
-                        <input class='header-search__text' placeholder="사람, 제목을 검색하세요" ,type="text" , name="keyword" , required>
+                    <form action="/src/view/search.html" method="get">
+                        <input class='header-search__text' placeholder="제목, 사람을 검색하세요" ,type="text" , name="query" , required>
                         <button class='header-search__btn' type='submit'>
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
@@ -36,21 +36,42 @@
                 </div>
                 <ul class="navbar__menu">
                     <li class="always_show">
-                        <a href="/Orgo-FE/src/view/board.html">BOARD</a>
+                        <a href="/src/view/board.html">BOARD</a>
                     </li>
                     <li class="always_show">
-                        <a href="/Orgo-FE/src/view/login.html">LOGIN</a>
+                        <a href="/src/view/study.html">STUDY</a>
                     </li>
-                    <li class="always_show">
-                        <a href="/Orgo-FE/src/view/join.html">JOIN</a>
+                    <li class="is_not_logined">
+                        <a href="/src/view/login.html">LOGIN</a>
                     </li>
-                    <!-- <li class="always_show">
+                    <li class="is_not_logined">
+                        <a href="/src/view/join.html">JOIN</a>
+                    </li>
+                    <li class="is_logined">
                         <a class="logout_btn" href="#">LOGOUT</a>
-                    </li> -->
-                    <li class="always_show">
-                        <a href="#" class="avatar_img_li">
-                            <img src="/Orgo-FE/src/assets/img/profile_temp.png" class="avatar_img" alt="프로필">
+                    </li>
+                    <li class="is_logined toggle_parent">
+                        <div class="notify_count">
+                            0
+                        </div>
+                        <a class="avatar_img_li">
+                            <img src="/src/assets/img/profile_temp.png" class="avatar_img" alt="프로필">
                         </a>
+                        <ul class="toggle_menu hidden">
+                            <li class="toggle_list">
+                                <a href="/src/view/notify.html">알림</a>
+                            </li>
+                            <li class="toggle_list">
+                                <a href="/src/view/profile.html">내 프로필</a>
+                            </li>
+                            <li class="toggle_list">
+                                <a href="/src/view/chat.html">메시지</a>
+                            </li>
+                            <div class="line"></div>
+                            <li class="toggle_list account_info">
+                                <a href="/src/view/account.html">내 정보</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
@@ -66,19 +87,21 @@
                 </div>
                 <div class="post-image-div">
                     <label for="img-input"><i class="fa-regular fa-image"></i></label>
-                    <input class="image-input" id="img-input" name="img-input" accept="image/gif,image/jpeg,image/png" type="file">
+                    <input class="image-input" id="img-input" name="img-input" accept="image/gif,image/jpeg,image/png" type="file" multiple>
                 </div>
                 <div class="post-content">
                     <input class="post-title" type="text" placeholder="제목을 입력하세요">
                     <textarea class="post-contents" rows="1" placeholder="나누고 싶은 이야기나 생각을 적어주세요"></textarea>
                     <div class="image-preview">
-                        <img class="post-image" alt="">
+                        
                     </div>
                 </div>
             </section>
         </main>
         <!-- // main -->
-        <script src="/Orgo-FE/src/assets/js/write.js"></script>
+        <script src="/src/assets/js/auth.js" type="module"></script>
+        <script src="/src/assets/js/header.js" type="module"></script>
+        <script src="/src/assets/js/write.js" type="module"></script>
     </body>
 
 </html>

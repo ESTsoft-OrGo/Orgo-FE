@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ORGO - Board</title>
+        <title>ORGO - 스터디 등록</title>
         <!-- fontawesome -->
 		<link
         rel="stylesheet"
@@ -15,8 +15,7 @@
         />
         <link rel="stylesheet" href="/src/assets/css/reset.css" />
         <link rel="stylesheet" href="/src/assets/css/style.css" />
-        <link rel="stylesheet" href="/src/assets/css/board.css" />
-        <link rel="stylesheet" href="/src/assets/css/postlist.css" />
+        <link rel="stylesheet" href="/src/assets/css/create.css" />
     </head>
     <body>
         <!-- header -->
@@ -79,36 +78,63 @@
         </header>
         <!-- main -->
         <main>
-            <section class="board">
-                <div class="board_section">
-                    <div class="post-write">
-                        <div class="post_writer_img">
-                            <img src="/src/assets/img/profile_temp.png" alt="profile">
-                        </div>
-                        <a href="/src/view/write.html">
-                            <input type="text" placeholder="공유하고싶은 이야기가 있으신가요?">
-                        </a>
+            <section class="create-section">
+                <h2>1️⃣ 스터디의 기본 정보를 입력해주세요.</h2>
+                <div class="study_info">
+                    <div>
+                        <label for="start_date">시작일</label>
+                        <input type="date" id="start_date">
                     </div>
-                    <div class="post_list">
+                    <div>
+                        <label for="end_date">종료일</label>
+                        <input type="date" name="end_date" id="end_date">
+                    </div>
+                    <div>
+                        <label for="division">온/오프라인</label>
+                        <select name="division" id="division">
+                            <option value="ON" selected>온라인</option>
+                            <option value="OFF">오프라인</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="location">장소</label>
+                        <input type="text" id="location" placeholder=" Discord, Zoom , 오프라인 주소 ">
+                    </div>
+                    <div>
+                        <label for="status">현재 상태</label>
+                        <select name="status" id="status">
+                            <option value="모집중" selected>모집중</option>
+                            <option value="진행중">진행중</option>
+                            <option value="종료">종료</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="max">최대 인원</label>
+                        <input type="number" id="max" min="1" value="1">
                     </div>
                 </div>
-                <aside class="board_side">
-                    <p class="side_title">최근 게시물</p>
-                </aside>
+                <h2>2️⃣ 스터디를 소개해주세요</h2>
+                <div class="study_description">
+                    <div>
+                        <label for="title">제목</label>
+                        <input type="text" id="title" placeholder="스터디의 제목을 입력해주세요!">
+                    </div>
+                    <div>
+                        <label for="tag">태그</label>
+                        <input type="text" id="tag" placeholder="태그를 입력하세요. 쉼표를 기준으로 생성됩니다. ex) 파이썬,장고,백엔드">
+                    </div>
+                    <div>
+                        <label for="content">스터디 설명</label>
+                        <textarea type="text" id="content" placeholder="스터디에 대한 설명을 작성해주세요!"></textarea>
+                    </div>
+                </div>
+                <div class="study_create"><button>스터디 등록</button></div>
             </section>
         </main>
         <!-- // main -->
-        <!-- footer -->
-        <footer>
-            <div class="footer_wrap">
-                <img src="/src/assets/img/logo.png" alt="ORGO">
-                <div class="footer_content">
-                    <p>Ormi 교육생들을 위한 커뮤니티 입니다.</p>
-                    <p>Copyright 2023. Chilli All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
+        <script src="/src/assets/js/auth.js" type="module"></script>
         <script src="/src/assets/js/header.js" type="module"></script>
-        <script src="/src/assets/js/board.js" type="module"></script>
+        <script src="/src/assets/js/create.js" type="module"></script>
     </body>
+
 </html>

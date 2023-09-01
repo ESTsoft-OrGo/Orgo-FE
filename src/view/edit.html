@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ORGO - Board</title>
+        <title>ORGO - 글쓰기</title>
         <!-- fontawesome -->
 		<link
         rel="stylesheet"
@@ -15,8 +15,7 @@
         />
         <link rel="stylesheet" href="/src/assets/css/reset.css" />
         <link rel="stylesheet" href="/src/assets/css/style.css" />
-        <link rel="stylesheet" href="/src/assets/css/board.css" />
-        <link rel="stylesheet" href="/src/assets/css/postlist.css" />
+        <link rel="stylesheet" href="/src/assets/css/write.css" />
     </head>
     <body>
         <!-- header -->
@@ -79,36 +78,29 @@
         </header>
         <!-- main -->
         <main>
-            <section class="board">
-                <div class="board_section">
-                    <div class="post-write">
-                        <div class="post_writer_img">
-                            <img src="/src/assets/img/profile_temp.png" alt="profile">
-                        </div>
-                        <a href="/src/view/write.html">
-                            <input type="text" placeholder="공유하고싶은 이야기가 있으신가요?">
-                        </a>
-                    </div>
-                    <div class="post_list">
+            <section class="write-section">
+                <div class="post-header">
+                    <button class="post-back">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button class="post-save">완료</button>
+                </div>
+                <div class="post-image-div">
+                    <label for="img-input"><i class="fa-regular fa-image"></i></label>
+                    <input class="image-input" id="img-input" name="img-input" accept="image/gif,image/jpeg,image/png" type="file" multiple>
+                </div>
+                <div class="post-content">
+                    <input class="post-title" type="text" placeholder="제목을 입력하세요">
+                    <textarea class="post-contents" rows="1" placeholder="나누고 싶은 이야기나 생각을 적어주세요"></textarea>
+                    <div class="image-preview">
                     </div>
                 </div>
-                <aside class="board_side">
-                    <p class="side_title">최근 게시물</p>
-                </aside>
             </section>
         </main>
         <!-- // main -->
-        <!-- footer -->
-        <footer>
-            <div class="footer_wrap">
-                <img src="/src/assets/img/logo.png" alt="ORGO">
-                <div class="footer_content">
-                    <p>Ormi 교육생들을 위한 커뮤니티 입니다.</p>
-                    <p>Copyright 2023. Chilli All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
+        <script src="/src/assets/js/auth.js" type="module"></script>
         <script src="/src/assets/js/header.js" type="module"></script>
-        <script src="/src/assets/js/board.js" type="module"></script>
+        <script src="/src/assets/js/edit.js" type="module"></script>
     </body>
+
 </html>

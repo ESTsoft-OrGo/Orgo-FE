@@ -1,0 +1,158 @@
+main {
+    background-color: rgba(243, 243, 243, 0.863);
+    padding-top: 73px;
+    padding-bottom: 50px;
+}
+
+.side_title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.search-result {
+    padding: 15px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(226, 226, 226);
+    height: 40px;
+}
+
+.search-result p {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(71, 71, 71);
+    margin-left: 275px;
+}
+
+.result_section {
+    width: 800px;
+    margin-left: 275px;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.my_related {
+    background-color: white;
+    border-bottom: 1px solid rgb(226, 226, 226);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: flex-end;
+    height: 60px;
+    padding-left: 275px;
+    padding-right: 275px;
+}
+
+.related {
+    display: flex;
+    width: 120px;
+    height: 60px;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    color: rgb(158, 158, 158);
+    font-weight: bold;
+    font-size: 17px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0);
+}
+
+.my_related .clicked {
+    color: black;
+    border-bottom: 2px solid black;
+}
+
+.profile_list,
+.post_list {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.follow {
+    position: relative;
+    height: 35px;
+    display: flex;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: white;
+    border: 1px solid rgb(182, 182, 182);
+    width: 600px;
+}
+
+.follow_img img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.follow_info p:first-child {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.follow_info p:last-child {
+    font-size: 12px;
+    color: rgb(114, 114, 114);
+}
+
+.follow_btn_div {
+    position: absolute;
+    right: 15px;
+}
+
+.follow_btn_div button {
+    background-color: var(--maincolor);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 90px;
+    height: 33px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.follow_btn_div button:hover {
+    color: white;
+    background-color: rgb(15, 144, 183);
+}
+
+.profile_none,
+.post_none {
+    position: relative;
+    height: 35px;
+    display: flex;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: white;
+    border: 1px solid rgb(182, 182, 182);
+}
+
+.sender_img img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.sender_info {
+    display: flex;
+    align-items: center;
+}
+
+.sender_info p {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+
+.hidden {
+    display: none;
+}

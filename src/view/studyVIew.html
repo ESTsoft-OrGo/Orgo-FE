@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ORGO - Board</title>
+        <title>ORGO</title>
         <!-- fontawesome -->
 		<link
         rel="stylesheet"
@@ -15,8 +15,7 @@
         />
         <link rel="stylesheet" href="/src/assets/css/reset.css" />
         <link rel="stylesheet" href="/src/assets/css/style.css" />
-        <link rel="stylesheet" href="/src/assets/css/board.css" />
-        <link rel="stylesheet" href="/src/assets/css/postlist.css" />
+        <link rel="stylesheet" href="/src/assets/css/studyView.css" />
     </head>
     <body>
         <!-- header -->
@@ -79,22 +78,58 @@
         </header>
         <!-- main -->
         <main>
-            <section class="board">
-                <div class="board_section">
-                    <div class="post-write">
-                        <div class="post_writer_img">
-                            <img src="/src/assets/img/profile_temp.png" alt="profile">
-                        </div>
-                        <a href="/src/view/write.html">
-                            <input type="text" placeholder="공유하고싶은 이야기가 있으신가요?">
-                        </a>
+            <section class="study_view">
+                <h2 class="study_title">파이썬 장고 스터디 모임 같이 하실분! 주니어 개발자도 환영합니다!</h2>
+                <div class="study_author">
+                    <div class="study_leader">
+                        <img src="/src/assets/img/profile_temp.png" alt="">
+                        <p>leader</p>
                     </div>
-                    <div class="post_list">
+                    <p class="study_createdAt">2023.08.27</p>
+                    <div class="study_edit">
+                        <button>수정</button>
+                    </div>
+                    <div class="study_delete">
+                        <button>삭제</button>
                     </div>
                 </div>
-                <aside class="board_side">
-                    <p class="side_title">최근 게시물</p>
-                </aside>
+                <div class="study_infos">
+                    <div class="study_info">
+                        <p class="study_subtitle">모집 구분</p>
+                        <p class="study_proceed">스터디</p>
+                    </div>
+                    <div class="study_info">
+                        <p class="study_subtitle">진행 방식</p>
+                        <p class="study_proceed">온라인</p>
+                    </div>
+                    <div class="study_info">
+                        <p class="study_subtitle">스터디 일정</p>
+                        <p class="study_date">2023-08-01 ~ 2023-08-21</p>
+                    </div>
+                    <div class="study_info">
+                        <p class="study_subtitle">스터디 인원</p>
+                        <p class="study_participants">3 / 8</p>
+                    </div>
+                    <div class="study_info">
+                        <p class="study_subtitle">스터디 장소</p>
+                        <p class="study_location">Discord</p>
+                    </div>
+                    <div class="study_info">
+                        <p class="study_subtitle">현재 상태</p>
+                        <p class="study_status">진행중</p>
+                    </div>
+                </div>
+                <div class="study_tags">
+                </div>
+                <div class="study_attend_btns">
+                    <button class="study_join">참가 신청</button>
+                    <button class="study_cancle">참가 취소</button>
+                </div>
+                <h3 class="study_sub">우리 스터디원들을 소개합니다.</h3>
+                <div class="study_in_people">
+                </div>
+                <h3 class="study_sub">우리 스터디를 소개합니다.</h3>
+                <p class="study_desc">안녕하세요.</p>
             </section>
         </main>
         <!-- // main -->
@@ -109,6 +144,6 @@
             </div>
         </footer>
         <script src="/src/assets/js/header.js" type="module"></script>
-        <script src="/src/assets/js/board.js" type="module"></script>
+        <script src="/src/assets/js/studyView.js" type="module"></script>
     </body>
 </html>

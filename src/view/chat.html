@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ORGO - 채팅</title>
+    <!-- fontawesome -->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/src/assets/css/reset.css" />
+    <link rel="stylesheet" href="/src/assets/css/style.css" />
+    <link rel="stylesheet" href="/src/assets/css/chat.css" />
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <nav class="header">
+            <h1>
+                <a href="/index.html">
+                    <img src="/src/assets/img/logo.png" alt="ORGO">
+                </a>
+            </h1>
+            <div class="header-search">
+                <form action="/src/view/search.html" method="get">
+                    <input class='header-search__text' placeholder="제목, 사람을 검색하세요" ,type="text" , name="query" , required>
+                    <button class='header-search__btn' type='submit'>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </div>
+            <ul class="navbar__menu">
+                <li class="always_show">
+                    <a href="/src/view/board.html">BOARD</a>
+                </li>
+                <li class="always_show">
+                    <a href="/src/view/study.html">STUDY</a>
+                </li>
+                <li class="is_not_logined">
+                    <a href="/src/view/login.html">LOGIN</a>
+                </li>
+                <li class="is_not_logined">
+                    <a href="/src/view/join.html">JOIN</a>
+                </li>
+                <li class="is_logined">
+                    <a class="logout_btn" href="#">LOGOUT</a>
+                </li>
+                <li class="is_logined toggle_parent">
+                    <div class="notify_count">
+                        0
+                    </div>
+                    <a class="avatar_img_li">
+                        <img src="/src/assets/img/profile_temp.png" class="avatar_img" alt="프로필">
+                    </a>
+                    <ul class="toggle_menu hidden">
+                        <li class="toggle_list">
+                            <a href="/src/view/notify.html">알림</a>
+                        </li>
+                        <li class="toggle_list">
+                            <a href="/src/view/profile.html">내 프로필</a>
+                        </li>
+                        <li class="toggle_list">
+                            <a href="/src/view/chat.html">메시지</a>
+                        </li>
+                        <div class="line"></div>
+                        <li class="toggle_list account_info">
+                            <a href="/src/view/account.html">내 정보</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- main -->
+    <main>
+        <section class="chat-section">
+            <div class="chat-list">
+                <div class="chat-list-header">
+                    <p>채팅</p>
+                    <button><i class="fa-brands fa-rocketchat"></i></button>
+                </div>
+                <div class="chat-list-search">
+                    <input type="text" placeholder="이름을 입력하세요.">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div class="chat-room-list">
+                </div>
+            </div>
+            <div class="chat-room hidden">
+                <div class="chat-room-header">
+                    <img src="/src/assets/img/profile_temp.png">
+                    <p>Room</p>
+                </div>
+                <div class="chat-message-section">
+                    <div class="chat-message-list">
+                    </div>
+                    <div class="message-input-box">
+                        <textarea class="message-input" placeholder="메시지를 입력하세요."></textarea>
+                        <button><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-wait">
+                <div class="wait-div">
+                    <i class="fa-solid fa-comments"></i>
+                    <p>채팅을 시작해보세요</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <section class="modal hidden">
+        <div class="modalContent">
+            <button class="modal_close">X</button>
+            <div class="my_following">
+                <p class="myName">팔로잉</p>
+                <p class="related">팔로잉</p>
+            </div>
+            <div class="following_list">
+            </div>
+        </div>
+    </section>
+    <!-- // main -->
+    <script src="/src/assets/js/auth.js" type="module"></script>
+    <script src="/src/assets/js/header.js" type="module"></script>
+    <script src="/src/assets/js/chat.js" type="module"></script>
+</body>
+
+</html>

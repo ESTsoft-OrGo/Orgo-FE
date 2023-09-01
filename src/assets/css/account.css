@@ -1,0 +1,94 @@
+.account_section {
+    width: 600px;
+    padding: 140px 40px 80px 90px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.account_section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 60px;
+}
+
+.account_section h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 35px;
+}
+
+.user_join_info {
+    margin-bottom: 40px;
+    padding-left: 15px;
+}
+
+.user_join_info p:first-child {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: rgb(46, 46, 46);
+}
+
+.user_join_info p:last-child {
+    font-size: 15px;
+    color: rgb(124, 124, 124);
+}
+
+.user_email,
+.user_nickname,
+.user_password {
+    box-sizing: border-box;
+    display: flex;
+    width: 90%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 15px 5px 15px;
+    height: 55px;
+    font-weight: bold;
+    color: rgb(95, 95, 95);
+}
+
+.user_nickname {
+    border-top: 1px solid rgb(212, 212, 212);
+    border-bottom: 1px solid rgb(212, 212, 212);
+}
+
+.user_password a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.social_noti {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    height: 30px;
+    margin-top: 10px;
+    background-color: rgb(241, 241, 241);
+    border-radius: 5px;
+    color: rgb(134, 134, 134);
+    margin-bottom: 30px;
+    margin-left: 10px;
+    margin-right: 20px;
+    font-size: 14px;
+}
+
+.social_noti p {
+    margin-left: 20px;
+}
+
+.withdraw {
+    border-top: 1px solid rgb(212, 212, 212);
+    margin-top: 10px;
+}
+
+.withdraw button {
+    margin-top: 20px;
+    background: none;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}

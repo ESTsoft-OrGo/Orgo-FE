@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ORGO - Board</title>
+        <title>ORGO - Study</title>
         <!-- fontawesome -->
 		<link
         rel="stylesheet"
@@ -15,8 +15,7 @@
         />
         <link rel="stylesheet" href="/src/assets/css/reset.css" />
         <link rel="stylesheet" href="/src/assets/css/style.css" />
-        <link rel="stylesheet" href="/src/assets/css/board.css" />
-        <link rel="stylesheet" href="/src/assets/css/postlist.css" />
+        <link rel="stylesheet" href="/src/assets/css/study.css" />
     </head>
     <body>
         <!-- header -->
@@ -79,22 +78,24 @@
         </header>
         <!-- main -->
         <main>
-            <section class="board">
-                <div class="board_section">
-                    <div class="post-write">
-                        <div class="post_writer_img">
-                            <img src="/src/assets/img/profile_temp.png" alt="profile">
-                        </div>
-                        <a href="/src/view/write.html">
-                            <input type="text" placeholder="공유하고싶은 이야기가 있으신가요?">
-                        </a>
-                    </div>
-                    <div class="post_list">
+            <section class="study">
+                <div class="section_title">
+                    <p>Study</p>
+                    <a href="/src/view/create.html">스터디 등록</a>
+                </div>
+                <div class="study_ad">
+                    <div class="study_ad_text">
+                        <p>✏️ 함께 공부하는 여정, 시작해볼까요?</p>
+                        <p>어려움이 ⛰️ 산처럼 높아 보일 때, 함께하는 동료가 있다면 더 쉽게 극복할 수 있을거에요 :)</p>
                     </div>
                 </div>
-                <aside class="board_side">
-                    <p class="side_title">최근 게시물</p>
-                </aside>
+                <div class="study_section">
+                    <div class="study_list">
+                    </div>
+                </div>
+            </section>
+            <section class="studyPagination">
+                <button>1</button>
             </section>
         </main>
         <!-- // main -->
@@ -108,7 +109,8 @@
                 </div>
             </div>
         </footer>
+        <div class="loading"><div class="spinner"></div></div>
         <script src="/src/assets/js/header.js" type="module"></script>
-        <script src="/src/assets/js/board.js" type="module"></script>
+        <script src="/src/assets/js/study.js" type="module"></script>
     </body>
 </html>

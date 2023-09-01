@@ -1,6 +1,6 @@
 main {
     background-color: rgba(243, 243, 243, 0.863);
-    padding-top: 135px;
+    padding-top: 115px;
     padding-bottom: 50px;
 }
 
@@ -16,9 +16,44 @@ main {
 }
 
 .board_side {
-    width: 350px;
-    height: 720px;
-    background-color: rgb(3, 80, 0);
+    width: 300px;
+    height: 430px;
+    border: 1px solid rgb(182, 182, 182);
+    background-color: white;
+    padding: 20px;
+    right: 200px;
+}
+
+.side_title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.side_post {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.side_post p {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    width: 40px;
+    color: var(--maincolor);
+}
+
+.side_post a {
+    width: 240px;
+    font-size: 18px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 24px;
 }
 
 .post-write {
@@ -46,133 +81,4 @@ main {
     width: 680px;
     font-size: 14px;
     cursor: pointer;
-}
-
-.post_list {
-    width: 800px;
-}
-
-.post {
-    margin-bottom: 20px;
-    border: 1px solid rgb(182, 182, 182);
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: white;
-}
-
-.post_owner {
-    position: relative;
-    height: 35px;
-    display: flex;
-    padding: 15px;
-}
-
-.post_owner_img img {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    margin-right: 15px;
-}
-
-.post_owner_info p:first-child {
-    font-weight: bold;
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
-.post_owner_info p:last-child {
-    font-size: 12px;
-    color: rgb(114, 114, 114);
-}
-
-.post_owner_follow {
-    position: absolute;
-    right: 15px;
-}
-
-.post_owner_follow button {
-    background-color: var(--maincolor);
-    border: none;
-    border-radius: 5px;
-    color: white;
-    width: 60px;
-    height: 33px;
-    font-weight: bold;
-    font-size: 13px;
-    cursor: pointer;
-}
-
-.post_owner_follow button:hover {
-    color: white;
-    background-color: rgb(15, 144, 183);
-}
-
-.post_content {
-    min-height: 230px;
-    width: 100%;
-    padding: 15px;
-}
-
-.post_title {
-    display: block;
-    font-weight: bold;
-    font-size: 22px;
-    margin-bottom: 30px;
-    text-decoration: none;
-    color: black;
-}
-
-.post_content p {
-    width: 95%;
-    font-size: 17px;
-}
-
-.post_img {
-    display: none;
-    height: 150px;
-    background-color: brown;
-}
-
-.post_createdat {
-    padding: 15px;
-    border-bottom: 1px solid rgb(196, 196, 196);
-}
-
-.post_createdat p {
-    color: rgb(156, 156, 156);
-    font-size: 14px;
-}
-
-.post_reaction_info {
-    height: 25px;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.post_reaction_info {
-    display: flex;
-    align-items: center;
-}
-.reaction_info_div {
-    display: flex;
-}
-.post_reaction_info p {
-    font-size: 13px;
-    font-weight: bold;
-    color: rgb(94, 94, 94);
-}
-.post_reaction_info p:not(.like_count) {
-    margin-right: 5px;
-}
-
-.like_count {
-    margin-right: 10px;
-}
-.like_icon {
-    font-size: 15px;
-    cursor: pointer;
-    color: rgb(255, 101, 101);
-    margin-right: 5px;
 }

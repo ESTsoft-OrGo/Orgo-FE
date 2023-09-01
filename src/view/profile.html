@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ORGO - Board</title>
+        <title>ORGO - 프로필</title>
         <!-- fontawesome -->
 		<link
         rel="stylesheet"
@@ -15,7 +15,7 @@
         />
         <link rel="stylesheet" href="/src/assets/css/reset.css" />
         <link rel="stylesheet" href="/src/assets/css/style.css" />
-        <link rel="stylesheet" href="/src/assets/css/board.css" />
+        <link rel="stylesheet" href="/src/assets/css/profile.css" />
         <link rel="stylesheet" href="/src/assets/css/postlist.css" />
     </head>
     <body>
@@ -79,26 +79,74 @@
         </header>
         <!-- main -->
         <main>
-            <section class="board">
-                <div class="board_section">
-                    <div class="post-write">
-                        <div class="post_writer_img">
-                            <img src="/src/assets/img/profile_temp.png" alt="profile">
+            <section class="profile_section">
+                <div class="user-image">
+                    <img class="user-profile-img" src="/src/assets/img/profile_temp.png" alt="프로필">
+                </div>
+                <div class="post-image-div">
+                    <label for="img-input"><p>프로필 이미지</p><i class="fa-regular fa-image"></i></label>
+                    <input class="image-input" id="img-input" name="img-input" accept="image/gif,image/jpeg,image/png" type="file">
+                </div>
+                <div class="user-info">
+                    <input class="user-name" type="text" value="유저 네임" placeholder="닉네임을 적어주세요."></input>
+                    <input class="user-about" type="text" value="유저 인사말" placeholder="자신을 소개해주세요."></input>
+                </div>
+                <div class="user-follow">
+                    <p class="user-posts">게시물 2</p>
+                    <p class="user-follower">팔로워 0</p>
+                    <p class="user-following">팔로잉 0</p>
+                </div>
+                <button class="user-profile-save">저장</button>
+            </section>
+            <section class="post_seciton">
+            <div class="my_related">
+                <a class="related clicked" href="#">게시물</a>
+                <a class="related" href="#">팔로워</a>
+                <a class="related" href="#">팔로잉</a>
+            </div>
+            <div class="choice_post">
+                <p class="choice_title">내 게시물</p>  
+                <div class="post_list">
+                    <div class="post_none">
+                        <div class="sender_img">
+                            <img src="/src/assets/img/profile_temp.png">
                         </div>
-                        <a href="/src/view/write.html">
-                            <input type="text" placeholder="공유하고싶은 이야기가 있으신가요?">
-                        </a>
-                    </div>
-                    <div class="post_list">
+                        <div class="sender_info">
+                            <p>내가 작성한 게시물이 없습니다.</p>
+                        </div>
                     </div>
                 </div>
-                <aside class="board_side">
-                    <p class="side_title">최근 게시물</p>
-                </aside>
+            </div>
+            <div class="choice_follower hidden">
+                <p class="choice_title">팔로워</p>
+                <div class="follower_list">
+                    <div class="follower_none">
+                        <div class="follow_img">
+                            <img src="/src/assets/img/profile_temp.png">
+                        </div>
+                        <div class="follow_info">
+                            <p>Find new followers.</p>
+                            <p>팔로워가 존재하지 않습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="choice_following hidden">
+                <p class="choice_title">팔로잉</p>
+                <div class="following_list">
+                    <div class="following_none">
+                        <div class="follow_img">
+                            <img src="/src/assets/img/profile_temp.png">
+                        </div>
+                        <div class="follow_info">
+                            <p>Find new followings.</p>
+                            <p>팔로잉이 존재하지 않습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </section>
         </main>
-        <!-- // main -->
-        <!-- footer -->
         <footer>
             <div class="footer_wrap">
                 <img src="/src/assets/img/logo.png" alt="ORGO">
@@ -108,7 +156,9 @@
                 </div>
             </div>
         </footer>
+        <!-- // main -->
+        <script src="/src/assets/js/auth.js" type="module"></script>
         <script src="/src/assets/js/header.js" type="module"></script>
-        <script src="/src/assets/js/board.js" type="module"></script>
+        <script src="/src/assets/js/profile.js" type="module"></script>
     </body>
 </html>

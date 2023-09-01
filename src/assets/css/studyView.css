@@ -1,0 +1,200 @@
+main {
+    padding-top: 115px;
+    padding-bottom: 50px;
+}
+
+.study_view {
+    width: 1100px;
+    margin-right: auto;
+    margin-left: auto;
+    min-height: 80vh;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+}
+
+.study_title {
+    margin-top: 50px;
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    min-height: 76px;
+}
+
+.study_sub {
+    margin-top: 100px;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 2.5px solid rgb(226, 226, 226);
+}
+
+.study_author {
+    display: flex;
+    align-items: center;
+    padding-bottom: 40px;
+    border-bottom: 2.5px solid rgb(226, 226, 226);
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.study_leader {
+    display: flex;
+    align-items: center;
+}
+
+.study_leader img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.study_leader p {
+    font-weight: bold;
+    font-size: 20px;
+    border-right: 2px solid rgb(184, 184, 184);
+    margin-right: 15px;
+    padding-right: 15px;
+    height: 20px;
+    line-height: 20px;
+}
+
+.study_delete {
+    position: absolute;
+    right: 15px;
+    bottom: 50px;
+    
+}
+.study_edit {
+    position: absolute;
+    right: 85px;
+    bottom: 50px;
+}
+.study_edit button,
+.study_delete button {
+    background-color: white;
+    border: 1px solid rgb(109, 109, 109);
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    width: 60px;
+    height: 28px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.study_edit button:hover,
+.study_delete button:hover {
+    color: white;
+    background-color: black
+}
+
+.study_createdAt {
+    font-weight: bold;
+    color: rgb(87, 87, 87);
+}
+
+.study_infos {
+    width: 1080px;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 40px;
+    column-gap: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.study_info {
+    width: 500px;
+    display: flex;
+}
+
+.study_info p {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.study_info p:first-child {
+    display: block;
+    width: 180px;
+    color: rgb(116, 116, 116);
+}
+
+.study_tags {
+    margin-top: 100px;
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.study_tags p {
+    display: block;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 7px 10px 7px 10px;
+    background-color: rgb(238, 238, 238);
+    color: rgb(109, 109, 255);
+}
+
+.study_attend_btns {
+    position: absolute;
+    right: 0
+}
+
+.study_join,
+.study_cancle {
+    background-color: rgb(66, 170, 255);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    padding: 5px 8px 5px 8px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.study_join:hover {
+    background-color: rgb(40, 187, 21);
+}
+.study_cancle:hover {
+    background-color: rgb(255, 80, 80);
+}
+
+.participant_none,
+.participant {
+    height: 50px;
+    display: flex;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.participant_img img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.participant_info p:first-child {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.participant_info p:last-child {
+    font-size: 14px;
+    color: rgb(114, 114, 114);
+}
+
+.study_desc {
+    min-height: 300px;
+    margin-bottom: 40px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}

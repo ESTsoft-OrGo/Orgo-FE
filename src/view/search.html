@@ -15,7 +15,7 @@
         />
         <link rel="stylesheet" href="/src/assets/css/reset.css" />
         <link rel="stylesheet" href="/src/assets/css/style.css" />
-        <link rel="stylesheet" href="/src/assets/css/board.css" />
+        <link rel="stylesheet" href="/src/assets/css/search.css" />
         <link rel="stylesheet" href="/src/assets/css/postlist.css" />
     </head>
     <body>
@@ -80,21 +80,39 @@
         <!-- main -->
         <main>
             <section class="board">
-                <div class="board_section">
-                    <div class="post-write">
-                        <div class="post_writer_img">
-                            <img src="/src/assets/img/profile_temp.png" alt="profile">
+                <div class="search-result">
+                    <p>검색어 검색 결과 0건</p>
+                </div>
+                <div class="my_related">
+                    <a class="related post_search clicked" href="#">게시물</a>
+                    <a class="related profile_search" href="#">프로필</a>
+                </div>
+                <div class="result_section">
+                    <div class="choice_post">
+                        <div class="post_list">
+                            <div class="post_none">
+                                <div class="sender_img">
+                                    <img src="/src/assets/img/profile_temp.png">
+                                </div>
+                                <div class="sender_info">
+                                    <p>검색된 게시물이 없습니다.</p>
+                            </div>
                         </div>
-                        <a href="/src/view/write.html">
-                            <input type="text" placeholder="공유하고싶은 이야기가 있으신가요?">
-                        </a>
+                        </div>
                     </div>
-                    <div class="post_list">
+                    <div class="choice_profile hidden">
+                        <div class="profile_list">
+                            <div class="profile_none">
+                                <div class="sender_img">
+                                    <img src="/src/assets/img/profile_temp.png">
+                                </div>
+                                <div class="sender_info">
+                                    <p>검색된 프로필이 없습니다.</p>
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
-                <aside class="board_side">
-                    <p class="side_title">최근 게시물</p>
-                </aside>
             </section>
         </main>
         <!-- // main -->
@@ -109,6 +127,6 @@
             </div>
         </footer>
         <script src="/src/assets/js/header.js" type="module"></script>
-        <script src="/src/assets/js/board.js" type="module"></script>
+        <script src="/src/assets/js/search.js" type="module"></script>
     </body>
 </html>

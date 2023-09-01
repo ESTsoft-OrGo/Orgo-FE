@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ORGO - Board</title>
+        <title>ORGO - 프로필</title>
         <!-- fontawesome -->
 		<link
         rel="stylesheet"
@@ -15,8 +15,7 @@
         />
         <link rel="stylesheet" href="/src/assets/css/reset.css" />
         <link rel="stylesheet" href="/src/assets/css/style.css" />
-        <link rel="stylesheet" href="/src/assets/css/board.css" />
-        <link rel="stylesheet" href="/src/assets/css/postlist.css" />
+        <link rel="stylesheet" href="/src/assets/css/notify.css" />
     </head>
     <body>
         <!-- header -->
@@ -79,26 +78,15 @@
         </header>
         <!-- main -->
         <main>
-            <section class="board">
-                <div class="board_section">
-                    <div class="post-write">
-                        <div class="post_writer_img">
-                            <img src="/src/assets/img/profile_temp.png" alt="profile">
-                        </div>
-                        <a href="/src/view/write.html">
-                            <input type="text" placeholder="공유하고싶은 이야기가 있으신가요?">
-                        </a>
-                    </div>
-                    <div class="post_list">
+            <section class="notify_seciton">
+                <p class="notify_title">알림</p>
+                <div class="notify_list">
+                    <div class="notify_none"><div class="sender_img"><img src="/src/assets/img/profile_temp.png"></div><div class="sender_info"><p>새로운 알림이 없습니다.</p>
                     </div>
                 </div>
-                <aside class="board_side">
-                    <p class="side_title">최근 게시물</p>
-                </aside>
+                </div>
             </section>
         </main>
-        <!-- // main -->
-        <!-- footer -->
         <footer>
             <div class="footer_wrap">
                 <img src="/src/assets/img/logo.png" alt="ORGO">
@@ -108,7 +96,9 @@
                 </div>
             </div>
         </footer>
+        <!-- // main -->
+        <script src="/src/assets/js/auth.js" type="module"></script>
         <script src="/src/assets/js/header.js" type="module"></script>
-        <script src="/src/assets/js/board.js" type="module"></script>
+        <script src="/src/assets/js/notify.js" type="module"></script>
     </body>
 </html>

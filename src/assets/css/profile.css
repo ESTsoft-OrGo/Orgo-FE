@@ -1,0 +1,223 @@
+.profile_section {
+    width: 800px;
+    padding: 140px 40px 80px 90px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.user-image {
+    margin-bottom: 20px;
+}
+
+.user-image img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+}
+
+.post-image-div label {
+    cursor: pointer;
+    color: rgb(133, 133, 133);
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    border: 1px solid rgb(172, 171, 171);
+    width: 130px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.post-image-div label i {
+    font-size: 20px;
+}
+
+.post-image-div label p {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.image-input {
+    display: none;
+}
+
+.user-info {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-info input {
+    border: none;
+    padding: 5px;
+}
+
+.user-info input:first-child {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.user-info input:last-child {
+    font-size: 16px;
+}
+
+.user-follow {
+    display: flex;
+    padding: 5px;
+}
+
+.user-follow p {
+    text-decoration: none;
+    display: block;
+    color: black;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.user-profile-save {
+    position: absolute;
+    right: 70px;
+    top: 170px;
+    background-color: white;
+    border: 1px solid rgb(110, 110, 110);
+    width: 70px;
+    height: 55px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+}
+
+.user-profile-save:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.post_seciton {
+    width: 800px;
+    padding-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.my_related {
+    border-bottom: 1px solid black;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.related {
+    display: block;
+    width: 33%;
+    height: 30px;
+    text-decoration: none;
+    line-height: 30px;
+    text-align: center;
+    color: rgb(158, 158, 158);
+    font-weight: bold;
+    font-size: 18px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0);
+}
+
+.my_related .clicked {
+    color: black;
+    border-bottom: 2px solid black;
+}
+
+.post_list, 
+.follower_list, 
+.following_list {
+    min-height: 400px;
+}
+
+.choice_title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 60px;
+}
+
+.follower_none,
+.following_none,
+.follow {
+    position: relative;
+    height: 35px;
+    display: flex;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.follow_img img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.follow_info p:first-child {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.follow_info p:last-child {
+    font-size: 12px;
+    color: rgb(114, 114, 114);
+}
+
+.follow_btn_div {
+    position: absolute;
+    right: 15px;
+}
+
+.follow_btn_div button {
+    background-color: var(--maincolor);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 90px;
+    height: 33px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.follow_btn_div button:hover {
+    color: white;
+    background-color: rgb(15, 144, 183);
+}
+
+.hidden {
+    display: none;
+}
+
+.post_none {
+    position: relative;
+    height: 35px;
+    display: flex;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: white;
+    border: 1px solid rgb(182, 182, 182);
+}
+
+.sender_img img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.sender_info {
+    display: flex;
+    align-items: center;
+}
+
+.sender_info p {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
