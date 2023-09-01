@@ -31,7 +31,11 @@ const postEdit = async () => {
         for (const file of imgs) {
             formData.append('images', file);
         }
+        formData.append('img_edit', "true");
+    } else {
+        formData.append('img_edit', "false");
     }
+
     formData.append('title', $post_title.value);
     formData.append('content', $post_contents.value);
 
