@@ -27,9 +27,10 @@ const postEdit = async () => {
     const access = getCookie('access')
     const formData = new FormData();
     const imgs = $imageInput.files;
-    if(imgs){
+
+    if(imgs.length > 0){
         for (const file of imgs) {
-            formData.append('images', file);
+            formData.append('images', file);   
         }
         formData.append('img_edit', "true");
     } else {
