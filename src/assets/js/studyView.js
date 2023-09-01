@@ -65,6 +65,10 @@ const studyLoad = async () => {
             } else {
                 $study_attend_btns.remove()
             }
+
+            if(data.study.status == "종료"){
+                $study_attend_btns.remove()
+            }
             
             $study_createdAt.innerText = `${year}년 ${month}월 ${date}일`
             
