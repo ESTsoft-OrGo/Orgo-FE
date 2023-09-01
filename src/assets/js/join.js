@@ -14,7 +14,7 @@ const joinFunc = async (event) => {
         return false
     }
 
-    if (password.length <= 8){
+    if (password.length < 8){
         alert("비밀번호가 너무 짧습니다. 최소 8자 이상")
         return false
     }
