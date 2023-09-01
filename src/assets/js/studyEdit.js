@@ -137,10 +137,10 @@ const tagSave = async(event) => {
         target.classList = 'usually_tag'
         input.disabled = true
         btn.classList = "tag_del_btn"
+        btn.id = data.tag.id
         icon.classList = "fa-solid fa-x"
         btn.removeEventListener('click',tagSave)
         btn.addEventListener('click',tagDelete)
-
     })
     .catch((err) => {
         alert(data.errors)
