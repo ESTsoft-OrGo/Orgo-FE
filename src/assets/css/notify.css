@@ -62,12 +62,6 @@ main {
     height: 33px;
     font-weight: bold;
     font-size: 14px;
-    cursor: pointer;
-}
-
-.accept_div button:hover {
-    color: white;
-    background-color: rgb(15, 144, 183);
 }
 
 .hidden {

@@ -36,7 +36,11 @@ const studyLoad = async () => {
         .then((res) => res.json())
         .then((data) => {
             $study_title.innerText = data.study.title
-            $study_leader_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.leader.profileImage
+            if(data.leader.profileImage) {
+                $study_leader_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.leader.profileImage
+            } else {
+                $study_leader_img.src = '/src/assets/img/profile_temp.png'
+            }
             $study_leader_name.innerText = data.leader.nickname
 
             const time = new Date(data.study.created_at)
