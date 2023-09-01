@@ -16,7 +16,7 @@ export const followFunc = async(event) => {
 
     formData.append('you', target_id);
 
-    const url = 'http://43.200.64.24/user/follow/'
+    const url = 'http://127.0.0.1:8000/user/follow/'
 
     await fetch(url, {
         method: "POST",

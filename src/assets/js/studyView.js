@@ -23,7 +23,7 @@ const $study_delete = document.querySelector('.study_delete')
 const $study_attend_btns = document.querySelector('.study_attend_btns')
 
 const studyLoad = async () => {
-    const url = `http://43.200.64.24/study/detail/`;
+    const url = `http://127.0.0.1:8000/study/detail/`;
     const formData = new FormData();
     formData.append('study_id', studyPage.pages);
 
@@ -137,7 +137,7 @@ const studyEdit = (post,tags) => {
 
 // Post 삭제
 const studyDelete = async () => {
-    const url = `http://43.200.64.24/study/delete/`;
+    const url = `http://127.0.0.1:8000/study/delete/`;
     const access = getCookie('access')
     const formData = new FormData();
     formData.append('study_id', studyPage.pages);
@@ -161,7 +161,7 @@ const studyDelete = async () => {
 
 // stduy 조인
 const studyJoin = async () => {
-    const url = `http://43.200.64.24/study/join/`;
+    const url = `http://127.0.0.1:8000/study/join/`;
     const access = getCookie('access')
     const formData = new FormData();
     formData.append('study_id', studyPage.pages);
@@ -185,7 +185,7 @@ const studyJoin = async () => {
 
 // stduy 조인
 const studyCancle = async () => {
-    const url = `http://43.200.64.24/study/join/cancel/`;
+    const url = `http://127.0.0.1:8000/study/join/cancel/`;
     const access = getCookie('access')
     const formData = new FormData();
     formData.append('study_id', studyPage.pages);

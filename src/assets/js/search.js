@@ -12,7 +12,7 @@ const post_list = async () => {
     const formData = new FormData();
     formData.append('query', query);
     
-    const url = 'http://43.200.64.24/post/search/'
+    const url = 'http://127.0.0.1:8000/post/search/'
 
     await fetch(url, {
         method: "POST",

@@ -26,7 +26,7 @@ const user_withdraw = async (event) => {
         return false
     } else {
         const access = getCookie('access')
-        const url = 'http://43.200.64.24/user/profile/delete/'
+        const url = 'http://127.0.0.1:8000/user/profile/delete/'
 
         await fetch(url, {
             method: "POST",

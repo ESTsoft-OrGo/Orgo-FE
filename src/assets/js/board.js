@@ -3,7 +3,7 @@ import { create_post } from "./createElement.js"
 import { followFunc } from "./follow.js"
 
 const post_list = async () => {
-    const url = 'http://43.200.64.24/post/'
+    const url = 'http://127.0.0.1:8000/post/'
 
     await fetch(url, {
         method: "POST",
@@ -60,7 +60,7 @@ const post_list = async () => {
 }
 
 const api_recent = async() => {
-    const url = 'http://43.200.64.24/post/recent/'
+    const url = 'http://127.0.0.1:8000/post/recent/'
 
     await fetch(url, {
         method: "POST",

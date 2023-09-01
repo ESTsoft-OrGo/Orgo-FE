@@ -32,20 +32,20 @@ const is_logined = async() => {
 
         let notisocket;
 
-        notisocket = new WebSocket(`ws://43.200.64.24:8080/notify/${profile.id}`)
-        notisocket.onmessage = (e) => {
-            const receiveData = JSON.parse(e.data)
-            localStorage.setItem('myNotify', JSON.stringify(receiveData.message));
-            const newNotify = JSON.parse(localStorage.getItem('myNotify'))
-            const $notify_count = document.querySelector('.notify_count')
+        // notisocket = new WebSocket(`ws://43.200.64.24:8080/notify/${profile.id}`)
+        // notisocket.onmessage = (e) => {
+        //     const receiveData = JSON.parse(e.data)
+        //     localStorage.setItem('myNotify', JSON.stringify(receiveData.message));
+        //     const newNotify = JSON.parse(localStorage.getItem('myNotify'))
+        //     const $notify_count = document.querySelector('.notify_count')
 
-            if(newNotify.length > 0) {
-                $notify_count.style.display = 'flex'
-                $notify_count.innerText = newNotify.length
-            } else {
-                $notify_count.style.display = 'none'
-            }
-        }
+        //     if(newNotify.length > 0) {
+        //         $notify_count.style.display = 'flex'
+        //         $notify_count.innerText = newNotify.length
+        //     } else {
+        //         $notify_count.style.display = 'none'
+        //     }
+        // }
 
     } else {
         const is_not_logined = document.querySelectorAll('.is_not_logined')
