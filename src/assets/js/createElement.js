@@ -225,6 +225,14 @@ export const create_study = (data) => {
     const startDate = data.study.start_date.split("T")[0];
     const endDate = data.study.end_date.split("T")[0];
 
+    let leader_img;
+
+    if(data.leader.profileImage){
+        leader_img = `https://myorgobucket.s3.ap-northeast-2.amazonaws.com${data.leader.profileImage}`
+    } else {
+        leader_img = '/src/assets/img/profile_temp.png'
+    }
+
     study.className = 'study_div'
     study.id = data.study.id
     study.href = '/src/view/studyView.html'
@@ -253,7 +261,7 @@ export const create_study = (data) => {
         </div>
         <div class="study_tags">${tags}</div>
         <div class="study_leader">
-            <img class="study_leader_img" src="https://myorgobucket.s3.ap-northeast-2.amazonaws.com${data.leader.profileImage}" alt="leader_img">
+            <img class="study_leader_img" src="${leader_img}" alt="leader_img">
             <p class="study_leader_name">${data.leader.nickname}</p>
         </div>
     `
