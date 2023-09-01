@@ -15,6 +15,61 @@ main {
     justify-content: space-between;
 }
 
+.section_title {
+    padding: 15px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(226, 226, 226);
+    height: 40px;
+}
+
+.section_title p {
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(71, 71, 71);
+    margin-left: 275px;
+}
+
+.section_title a {
+    margin-right: 275px;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(90, 90, 90);
+    padding: 7px 10px 7px 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(182, 182, 182);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.section_title a:hover {
+    color: white;
+    background-color: black;
+}
+
+.board_ad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 270px;
+    background-color: rgb(123, 196, 41);
+    margin-bottom: 30px;
+    color: white;
+}
+
+.board_ad_text p:first-child {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 35px;
+}
+
+.board_ad_text p:last-child {
+    font-weight: bold;
+}
+
 .board_side {
     width: 300px;
     height: 430px;
