@@ -19,7 +19,7 @@ const $like_btn = document.querySelector('.like_icon')
 
 // Django Server에서 Post Detail 가져온 후 DOM 생성
 const postLoad = async () => {
-    const url = `http://127.0.0.1:8000/post/view/${renderPage.pages}/`;
+    const url = `http://43.200.64.24/post/view/${renderPage.pages}/`;
 
     await fetch(url, {
         method: "POST",
@@ -31,6 +31,7 @@ const postLoad = async () => {
         .then((data) => {
             const comments = data.comments
             const like_users = data.likes
+
             if (data.writer.profileImage){
                 $post_owner_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.writer.profileImage
             } else {
@@ -198,7 +199,7 @@ const postEdit = (post) => {
 
 // Post 삭제
 const postDelete = async () => {
-    const url = `http://127.0.0.1:8000/post/delete/${renderPage.pages}/`;
+    const url = `http://43.200.64.24/post/delete/${renderPage.pages}/`;
     const access = getCookie('access')
     await fetch(url, {
         method: "POST",
@@ -220,7 +221,7 @@ const postDelete = async () => {
 const commentWrite = async (event) => {
     const target = event.target
     const parent = target.parentNode
-    const url = 'http://127.0.0.1:8000/post/comment/write/';
+    const url = 'http://43.200.64.24/post/comment/write/';
     
     const access = getCookie('access')
     const formData = new FormData();
@@ -258,7 +259,7 @@ const recommentWrite = async (event) => {
         target = target.parentNode
     }
 
-    const url = 'http://127.0.0.1:8000/post/re-comment/write/';
+    const url = 'http://43.200.64.24/post/re-comment/write/';
     const access = getCookie('access')
     const formData = new FormData();
     const $comment = target.querySelector('.recomment_write_input')
@@ -422,7 +423,7 @@ const commentDelete = async (event) => {
         target = target.parentNode
     }
 
-    const url = 'http://127.0.0.1:8000/post/comment/delete/';
+    const url = 'http://43.200.64.24/post/comment/delete/';
     const formData = new FormData();
     const comment_id = target.id
     const access = getCookie('access')
@@ -454,7 +455,7 @@ const recommentDelete = async (event) => {
         target = target.parentNode
     }
 
-    const url = 'http://127.0.0.1:8000/post/comment/delete/';
+    const url = 'http://43.200.64.24/post/comment/delete/';
     const formData = new FormData();
     const comment_id = target.id
     const access = getCookie('access')
@@ -480,7 +481,7 @@ const recommentDelete = async (event) => {
 
 // Like 기능
 const likeFunc = async (event) => {
-    const url = `http://127.0.0.1:8000/post/like/`;
+    const url = `http://43.200.64.24/post/like/`;
     
     const access = getCookie('access')
     const formData = new FormData();
@@ -511,7 +512,7 @@ const likeFunc = async (event) => {
 };
 
 const unlikeFunc = async (event) => {
-    const url = `http://127.0.0.1:8000/post/unlike/`;
+    const url = `http://43.200.64.24/post/unlike/`;
     
     const access = getCookie('access')
     const formData = new FormData();

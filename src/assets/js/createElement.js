@@ -196,6 +196,7 @@ export const create_notify = (data) => {
 }
 
 export const create_study = (data) => {
+
     const study = document.createElement('a')
     // 태그 추가
     let tags = '';

@@ -1,4 +1,4 @@
-import { detail_page,getWithExpire } from "./util.js"
+import { detail_page,getWithExpire,slide_func } from "./util.js"
 import { create_post,create_follow } from "./createElement.js"
 import { followFunc } from "./follow.js"
 
@@ -12,7 +12,7 @@ const post_list = async () => {
     const formData = new FormData();
     formData.append('query', query);
     
-    const url = 'http://127.0.0.1:8000/post/search/'
+    const url = 'http://43.200.64.24/post/search/'
 
     await fetch(url, {
         method: "POST",
@@ -21,6 +21,7 @@ const post_list = async () => {
     })
     .then((res) => res.json())
     .then((data) => {
+        console.log(data)
         const $post_list = document.querySelector('.post_list')
         const $profile_list = document.querySelector('.profile_list')
         const $search_result = document.querySelector('.search-result > p')
@@ -30,8 +31,9 @@ const post_list = async () => {
         const $profile_none = document.querySelector('.profile_none')
         const posts = data.posts
         const profiles = data.profiles
+        const studies = data.studies
 
-        $search_result.innerText = `${query} 검색 결과 ${data.posts.length + data.profiles.length}건`
+        $search_result.innerText = `${query} 검색 결과 ${posts.length + profiles.length + studies.length}건`
 
         $post_search.innerText = `게시물 ${data.posts.length}건`
         $profile_search.innerText = `프로필 ${data.profiles.length}건`
@@ -40,6 +42,9 @@ const post_list = async () => {
             $post_none.remove()
             posts.forEach(data => {
                 const element = create_post(data.post,data.writer,'search',data.post.likes.length)
+                if(data.post.images.length > 0){
+                    slide_func(element)
+                }
                 $post_list.append(element)
             });
         }

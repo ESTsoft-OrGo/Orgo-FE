@@ -24,7 +24,7 @@ const joinFunc = async (event) => {
     formData.append('email', email);
     formData.append('password', password);
 
-    const url = 'http://127.0.0.1:8000/user/join/'
+    const url = 'http://43.200.64.24/user/join/'
 
     await fetch(url, {
         method: "POST",

@@ -10,9 +10,9 @@ const study_list = async () => {
     let url;
 
     if(page) {
-        url = `http://127.0.0.1:8000/study/?page=${page}`
+        url = `http://43.200.64.24/study/?page=${page}`
     } else {
-        url = 'http://127.0.0.1:8000/study/?page=1'
+        url = 'http://43.200.64.24/study/?page=1'
     }
 
     await fetch(url, {

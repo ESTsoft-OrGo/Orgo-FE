@@ -3,8 +3,6 @@ import {getWithExpire,deleteCookie} from "./util.js"
 const $logout_btn = document.querySelector('.logout_btn')
 const $avatarBtn = document.querySelector('.avatar_img_li')
 
-export let notisocket ;
-
 // 로그인이 되있는지 확인
 const is_logined = async() => {
 
@@ -32,7 +30,9 @@ const is_logined = async() => {
             $avatar_img.src = '/src/assets/img/profile_temp.png'
         }
 
-        notisocket = new WebSocket(`ws://127.0.0.1:8000/notify/${profile.id}`)
+        let notisocket;
+
+        notisocket = new WebSocket(`ws://43.200.64.24:8080/notify/${profile.id}`)
         notisocket.onmessage = (e) => {
             const receiveData = JSON.parse(e.data)
             localStorage.setItem('myNotify', JSON.stringify(receiveData.message));

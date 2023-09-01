@@ -9,10 +9,10 @@ const $user_name = document.querySelector('.user-name')
 const $user_about = document.querySelector('.user-about')
 const $profileimg = document.querySelector('.user-profile-img')
 const $profile_save = document.querySelector('.user-profile-save')
-
+const user = getWithExpire('user');
+const user_profile = JSON.parse(user)
+    
 const profile_setting = () => {
-    let user = getWithExpire('user');
-    const user_profile = JSON.parse(user)
     
     $user_name.value = user_profile.nickname
     $user_about.value = user_profile.about
@@ -27,7 +27,7 @@ const profile_setting = () => {
 const mypost_list = async () => {
 
     const access = getCookie('access')
-    const url = 'http://127.0.0.1:8000/user/profile/'
+    const url = 'http://43.200.64.24/user/profile/'
 
     await fetch(url, {
         method: "POST",
@@ -50,12 +50,12 @@ const mypost_list = async () => {
         $user_posts.innerText = '게시물 ' + data.my_posts.length
         $user_follower.innerText = '팔로워 ' + data.follower.length
         $user_following.innerText = '팔로잉 ' + data.following.length
-        
+
         if(posts.length > 0){
             const $post_none = document.querySelector('.post_none')
             $post_none.remove()
             posts.forEach(post => {
-                const element = create_post(post.post,data.serializer,'profile',post.likes)
+                const element = create_post(post.post,user_profile,'profile',post.likes)
                 if(post.post.images.length > 0){
                     slide_func(element)
                 }
@@ -127,7 +127,7 @@ const profile_save = async (event) => {
     formData.append('about', about);
     formData.append('is_active', true);
 
-    const url = 'http://127.0.0.1:8000/user/profile/update/'
+    const url = 'http://43.200.64.24/user/profile/update/'
 
     await fetch(url, {
         method: "POST",
@@ -139,7 +139,6 @@ const profile_save = async (event) => {
     .then((res) => res.json())
     .then((data) => {
         if (data) {
-            console.log(data)
             alert('프로필 변경이 완료되었습니다.')
             setWithExpire('user', data);
         }

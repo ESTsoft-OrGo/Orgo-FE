@@ -15,7 +15,7 @@ const email_login = async (event) => {
     formData.append('email', email);
     formData.append('password', password);
 
-    const url = 'http://127.0.0.1:8000/user/login/email/'
+    const url = 'http://43.200.64.24/user/login/email/'
 
     await fetch(url, {
         method: "POST",
@@ -42,7 +42,7 @@ const email_login = async (event) => {
 const google_login = async(event) => {
     event.preventDefault()
 
-    const url = 'http://127.0.0.1:8000/user/login/google/'
+    const url = 'http://43.200.64.24/user/login/google/'
 
     await fetch(url, {
         method: "POST",
@@ -63,7 +63,7 @@ const google_login = async(event) => {
 const google_login_callback = async() => {
     const urlParams = new URL(location.href).searchParams;
     const code = urlParams.get('code');
-    const url = 'http://127.0.0.1:8000/user/login/google/callback/'
+    const url = 'http://43.200.64.24/user/login/google/callback/'
 
     if(code) {
 
@@ -100,7 +100,7 @@ const google_login_callback = async() => {
 const github_login = async (event) => {
     event.preventDefault()
 
-    const url = 'http://127.0.0.1:8000/user/login/github/'
+    const url = 'http://43.200.64.24/user/login/github/'
 
     await fetch(url, {
         method: "POST",
@@ -121,7 +121,7 @@ const github_login = async (event) => {
 const github_login_callback = async() => {
     const urlParams = new URL(location.href).searchParams;
     const code = urlParams.get('code');
-    const url = 'http://127.0.0.1:8000/user/login/github/callback/'
+    const url = 'http://43.200.64.24/user/login/github/callback/'
 
     if(code) {
 
@@ -154,19 +154,14 @@ const github_login_callback = async() => {
     }
 }
 
-const home_link = () => {
-    location.href= '/index.html'
-}
-
 is_logined()
 
-
 const method = JSON.parse(localStorage.getItem("method"));
+
 if(method){
-    console.log(method.method)
     if(method.method == "github"){
         github_login_callback()
-    } else {
+    } else if(method.method == "google") {
         google_login_callback()
     }
 }

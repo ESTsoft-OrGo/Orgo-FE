@@ -17,7 +17,7 @@ $textarea.oninput = (event) => {
 // Comment 작성
 const postWrite = async () => {
     
-    const url = 'http://127.0.0.1:8000/post/write/';
+    const url = 'http://43.200.64.24/post/write/';
     const access = getCookie('access')
     const formData = new FormData();
     const imgs = $imageInput.files;

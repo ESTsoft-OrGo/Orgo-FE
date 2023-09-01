@@ -14,7 +14,7 @@ let socket;
 const folloingList = async() => {
     const $following_list = document.querySelector('.following_list')
     const access = getCookie('access')
-    const url = 'http://127.0.0.1:8000/chat/following/'
+    const url = 'http://43.200.64.24/chat/following/'
     const $myName = document.querySelector('.myName')
 
     $myName.innerText = user.nickname
@@ -47,7 +47,7 @@ const folloingList = async() => {
 const chatlist = async () => {
     // event.preventDefault()
     const access = getCookie('access')
-    const url = 'http://127.0.0.1:8000/chat/'
+    const url = 'http://43.200.64.24/chat/'
 
     await fetch(url, {
         method: "POST",
@@ -136,7 +136,7 @@ const addChat = async (event) => {
     event.preventDefault()
 
     const access = getCookie('access')
-    const url = 'http://127.0.0.1:8000/chat/join/'
+    const url = 'http://43.200.64.24/chat/join/'
     const chatTarget = event.target.id
     const formData = new FormData();
 
@@ -163,7 +163,7 @@ const removeChat = async (event) => {
     event.preventDefault()
 
     const access = getCookie('access')
-    const url = 'http://127.0.0.1:8000/chat/delete/'
+    const url = 'http://43.200.64.24/chat/delete/'
     const chatTarget = event.target.id
     const formData = new FormData();
 
@@ -228,14 +228,12 @@ const chatjoin = (event,room_target) => {
     $chatMessageList.innerHTML = ''
 
     if(room_target.profileImage){
-        $chatTitleImg.src = 'http://127.0.0.1:8000'+ room_target.profileImage
+        $chatTitleImg.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ room_target.profileImage
     } else {
         $chatTitleImg.src = '/src/assets/img/profile_temp.png'
     }
 
     $chatTitle.innerText = room_target.nickname
-
-    
 
     const chatlist = document.querySelector(".chat-room-list");
     const rooms = chatlist.querySelectorAll(".room_div");
@@ -251,7 +249,7 @@ const chatjoin = (event,room_target) => {
     let is_action = false;
     target.classList.add('joined')
     const title = target.id.toString()
-    socket = new WebSocket(`ws://127.0.0.1:8000/chat/${title}`)
+    socket = new WebSocket(`ws://43.200.64.24:8080/chat/${title}`)
 
     socket.onopen = function (e) {
         socket.send(JSON.stringify({

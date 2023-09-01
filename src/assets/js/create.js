@@ -14,7 +14,7 @@ const $create_btn = document.querySelector('.study_create > button')
 // Study 작성
 const studyCreate = async () => {
     
-    const url = 'http://127.0.0.1:8000/study/create/';
+    const url = 'http://43.200.64.24/study/create/';
     const access = getCookie('access')
     const formData = new FormData();
 
