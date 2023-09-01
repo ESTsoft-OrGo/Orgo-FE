@@ -41,7 +41,6 @@ const joinFunc = async (event) => {
         }
     })
     .catch((err) => {
-        console.log('!')
         console.log(err);
     });
 }
