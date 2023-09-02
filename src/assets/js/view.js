@@ -106,7 +106,7 @@ const postLoad = async () => {
             const $follow_btn = document.querySelector('.post_owner_follow > button')
 
             $follow_btn.id = data.writer.id
-            $follow_btn.addEventListener('click',followFunc)
+            $follow_btn.addEventListener('click',(event) => followFunc(event,'view'))
             
             if (getWithExpire('user')) {
                 const profile = JSON.parse(getWithExpire('user'))

@@ -249,7 +249,7 @@ const chatjoin = (event,room_target) => {
     let is_action = false;
     target.classList.add('joined')
     const title = target.id.toString()
-    socket = new WebSocket(`ws://43.200.64.24:8080/chat/${title}`)
+    socket = new WebSocket(`ws://127.0.0.1:8000/chat/${title}`)
 
     socket.onopen = function (e) {
         socket.send(JSON.stringify({

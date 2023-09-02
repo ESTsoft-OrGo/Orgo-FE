@@ -1,6 +1,6 @@
 import { getCookie } from "./util.js"
 // 팔로우
-export const followFunc = async(event) => {
+export const followFunc = async(event,where) => {
 
     const target = event.target
     const target_id = target.id
@@ -34,7 +34,9 @@ export const followFunc = async(event) => {
             } else {
                 localStorage.setItem('follow', JSON.stringify({}));
             }
-            location.reload()
+            if(where != "view"){
+                location.reload()
+            }
         }
     })
     .catch((err) => {
