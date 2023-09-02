@@ -21,6 +21,7 @@ const $study_cancle = document.querySelector('.study_cancle')
 const $study_edit = document.querySelector('.study_edit')
 const $study_delete = document.querySelector('.study_delete')
 const $study_attend_btns = document.querySelector('.study_attend_btns')
+const $loading = document.querySelector('.loading')
 
 const studyLoad = async () => {
     const url = `http://43.200.64.24/study/detail/`;
@@ -95,7 +96,7 @@ const studyLoad = async () => {
                 const participant_div = create_participant(participant)
                 $study_in_people.append(participant_div)
             });
-
+            $loading.style.display = "none"
         })
         .catch((err) => {
             console.log(err);
