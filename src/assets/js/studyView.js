@@ -57,13 +57,13 @@ const studyLoad = async () => {
                 $study_edit.remove()
                 $study_delete.remove()
                 $study_attend_btns.remove()
-            }
-
-            if(user_profile.id != data.leader.id) {
-                $study_edit.remove()
-                $study_delete.remove()
             } else {
-                $study_attend_btns.remove()
+                if(user_profile.id != data.leader.id) {
+                    $study_edit.remove()
+                    $study_delete.remove()
+                } else {
+                    $study_attend_btns.remove()
+                }
             }
 
             if(data.study.status == "종료"){
