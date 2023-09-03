@@ -17,7 +17,7 @@ $textarea.oninput = (event) => {
 // Comment 작성
 const postWrite = async () => {
     
-    const url = 'http://43.200.64.24/post/write/';
+    const url = 'https://api.withorgo.site/post/write/';
     const access = getCookie('access')
     const formData = new FormData();
     const imgs = $imageInput.files;

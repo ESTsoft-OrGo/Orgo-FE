@@ -24,7 +24,7 @@ const joinFunc = async (event) => {
     formData.append('email', email);
     formData.append('password', password);
 
-    const url = 'http://43.200.64.24/user/join/'
+    const url = 'https://api.withorgo.site/user/join/'
 
     await fetch(url, {
         method: "POST",

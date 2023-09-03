@@ -27,7 +27,7 @@ const profile_setting = () => {
 const mypost_list = async () => {
 
     const access = getCookie('access')
-    const url = 'http://43.200.64.24/user/profile/'
+    const url = 'https://api.withorgo.site/user/profile/'
 
     await fetch(url, {
         method: "POST",
@@ -127,7 +127,7 @@ const profile_save = async (event) => {
     formData.append('about', about);
     formData.append('is_active', true);
 
-    const url = 'http://43.200.64.24/user/profile/update/'
+    const url = 'https://api.withorgo.site/user/profile/update/'
 
     await fetch(url, {
         method: "POST",

@@ -23,7 +23,7 @@ const content_hight = () => {
 // Comment 작성
 const postEdit = async () => {
     
-    const url = `http://43.200.64.24/post/edit/${postdata.id}/`;
+    const url = `https://api.withorgo.site/post/edit/${postdata.id}/`;
     const access = getCookie('access')
     const formData = new FormData();
     const imgs = $imageInput.files;
