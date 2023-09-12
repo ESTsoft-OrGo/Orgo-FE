@@ -14,7 +14,7 @@ let socket;
 const folloingList = async() => {
     const $following_list = document.querySelector('.following_list')
     const access = getCookie('access')
-    const url = 'http://127.0.0.1:8000/chat/following/'
+    const url = 'http://127.0.0.1:10250/chat/following/'
     const $myName = document.querySelector('.myName')
 
     $myName.innerText = user.nickname
@@ -47,7 +47,7 @@ const folloingList = async() => {
 const chatlist = async () => {
     // event.preventDefault()
     const access = getCookie('access')
-    const url = 'http://127.0.0.1:8000/chat/'
+    const url = 'http://127.0.0.1:10250/chat/'
 
     await fetch(url, {
         method: "POST",
@@ -88,6 +88,7 @@ const chatlist = async () => {
 
 const create_roomdiv = (element) => {
     const room = document.createElement('a')
+    const unread_ms_count = document.createElement('div')
     const room_img_div = document.createElement('div')
     const room_img = document.createElement('img')
     const room_info = document.createElement('div')
@@ -98,6 +99,9 @@ const create_roomdiv = (element) => {
     const room_more_btn_i = document.createElement('i')
     const room_menu = document.createElement('div')
     const room_delete = document.createElement('button')
+    
+    unread_ms_count.className = 'ms_count'
+    unread_ms_count.innerText = element.unread_message
 
     room.className = 'room_div'
     room.id = element.room.title
@@ -128,7 +132,12 @@ const create_roomdiv = (element) => {
     room_more.classList = 'room_more'
     room_more.append(room_more_btn,room_menu)
 
-    room.append(room_img_div,room_info,room_more)
+    if (element.unread_message > 0){
+        room.append(unread_ms_count,room_img_div,room_info,room_more)
+    } else {
+        room.append(room_img_div,room_info,room_more)
+    }
+
     return room
 }
 
@@ -136,7 +145,7 @@ const addChat = async (event) => {
     event.preventDefault()
 
     const access = getCookie('access')
-    const url = 'http://127.0.0.1:8000/chat/join/'
+    const url = 'http://127.0.0.1:10250/chat/join/'
     const chatTarget = event.target.id
     const formData = new FormData();
 
@@ -163,7 +172,7 @@ const removeChat = async (event) => {
     event.preventDefault()
 
     const access = getCookie('access')
-    const url = 'http://127.0.0.1:8000/chat/delete/'
+    const url = 'http://127.0.0.1:10250/chat/delete/'
     const chatTarget = event.target.id
     const formData = new FormData();
 
@@ -220,7 +229,10 @@ const chatjoin = (event,room_target) => {
     while (target.classList != 'room_div'){
         target = target.parentNode
     }
-
+    const $ms_count = target.querySelector('.ms_count')
+    if($ms_count){
+        $ms_count.remove()
+    }
     const $chatTitleImg = document.querySelector('.chat-room-header > img')
     const $chatTitle = document.querySelector('.chat-room-header > p')
     const $chatMessageList = document.querySelector('.chat-message-list')
@@ -249,7 +261,7 @@ const chatjoin = (event,room_target) => {
     let is_action = false;
     target.classList.add('joined')
     const title = target.id.toString()
-    socket = new WebSocket(`ws://127.0.0.1:8000/chat/${title}`)
+    socket = new WebSocket(`ws://127.0.0.1:10250/chat/${title}`)
 
     socket.onopen = function (e) {
         socket.send(JSON.stringify({
@@ -306,7 +318,6 @@ const chatjoin = (event,room_target) => {
     };
 
     $message_submit.addEventListener('click',msSend)
-
 }
 
 const joinPrintMessage = (day,messages) => {
