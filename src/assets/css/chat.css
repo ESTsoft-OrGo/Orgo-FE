@@ -168,6 +168,7 @@ main {
     cursor:auto;
 }
 
+.black_user,
 .room_delete {
     border: none;
     background: none;

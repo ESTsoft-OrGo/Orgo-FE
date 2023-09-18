@@ -69,6 +69,7 @@ const chatlist = async () => {
 
         const $room_more_btns = document.querySelectorAll('.room_more_btn')
         const $room_delete_btn = document.querySelectorAll('.room_delete')
+        const $black_user_btn = document.querySelectorAll('.black_user')
 
         $room_more_btns.forEach(btn => {
             btn.addEventListener('click',roomMore)
@@ -76,6 +77,10 @@ const chatlist = async () => {
 
         $room_delete_btn.forEach(btn => {
             btn.addEventListener('click',removeChat)
+        });
+
+        $black_user_btn.forEach(btn => {
+            btn.addEventListener('click',blackUser)
         });
 
         $search_input.addEventListener('input',searchRoom)
@@ -99,6 +104,7 @@ const create_roomdiv = (element) => {
     const room_more_btn_i = document.createElement('i')
     const room_menu = document.createElement('div')
     const room_delete = document.createElement('button')
+    const black_user = document.createElement('button')
     
     unread_ms_count.className = 'ms_count'
     unread_ms_count.innerText = element.unread_message
@@ -127,8 +133,11 @@ const create_roomdiv = (element) => {
     room_delete.innerText = '채팅방 삭제'
     room_delete.classList = 'room_delete'
     room_delete.id = element.room.id
+    black_user.innerText = '채팅 차단'
+    black_user.classList = 'black_user'
+    black_user.id = element.room.id
     room_menu.classList = 'room_menu hidden'
-    room_menu.append(room_delete)
+    room_menu.append(room_delete,black_user)
     room_more.classList = 'room_more'
     room_more.append(room_more_btn,room_menu)
 
@@ -173,6 +182,33 @@ const removeChat = async (event) => {
 
     const access = getCookie('access')
     const url = 'http://127.0.0.1:10250/chat/delete/'
+    const chatTarget = event.target.id
+    const formData = new FormData();
+
+    formData.append('target', chatTarget);
+
+    await fetch(url, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${access}`,
+        },
+        body: formData,
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        alert(data.message)
+        location.reload()
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
+const blackUser = async (event) => {
+    event.preventDefault()
+
+    const access = getCookie('access')
+    const url = 'http://127.0.0.1:10250/chat/blacklist/add/'
     const chatTarget = event.target.id
     const formData = new FormData();
 
@@ -401,9 +437,6 @@ const getMssage = (data) => {
 
 const timeRead = (data) => {
     const time = new Date(data)
-    const year = time.getFullYear();
-    const month = time.getMonth() +1;
-    const date = time.getDate();
     const hours = time.getHours();
     const minutes = time.getMinutes();
     // ${year}년 ${month}월 ${date}일 

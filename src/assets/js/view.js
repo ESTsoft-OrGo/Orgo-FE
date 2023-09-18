@@ -85,8 +85,8 @@ const postLoad = async () => {
             $view_count.innerText = data.post.views
             
             comments.forEach(data => {
-                if(data.comment.parent_comment_id) {
-                    const parent_id = data.comment.parent_comment_id
+                if(data.comment.parent_comment) {
+                    const parent_id = data.comment.parent_comment
                     const parent_comment = document.getElementById(parent_id)
                     const div = recommentRead(data)
                     parent_comment.append(div)
