@@ -1,6 +1,8 @@
-import { detail_page,getWithExpire,slide_func } from "./util.js"
+import { detail_page,getWithExpire,slide_func,user_page } from "./util.js"
 import { create_post } from "./createElement.js"
 import { followFunc } from "./follow.js"
+
+
 
 const post_list = async () => {
     const url = 'http://127.0.0.1:8000/post/'
@@ -26,6 +28,13 @@ const post_list = async () => {
 
         articles.forEach(article => {
             article.addEventListener('click',detail_page)
+        });
+
+        const userarticles = document.querySelectorAll('.userprofile')
+
+        userarticles.forEach(userarticles => {
+            userarticles.addEventListener('click',user_page)
+            console.log(userarticles.id);
         });
 
         const $follow_btns = document.querySelectorAll('.follow_btn_div > button')

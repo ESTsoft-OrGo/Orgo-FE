@@ -4,7 +4,7 @@ export const create_post = (post,owner,where,likes) => {
     const post_owner_div = document.createElement('div');
     const post_owner_img = document.createElement('img');
     const post_owner_info = document.createElement('div');
-    const post_owner_info_p1 = document.createElement('p');
+    const post_owner_info_p1 = document.createElement('a');
     const post_owner_info_p2 = document.createElement('p');
     const post_owner_follow = document.createElement('div');
     const post_owner_follow_btn = document.createElement('button');
@@ -22,7 +22,8 @@ export const create_post = (post,owner,where,likes) => {
     const reaction_info_div2 = document.createElement('div');
     const reaction_info_div2_p1 = document.createElement('p');
     const reaction_info_div2_p2 = document.createElement('p');
-
+    
+    const profileUrl = '/src/view/profile.html'
     post_div.className = 'post'
     post_owner.className = 'post_owner';
     post_owner_div.className = 'post_owner_img'
@@ -35,6 +36,9 @@ export const create_post = (post,owner,where,likes) => {
     }
     post_owner_info.className = 'post_owner_info'
     post_owner_info_p1.innerText = owner.nickname
+    post_owner_info_p1.className = 'userprofile'
+    post_owner_info_p1.id = owner.id
+    post_owner_info_p1.href = profileUrl
     post_owner_info_p2.innerText = owner.about
 
     post_owner_follow.className = 'follow_btn_div'
@@ -122,11 +126,13 @@ export const create_follow = (data,type) => {
     const follow_img_div = document.createElement('div')
     const follow_img = document.createElement('img')
     const follow_info = document.createElement('div')
-    const follow_info_p1 = document.createElement('p')
+    const follow_info_p1 = document.createElement('a')
     const follow_info_p2 = document.createElement('p')
     const follow_btn_div = document.createElement('div')
     const follow_btn = document.createElement('button')
-
+    follow_info_p1.id = data.id
+    follow_info_p1.className = 'userprofile'
+    follow_info_p1.href = 'profile.html'
     follow.className = 'follow'
     follow_img_div.className = 'follow_img'
 
@@ -267,3 +273,4 @@ export const create_study = (data) => {
     `
     return study
 }
+

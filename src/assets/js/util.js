@@ -57,6 +57,8 @@ export const getCookie = function(name){
 }
 
 
+
+
 export const setWithExpire = (key, data) => {
     let now = new Date()
     let item = data
@@ -105,10 +107,26 @@ export const detail_page = (event) => {
     localStorage.setItem("renderPage", JSON.stringify(pages));
 }
 
+
+// userprofile
+export const user_page = (event) => {
+    let target = event.target
+
+    while (!target.classList.contains('userprofile')) {
+        target = target.parentNode;
+    }
+    const pages = {
+        'user_profile': target.id
+    };
+
+    localStorage.setItem("userprofile", JSON.stringify(pages));
+}
+
+
 // 스터디 뷰 들어가기
 export const study_page = (event) => {
     let target = event.target
-
+    
     while (target.classList != 'study_div'){
         target = target.parentNode
     }

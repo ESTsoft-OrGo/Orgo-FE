@@ -24,10 +24,12 @@
     margin-right: 15px;
 }
 
-.post_owner_info p:first-child {
+.post_owner_info a:first-child {
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 5px;
+    text-decoration-line: none;
+    color : black
 }
 
 .post_owner_info p:last-child {

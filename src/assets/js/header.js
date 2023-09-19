@@ -1,4 +1,4 @@
-import {getWithExpire,deleteCookie} from "./util.js"
+import {getWithExpire,deleteCookie, user_page} from "./util.js"
 
 const $logout_btn = document.querySelector('.logout_btn')
 const $avatarBtn = document.querySelector('.avatar_img_li')
@@ -69,6 +69,18 @@ const toggleFunc = () => {
     const $toggle_menu = document.querySelector('.toggle_menu')
     $toggle_menu.classList.toggle('hidden')
 }
+
+
+const user = getWithExpire('user');
+const user_profile = JSON.parse(user)
+
+const profileLink = document.querySelector('a[href="/src/view/profile.html"]');
+
+profileLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    localStorage.setItem("userprofile", JSON.stringify({ 'user_profile': user_profile.id}));
+    window.location.href = profileLink.href; 
+});
 
 is_logined()
 $logout_btn.addEventListener('click',logout)
