@@ -52,6 +52,11 @@
     padding: 5px;
 }
 
+.user-info input:disabled {
+    background: none;
+    color: black;
+}
+
 .user-info input:first-child {
     font-weight: bold;
     font-size: 24px;
@@ -157,10 +162,14 @@
     margin-right: 15px;
 }
 
+.follow_info {
+    line-height: 18px;
+}
+
+.follow_info p:first-child,
 .follow_info a:first-child {
     font-weight: bold;
     font-size: 16px;
-    margin-bottom: 5px;
     text-decoration-line: none;
     color : black
 }
