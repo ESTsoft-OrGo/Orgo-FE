@@ -1,4 +1,4 @@
-import { getCookie, detail_page, getWithExpire,setWithExpire,slide_func, user_page} from "./util.js"
+import { getCookie, detail_page,setWithExpire,slide_func} from "./util.js"
 import { create_post,create_follow } from "./createElement.js"
 import { followFunc } from "./follow.js"
 
@@ -9,13 +9,7 @@ const $user_name = document.querySelector('.user-name')
 const $user_about = document.querySelector('.user-about')
 const $profileimg = document.querySelector('.user-profile-img')
 const $profile_save = document.querySelector('.user-profile-save')
-const user = getWithExpire('user');
-const user_profile = JSON.parse(user)
-    
-const profile_setting = () => {
-    
-    // $user_name.value = user_profile.nickname
-}
+
 const userProfileData = JSON.parse(localStorage.getItem('userprofile'));
 
 const mypost_list = async () => {
@@ -205,6 +199,7 @@ const relatedClick = (e) => {
 
     target.classList = 'related clicked'
 }
+
 function profile() {
     const profileLinks = document.querySelectorAll('.userprofile');
 
@@ -220,7 +215,7 @@ function profile() {
     });
 }
 document.addEventListener('DOMContentLoaded', profile);
-profile_setting()
+
 mypost_list()
 $imageInput.addEventListener("change", previewImage);
 
