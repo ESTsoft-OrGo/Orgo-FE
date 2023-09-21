@@ -126,13 +126,13 @@ export const create_follow = (data,type) => {
     const follow_img_div = document.createElement('div')
     const follow_img = document.createElement('img')
     const follow_info = document.createElement('div')
-    const follow_info_p1 = document.createElement('a')
-    const follow_info_p2 = document.createElement('p')
+    const follow_info_a = document.createElement('a')
+    const follow_info_p = document.createElement('p')
     const follow_btn_div = document.createElement('div')
     const follow_btn = document.createElement('button')
-    follow_info_p1.id = data.id
-    follow_info_p1.className = 'userprofile'
-    follow_info_p1.href = 'profile.html'
+    follow_info_a.id = data.id
+    follow_info_a.className = 'userprofile'
+    follow_info_a.href = 'profile.html'
     follow.className = 'follow'
     follow_img_div.className = 'follow_img'
 
@@ -145,9 +145,9 @@ export const create_follow = (data,type) => {
     follow_img_div.append(follow_img)
 
     follow_info.className = 'follow_info'
-    follow_info_p1.innerText = data.nickname
-    follow_info_p2.innerText = data.about
-    follow_info.append(follow_info_p1,follow_info_p2)
+    follow_info_a.innerText = data.nickname
+    follow_info_p.innerText = data.about
+    follow_info.append(follow_info_a,follow_info_p)
 
     if (type == 'Chat'){
         follow_btn_div.className = 'followChat'
