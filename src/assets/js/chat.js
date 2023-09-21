@@ -1,5 +1,5 @@
-import { getCookie, getWithExpire } from "./util.js"
-import { create_follow } from "./createElement.js"
+import { getCookie, getWithExpire, profile} from "./util.js"
+import { create_follow,create_blackuser } from "./createElement.js"
 
 const $chat_room_list = document.querySelector('.chat-room-list')
 const $chat_add_btn = document.querySelector('.chat-list-header button')
@@ -7,12 +7,14 @@ const user = JSON.parse(getWithExpire('user'))
 const $modal = document.querySelector('.modal')
 const $modalClose = document.querySelector('.modal_close')
 const $search_input = document.querySelector(".chat-list-search > input");
+const $relatedBtn = document.querySelectorAll('.related');
 
 let is_first = false
 let socket;
 
 const folloingList = async() => {
     const $following_list = document.querySelector('.following_list')
+    const $black_list = document.querySelector('.black_list')
     const access = getCookie('access')
     const url = 'http://127.0.0.1:10250/chat/following/'
     const $myName = document.querySelector('.myName')
@@ -27,17 +29,30 @@ const folloingList = async() => {
     })
     .then((res) => res.json())
     .then((data) => {
+        const blacklists = data.blacklist.blacklist.blacklist_profile
+        blacklists.forEach(blacklist => {
+            const element = create_blackuser(blacklist)
+            $black_list.append(element)
+        });
+
         const followings = data.following
         followings.forEach(following => {
             const element = create_follow(following,'Chat')
             $following_list.append(element)
         });
 
+        const $unblockBtns = document.querySelectorAll('.blackuser_btn_div > button')
         const $followChats = document.querySelectorAll('.followChat')
+
+        $unblockBtns.forEach(btn => {
+            btn.addEventListener('click',unblackUser)
+        });
 
         $followChats.forEach(btn => {
             btn.addEventListener('click',addChat)
         });
+        
+        profile()
     })
     .catch((err) => {
         console.log(err);
@@ -209,6 +224,33 @@ const blackUser = async (event) => {
 
     const access = getCookie('access')
     const url = 'http://127.0.0.1:10250/chat/blacklist/add/'
+    const chatTarget = event.target.id
+    const formData = new FormData();
+
+    formData.append('target', chatTarget);
+
+    await fetch(url, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${access}`,
+        },
+        body: formData,
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        alert(data.message)
+        location.reload()
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
+const unblackUser = async (event) => {
+    event.preventDefault()
+
+    const access = getCookie('access')
+    const url = 'http://127.0.0.1:10250/chat/blacklist/del/'
     const chatTarget = event.target.id
     const formData = new FormData();
 
@@ -473,8 +515,34 @@ const searchRoom = () => {
     
 }
 
+const relatedClick = (e) => {
+    e.preventDefault()
+
+    const target = e.target
+    const $following_list = document.querySelector('.following_list')
+    const $black_list = document.querySelector('.black_list')
+
+    $following_list.classList = 'following_list hidden'
+    $black_list.classList = 'black_list hidden'
+
+    if(target.innerText == '팔로잉'){
+        $following_list.classList = 'following_list'
+    } else {
+        $black_list.classList = 'black_list'
+    } 
+
+    $relatedBtn.forEach(element => {
+        element.classList = 'related'
+    });
+
+    target.classList = 'related clicked'
+}
+
 
 folloingList()
 chatlist()
 $chat_add_btn.addEventListener('click',modalOpenBtn)
 $modalClose.addEventListener('click',modalCloseBtn)
+$relatedBtn.forEach(element => {
+    element.addEventListener('click', relatedClick)
+});
