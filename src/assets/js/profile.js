@@ -46,8 +46,8 @@ const mypost_list = async () => {
             const $profile_image = document.querySelector('.post-image-div')
             const $user_name = document.querySelector('.user-name')
             const $user_about = document.querySelector('.user-about')
-            $save_btn.style.display = 'none';
-            $profile_image.style.display = 'none';
+            $save_btn.remove();
+            $profile_image.remove();
             $user_name.disabled = true;
             $user_about.disabled = true;
         }
