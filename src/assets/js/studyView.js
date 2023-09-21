@@ -1,4 +1,4 @@
-import { getCookie, getWithExpire,slide_func } from "./util.js";
+import { getCookie, getWithExpire, profile } from "./util.js";
 import { followFunc } from "./follow.js"
 
 const studyPage = JSON.parse(localStorage.getItem("studyPage"));
@@ -96,7 +96,10 @@ const studyLoad = async () => {
             const $follow_btn_divs = document.querySelectorAll('.follow_btn_div > button')
         
             $follow_btn_divs.forEach(btn => {
-                btn.addEventListener('click',followFunc)
+                btn.addEventListener('click',(event) => followFunc(event,'view'))
+                if (btn.id == user_profile.id) {
+                    btn.remove()
+                }
                 follow_list.forEach(follow => {
                     if (follow.target_id_id == btn.id) {
                         btn.innerText = 'Unfollow'
@@ -219,21 +222,6 @@ const studyCancle = async () => {
             console.log(err);
         });
 };
-
-const profile = () => {
-    const profileLinks = document.querySelectorAll('.userprofile');
-
-    profileLinks.forEach(profileLink => {
-        profileLink.addEventListener('click', (event) => {
-            event.preventDefault();
-            const pages = {
-                'user_profile': event.target.id
-            };
-            localStorage.setItem("userprofile", JSON.stringify(pages));
-            location.href = 'profile.html'
-        });
-    });
-}
 
 studyLoad()
 

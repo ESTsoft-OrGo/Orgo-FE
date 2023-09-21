@@ -1,4 +1,4 @@
-import { getCookie, detail_page,setWithExpire,slide_func} from "./util.js"
+import { getCookie, detail_page,setWithExpire,slide_func,profile} from "./util.js"
 import { create_post,create_follow } from "./createElement.js"
 import { followFunc } from "./follow.js"
 
@@ -200,27 +200,9 @@ const relatedClick = (e) => {
     target.classList = 'related clicked'
 }
 
-function profile() {
-    const profileLinks = document.querySelectorAll('.userprofile');
-
-    profileLinks.forEach(profileLink => {
-        profileLink.addEventListener('click', (event) => {
-            event.preventDefault();
-            const pages = {
-                'user_profile': event.target.id
-            };
-            localStorage.setItem("userprofile", JSON.stringify(pages));
-            location.href = 'profile.html'
-        });
-    });
-}
-document.addEventListener('DOMContentLoaded', profile);
-
 mypost_list()
 $imageInput.addEventListener("change", previewImage);
-
 $relatedBtn.forEach(element => {
     element.addEventListener('click', relatedClick)
 });
-
 $profile_save.addEventListener('click', profile_save)
