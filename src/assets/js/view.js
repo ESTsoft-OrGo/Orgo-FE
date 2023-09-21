@@ -11,6 +11,7 @@ const $post_img_div = document.querySelector('.post_img')
 const $post_img_box = document.querySelector('.post_img_box')
 const $post_createdat = document.querySelector('.post_createdat p')
 const $like_count = document.querySelector('.like_count')
+const $comments_count = document.querySelector('.comments_count')
 const $view_count = document.querySelector('.view_count')
 const $comment_list = document.querySelector('.comment-list')
 const $post_delete = document.querySelector('.post_delete > button')
@@ -82,6 +83,7 @@ const postLoad = async () => {
             
             $post_createdat.innerText = `${year}년 ${month}월 ${date}일 ${hours}시 ${minutes}분 `
             $like_count.innerText = like_users.length
+            $comments_count.innerText = data.post.comment_count
             $view_count.innerText = data.post.views
             
             comments.forEach(data => {
@@ -132,17 +134,17 @@ const postLoad = async () => {
                 }
 
                 $comment_delete_buttons.forEach(btn => {
-                    if (btn.id == profile.id) {
-                        btn.classList.toggle('hidden')
-                    }
                     btn.addEventListener('click',commentDelete)
+                    if (btn.id != profile.id) {
+                        btn.remove()
+                    }
                 });
 
                 $recomment_delete_buttons.forEach(btn => {
-                    if (btn.id == profile.id) {
-                        btn.classList.toggle('hidden')
-                    }
                     btn.addEventListener('click',recommentDelete)
+                    if (btn.id != profile.id) {
+                        btn.remove()
+                    }
                 });
 
                 $comment_writer_imgs.forEach(img => {
@@ -336,8 +338,8 @@ const commentRead = (data) => {
         comment_content.append(comment_content_p)
     }
 
-    comment_delete_button.id = data.writer.user_id
-    comment_delete_button.className = 'comment_delete hidden'
+    comment_delete_button.id = data.writer.id
+    comment_delete_button.className = 'comment_delete'
     comment_delete_button_i.classList = 'fa-solid fa-trash-can'
     comment_delete_button.append(comment_delete_button_i)
     comment_content.className = 'comment_content'
@@ -405,8 +407,8 @@ const recommentRead = (data) => {
         comment_content.append(comment_content_p)
     }
 
-    comment_delete_button.id = data.writer.user_id
-    comment_delete_button.className = 'recomment_delete hidden'
+    comment_delete_button.id = data.writer.id
+    comment_delete_button.className = 'recomment_delete'
     comment_delete_button_i.classList = 'fa-solid fa-trash-can'
     comment_delete_button.append(comment_delete_button_i)
     comment_content.className = 'comment_content'

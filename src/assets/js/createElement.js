@@ -19,6 +19,8 @@ export const create_post = (post,owner,where,likes) => {
     const reaction_info_div1 = document.createElement('div');
     const reaction_info_div1_p1 = document.createElement('p');
     const reaction_info_div1_p2 = document.createElement('p');
+    const reaction_info_div1_p3 = document.createElement('p');
+    const reaction_info_div1_p4 = document.createElement('p');
     const reaction_info_div2 = document.createElement('div');
     const reaction_info_div2_p1 = document.createElement('p');
     const reaction_info_div2_p2 = document.createElement('p');
@@ -108,11 +110,14 @@ export const create_post = (post,owner,where,likes) => {
     reaction_info_div1_p1.innerText = '좋아요'
     reaction_info_div1_p2.className = 'like_count'
     reaction_info_div1_p2.innerText = likes
+    reaction_info_div1_p3.innerText = '댓글'
+    reaction_info_div1_p4.className = 'comments_count'
+    reaction_info_div1_p4.innerText = post.commnet_count
     reaction_info_div2.className = 'reaction_info_div'
     reaction_info_div2_p1.innerText = '조회'
     reaction_info_div2_p2.className = 'view_count'
     reaction_info_div2_p2.innerText = post.views
-    reaction_info_div1.append(reaction_info_div1_p1,reaction_info_div1_p2)
+    reaction_info_div1.append(reaction_info_div1_p1,reaction_info_div1_p2,reaction_info_div1_p3,reaction_info_div1_p4)
     reaction_info_div2.append(reaction_info_div2_p1,reaction_info_div2_p2)
     post_reaction_info.append(reaction_info_div1,reaction_info_div2)
 
@@ -163,6 +168,43 @@ export const create_follow = (data,type) => {
     follow.append(follow_img_div,follow_info,follow_btn_div)
 
     return follow
+}
+
+export const create_blackuser = (data) => {
+    const blackuser = document.createElement('div')
+    const blackuser_img_div = document.createElement('div')
+    const blackuser_img = document.createElement('img')
+    const blackuser_info = document.createElement('div')
+    const blackuser_info_p1 = document.createElement('p')
+    const blackuser_info_p2 = document.createElement('p')
+    const blackuser_btn_div = document.createElement('div')
+    const blackuser_btn = document.createElement('button')
+
+    blackuser.className = 'blackuser'
+    blackuser_img_div.className = 'blackuser_img'
+
+    if (data.profileImage){
+        blackuser_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.profileImage
+    } else {
+        blackuser_img.src = '/src/assets/img/profile_temp.png'
+    }
+    
+    blackuser_img_div.append(blackuser_img)
+
+    blackuser_info.className = 'blackuser_info'
+    blackuser_info_p1.innerText = data.nickname
+    blackuser_info_p2.innerText = data.about
+    blackuser_info.append(blackuser_info_p1,blackuser_info_p2)
+
+    blackuser_btn_div.className = 'blackuser_btn_div'
+    blackuser_btn.innerText = 'Unblock'
+
+    blackuser_btn.id = data.id
+    blackuser_btn_div.append(blackuser_btn)
+
+    blackuser.append(blackuser_img_div,blackuser_info,blackuser_btn_div)
+
+    return blackuser
 }
 
 export const create_notify = (data) => {

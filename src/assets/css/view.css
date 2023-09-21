@@ -200,14 +200,18 @@ main {
 .like_count {
     margin-right: 10px;
 }
+.comments_icon,
 .like_icon {
     font-size: 15px;
     cursor: pointer;
-    color: rgb(255, 101, 101);
     margin-right: 5px;
     cursor: pointer;
 }
 
+.like_icon {
+    color: rgb(255, 101, 101);
+
+}
 .comment-title {
     margin-top: 30px;
     font-size: 28px;
