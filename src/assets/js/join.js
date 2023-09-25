@@ -2,7 +2,8 @@ import {getWithExpire} from './util.js'
 
 const $join_btn= document.querySelector('.join_btn')
 const $otp_btn = document.querySelector('.user-join__otp_generate')
-let stored_otp = null
+const $user_join__otp = document.querySelector('.user-join__otp')
+let stored_otp ;
 
 const otpFunc = async () => {
     const url = 'http://127.0.0.1:8000/user/otp/'
@@ -19,13 +20,24 @@ const otpFunc = async () => {
         if (data.errors){
             alert(data.errors[0])
         } else{
-            console.log(data.otp)
+            alert('이메일 확인해주세요.')
             stored_otp = data.otp
         }
     })
     .catch((err) => {
         console.log(err);
     });
+}
+
+const checkOtp = (e) => {
+    const target = e.target
+    const val = target.value
+    if (stored_otp == val) {
+        console.log("인증")
+        $join_btn.disabled = false
+    } else {
+        $join_btn.disabled = true
+    }
 }
 
 const joinFunc = async (event) => {
@@ -89,3 +101,4 @@ is_logined()
 
 $join_btn.addEventListener('click',joinFunc)
 $otp_btn.addEventListener('click',otpFunc)
+$user_join__otp.addEventListener('input',checkOtp)
