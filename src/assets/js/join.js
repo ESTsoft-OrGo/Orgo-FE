@@ -5,7 +5,7 @@ const $otp_btn = document.querySelector('.user-join__otp_generate')
 let stored_otp = null
 
 const otpFunc = async () => {
-    const url = 'http://api.withorgo.site/user/otp/'
+    const url = 'http://127.0.0.1:8000/user/otp/'
     const email = document.querySelector('.user-join__email').value
 
     await fetch(url, {
@@ -56,7 +56,7 @@ const joinFunc = async (event) => {
     formData.append('email', email);
     formData.append('password', password);
 
-    const url = 'http://api.withorgo.site/user/join/'
+    const url = 'http://127.0.0.1:8000/user/join/'
 
     await fetch(url, {
         method: "POST",
