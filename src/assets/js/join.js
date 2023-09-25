@@ -1,14 +1,46 @@
 import {getWithExpire} from './util.js'
 
 const $join_btn= document.querySelector('.join_btn')
+const $otp_btn = document.querySelector('.user-join__otp_generate')
+let stored_otp = null
+
+const otpFunc = async () => {
+    const url = 'http://api.withorgo.site/user/otp/'
+    const email = document.querySelector('.user-join__email').value
+
+    await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: email }),
+    }).then((res) => res.json())
+    .then((data) => {
+        if (data.errors){
+            alert(data.errors[0])
+        } else{
+            console.log(data.otp)
+            stored_otp = data.otp
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
 
 const joinFunc = async (event) => {
     event.preventDefault()
     
     const email = document.querySelector('.user-join__email').value
+    const otp = document.querySelector('.user-join__otp').value
     const password = document.querySelector('.user-join__password').value
     const password_valid = document.querySelector('.user-join__password_valid').value
     
+    if (otp != stored_otp){
+        alert("인증번호가 일치하지 않습니다.")
+        return false
+    }
+
     if ( password != password_valid){
         alert("비밀번호가 다릅니다.")
         return false
@@ -24,7 +56,7 @@ const joinFunc = async (event) => {
     formData.append('email', email);
     formData.append('password', password);
 
-    const url = 'http://127.0.0.1:8000/user/join/'
+    const url = 'http://api.withorgo.site/user/join/'
 
     await fetch(url, {
         method: "POST",
@@ -56,3 +88,4 @@ const is_logined = () => {
 is_logined()
 
 $join_btn.addEventListener('click',joinFunc)
+$otp_btn.addEventListener('click',otpFunc)
