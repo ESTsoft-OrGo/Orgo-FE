@@ -10,9 +10,9 @@ const study_list = async () => {
     let url;
 
     if(page) {
-        url = `https://api.withorgo.site/study/?page=${page}`
+        url = `http://43.200.64.24/study/?page=${page}`
     } else {
-        url = 'https://api.withorgo.site/study/?page=1'
+        url = 'http://43.200.64.24/study/?page=1'
     }
 
     await fetch(url, {

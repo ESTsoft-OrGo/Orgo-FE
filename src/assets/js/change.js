@@ -6,7 +6,7 @@ const password_change = async (event) => {
     event.preventDefault()
     
     const access = getCookie('access')
-    const url = 'https://api.withorgo.site/user/profile/change-password/'
+    const url = 'http://43.200.64.24/user/profile/change-password/'
 
     const cur_password = document.querySelector('.current_password').value
     const new_password = document.querySelector('.new_password').value

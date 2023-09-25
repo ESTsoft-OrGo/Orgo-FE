@@ -14,7 +14,7 @@ let socket;
 const folloingList = async() => {
     const $following_list = document.querySelector('.following_list')
     const access = getCookie('access')
-    const url = 'https://api.withorgo.site/chat/following/'
+    const url = 'http://43.200.64.24/chat/following/'
     const $myName = document.querySelector('.myName')
 
     $myName.innerText = user.nickname
@@ -47,7 +47,7 @@ const folloingList = async() => {
 const chatlist = async () => {
     // event.preventDefault()
     const access = getCookie('access')
-    const url = 'https://api.withorgo.site/chat/'
+    const url = 'http://43.200.64.24/chat/'
 
     await fetch(url, {
         method: "POST",
@@ -136,7 +136,7 @@ const addChat = async (event) => {
     event.preventDefault()
 
     const access = getCookie('access')
-    const url = 'https://api.withorgo.site/chat/join/'
+    const url = 'http://43.200.64.24/chat/join/'
     const chatTarget = event.target.id
     const formData = new FormData();
 
@@ -163,7 +163,7 @@ const removeChat = async (event) => {
     event.preventDefault()
 
     const access = getCookie('access')
-    const url = 'https://api.withorgo.site/chat/delete/'
+    const url = 'http://43.200.64.24/chat/delete/'
     const chatTarget = event.target.id
     const formData = new FormData();
 
@@ -249,7 +249,7 @@ const chatjoin = (event,room_target) => {
     let is_action = false;
     target.classList.add('joined')
     const title = target.id.toString()
-    socket = new WebSocket(`wss://api.withorgo.site/chat/${title}`)
+    socket = new WebSocket(`ws://43.200.64.24:8080/chat/${title}`)
 
     socket.onopen = function (e) {
         socket.send(JSON.stringify({

@@ -50,7 +50,7 @@ const setEdit = () => {
 // Study 작성
 const studyEdit = async () => {
     
-    const url = 'https://api.withorgo.site/study/edit/';
+    const url = 'http://43.200.64.24/study/edit/';
     const access = getCookie('access')
     const formData = new FormData();
 
@@ -118,7 +118,7 @@ const tagSave = async(event) => {
     const input = target.querySelector('input')
     const btn = target.querySelector('button')
     const icon = target.querySelector('button > i')
-    const url = 'https://api.withorgo.site/study/tag/add/';
+    const url = 'http://43.200.64.24/study/tag/add/';
     const access = getCookie('access')
     const formData = new FormData();
     formData.append('name', input.value);
@@ -159,7 +159,7 @@ const tagDelete = async(event) => {
     while (target.classList != 'tag_del_btn'){
         target = target.parentNode
     }
-    const url = 'https://api.withorgo.site/study/tag/delete/';
+    const url = 'http://43.200.64.24/study/tag/delete/';
     const access = getCookie('access')
     const formData = new FormData();
     formData.append('tag_id', target.id);

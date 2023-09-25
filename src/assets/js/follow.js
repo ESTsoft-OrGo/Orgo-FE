@@ -16,7 +16,7 @@ export const followFunc = async(event,where) => {
 
     formData.append('you', target_id);
 
-    const url = 'https://api.withorgo.site/user/follow/'
+    const url = 'http://43.200.64.24/user/follow/'
 
     await fetch(url, {
         method: "POST",
