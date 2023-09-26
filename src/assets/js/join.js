@@ -56,11 +56,7 @@ const joinFunc = async (event) => {
     formData.append('email', email);
     formData.append('password', password);
 
-<<<<<<< HEAD
     const url = 'http://api.withorgo.site/user/join/'
-=======
-    const url = 'http://43.200.64.24/user/join/'
->>>>>>> parent of 3e66587 (feat : 백엔드 HTTPS 설정 완료로 인한 URL 변경)
 
     await fetch(url, {
         method: "POST",

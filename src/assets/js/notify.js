@@ -6,7 +6,7 @@ import { followFunc } from "./follow.js"
 const myNotification = async () => {
     const $notify_list = document.querySelector('.notify_list')
 
-    const url = 'http://43.200.64.24/notify/'
+    const url = 'https://api.withorgo.site/notify/'
     const access = getCookie('access')
 
     await fetch(url, {

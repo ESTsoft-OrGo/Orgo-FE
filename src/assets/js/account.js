@@ -26,7 +26,7 @@ const user_withdraw = async (event) => {
         return false
     } else {
         const access = getCookie('access')
-        const url = 'http://43.200.64.24/user/profile/delete/'
+        const url = 'https://api.withorgo.site/user/profile/delete/'
 
         await fetch(url, {
             method: "POST",
