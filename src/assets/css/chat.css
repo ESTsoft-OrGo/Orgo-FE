@@ -128,6 +128,13 @@ main {
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
+    display:-webkit-box; 
+    word-wrap:break-word; 
+    -webkit-line-clamp:1; 
+    -webkit-box-orient:vertical; 
+    overflow:hidden; 
+    text-overflow:ellipsis; 
+    width: 250px;
 }
 
 .room_info p:last-child {
@@ -202,6 +209,13 @@ main {
 .chat-room-header p {
     font-size: 20px;
     font-weight: bold;
+    display:-webkit-box; 
+    word-wrap:break-word; 
+    -webkit-line-clamp:1; 
+    -webkit-box-orient:vertical; 
+    overflow:hidden; 
+    text-overflow:ellipsis; 
+    width: 350px;
 }
 
 .chat-message-section {
