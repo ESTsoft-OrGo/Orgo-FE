@@ -1,0 +1,38 @@
+.main_section {
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main_1 {
+    height: 450px;
+    width: 100%;
+    padding-top: 73px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+
+.main_1 img {
+    width: 80%;
+}
+
+.main_2 {
+    height: 600px;
+    background-color: rgb(85, 147, 218);
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.main_2 img {
+    width: 80%;
+}
