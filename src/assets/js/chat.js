@@ -128,15 +128,23 @@ const create_roomdiv = (element) => {
     room.id = element.room.title
     room_img_div.className = 'room_img'
 
-    if(element.target.profileImage){
-        room_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ element.target.profileImage
+    if(element.room.title.includes('study')) {
+        room_img.src = '/src/assets/img/study.png'
     } else {
-        room_img.src = '/src/assets/img/profile_temp.png'
+        if(element.target.profileImage){
+            room_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ element.target.profileImage
+        } else {
+            room_img.src = '/src/assets/img/profile_temp.png'
+        }
     }
 
     room_info.className = 'room_info'
     room_info_p.className = 'room_info_nickname'
-    room_info_p.innerText = element.target.nickname
+    if(element.room.title.includes('study')) {
+        room_info_p.innerText = element.target.title
+    } else {
+        room_info_p.innerText = element.target.nickname
+    }
     room_info_p2.innerText = element.recent.content
 
     room_img_div.append(room_img)
