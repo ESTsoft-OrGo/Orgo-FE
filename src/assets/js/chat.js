@@ -1,5 +1,5 @@
 import { getCookie, getWithExpire, profile} from "./util.js"
-import { create_follow,create_blackuser } from "./createElement.js"
+import { create_follow,create_blackuser,create_studychat } from "./createElement.js"
 
 const $chat_room_list = document.querySelector('.chat-room-list')
 const $chat_add_btn = document.querySelector('.chat-list-header button')
@@ -12,9 +12,10 @@ const $relatedBtn = document.querySelectorAll('.related');
 let is_first = false
 let socket;
 
-const folloingList = async() => {
+const chatRelatedSettings = async() => {
     const $following_list = document.querySelector('.following_list')
     const $black_list = document.querySelector('.black_list')
+    const $study_list = document.querySelector('.study_list')
     const access = getCookie('access')
     const url = 'http://127.0.0.1:10250/chat/following/'
     const $myName = document.querySelector('.myName')
@@ -29,6 +30,13 @@ const folloingList = async() => {
     })
     .then((res) => res.json())
     .then((data) => {
+
+        const studylist = data.study
+        studylist.forEach(study => {
+            const element = create_studychat(study)
+            $study_list.append(element)
+        });
+
         const blacklists = data.blacklist.blacklist.blacklist_profile
         blacklists.forEach(blacklist => {
             const element = create_blackuser(blacklist)
@@ -529,15 +537,19 @@ const relatedClick = (e) => {
     const target = e.target
     const $following_list = document.querySelector('.following_list')
     const $black_list = document.querySelector('.black_list')
+    const $study_list = document.querySelector('.study_list')
 
     $following_list.classList = 'following_list hidden'
     $black_list.classList = 'black_list hidden'
+    $study_list.classList = 'study_list hidden'
 
     if(target.innerText == '팔로잉'){
         $following_list.classList = 'following_list'
+    } else if(target.innerText == '스터디') {
+        $study_list.classList = 'study_list'
     } else {
         $black_list.classList = 'black_list'
-    } 
+    }
 
     $relatedBtn.forEach(element => {
         element.classList = 'related'
@@ -547,7 +559,7 @@ const relatedClick = (e) => {
 }
 
 
-folloingList()
+chatRelatedSettings()
 chatlist()
 $chat_add_btn.addEventListener('click',modalOpenBtn)
 $modalClose.addEventListener('click',modalCloseBtn)

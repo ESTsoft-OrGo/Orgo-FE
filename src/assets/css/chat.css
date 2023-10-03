@@ -418,12 +418,14 @@ main {
     border-bottom: 2px solid black;
 }
 
+.study_list,
 .black_list,
 .following_list {
     overflow-y: auto;
     height: 400px;
 }
 
+.studychat,
 .blackuser,
 .follow {
     position: relative;
@@ -433,6 +435,7 @@ main {
     margin-bottom: 20px;
 }
 
+.studychat img,
 .blackuser_img img,
 .follow_img img {
     width: 35px;
@@ -441,11 +444,13 @@ main {
     margin-right: 15px;
 }
 
+.studychat_info,
 .blackuser_info,
 .follow_info {
     line-height: 18px;
 }
 
+.studychat_info p:first-child,
 .blackuser_info p:first-child,
 .follow_info a:first-child {
     text-decoration: none;
@@ -453,20 +458,30 @@ main {
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 5px;
+    display:-webkit-box; 
+    word-wrap:break-word; 
+    -webkit-line-clamp:1; 
+    -webkit-box-orient:vertical; 
+    overflow:hidden; 
+    text-overflow:ellipsis; 
+    width: 250px;
 }
 
+.studychat_info p:last-child,
 .blackuser_info p:last-child,
 .follow_info p:last-child {
     font-size: 12px;
     color: rgb(114, 114, 114);
 }
 
+.studychat_btn_div,
 .blackuser_btn_div,
 .followChat {
     position: absolute;
     right: 15px;
 }
 
+.studychat_btn_div button,
 .blackuser_btn_div button,
 .followChat button {
     background-color: var(--maincolor);
@@ -480,6 +495,7 @@ main {
     cursor: pointer;
 }
 
+.studychat_btn_div button:hover,
 .blackuser_btn_div button:hover,
 .followChat button:hover {
     color: white;
