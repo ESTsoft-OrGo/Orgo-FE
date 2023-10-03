@@ -169,6 +169,7 @@ main {
 }
 
 .black_user,
+.room_leave,
 .room_delete {
     border: none;
     background: none;

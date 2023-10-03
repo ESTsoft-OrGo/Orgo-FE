@@ -50,6 +50,7 @@ const chatRelatedSettings = async() => {
         });
 
         const $unblockBtns = document.querySelectorAll('.blackuser_btn_div > button')
+        const $studyChats = document.querySelectorAll('.studychat_btn_div > button')
         const $followChats = document.querySelectorAll('.followChat')
 
         $unblockBtns.forEach(btn => {
@@ -60,6 +61,10 @@ const chatRelatedSettings = async() => {
             btn.addEventListener('click',addChat)
         });
         
+        $studyChats.forEach(btn => {
+            btn.addEventListener('click',joinStudyChat)
+        });
+
         profile()
     })
     .catch((err) => {
@@ -82,7 +87,6 @@ const chatlist = async () => {
     .then((data) => {
 
         const rooms = data.rooms
-
         rooms.forEach(element => {
             const room = create_roomdiv(element)
             const room_target = element.target
@@ -92,6 +96,7 @@ const chatlist = async () => {
 
         const $room_more_btns = document.querySelectorAll('.room_more_btn')
         const $room_delete_btn = document.querySelectorAll('.room_delete')
+        const $room_leave_btn = document.querySelectorAll('.room_leave')
         const $black_user_btn = document.querySelectorAll('.black_user')
 
         $room_more_btns.forEach(btn => {
@@ -100,6 +105,10 @@ const chatlist = async () => {
 
         $room_delete_btn.forEach(btn => {
             btn.addEventListener('click',removeChat)
+        });
+
+        $room_leave_btn.forEach(btn => {
+            btn.addEventListener('click',leaveStudyChat)
         });
 
         $black_user_btn.forEach(btn => {
@@ -161,14 +170,23 @@ const create_roomdiv = (element) => {
     room_more_btn_i.classList = 'fa-solid fa-ellipsis'
     room_more_btn.classList = 'room_more_btn'
     room_more_btn.append(room_more_btn_i)
-    room_delete.innerText = '채팅방 삭제'
-    room_delete.classList = 'room_delete'
+    if(element.room.title.includes('study')) {
+        room_delete.innerText = '채팅방 떠나기'
+        room_delete.classList = 'room_leave'
+    } else {
+        room_delete.innerText = '채팅방 삭제'
+        room_delete.classList = 'room_delete'
+    }
     room_delete.id = element.room.id
     black_user.innerText = '채팅 차단'
     black_user.classList = 'black_user'
     black_user.id = element.room.id
     room_menu.classList = 'room_menu hidden'
-    room_menu.append(room_delete,black_user)
+    if(element.room.title.includes('study')) {
+        room_menu.append(room_delete)
+    } else {
+        room_menu.append(room_delete,black_user)
+    }
     room_more.classList = 'room_more'
     room_more.append(room_more_btn,room_menu)
 
@@ -208,6 +226,33 @@ const addChat = async (event) => {
     });
 }
 
+const joinStudyChat = async (event) => {
+    event.preventDefault()
+
+    const access = getCookie('access')
+    const url = 'http://127.0.0.1:10250/chat/studychatjoin/'
+    const chatTarget = event.target.id
+    const formData = new FormData();
+
+    formData.append('target', chatTarget);
+
+    await fetch(url, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${access}`,
+        },
+        body: formData,
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        alert(data.message)
+        location.reload()
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
 const removeChat = async (event) => {
     event.preventDefault()
 
@@ -217,6 +262,33 @@ const removeChat = async (event) => {
     const formData = new FormData();
 
     formData.append('target', chatTarget);
+
+    await fetch(url, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${access}`,
+        },
+        body: formData,
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        alert(data.message)
+        location.reload()
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
+const leaveStudyChat = async (event) => {
+    event.preventDefault()
+
+    const access = getCookie('access')
+    const url = 'http://127.0.0.1:10250/chat/studychatleave/'
+    const chatTarget = event.target.id
+    const formData = new FormData();
+
+    formData.append('group_chat_id', chatTarget);
 
     await fetch(url, {
         method: "POST",
@@ -333,13 +405,21 @@ const chatjoin = (event,room_target) => {
     chatViewSet()
     $chatMessageList.innerHTML = ''
 
-    if(room_target.profileImage){
-        $chatTitleImg.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ room_target.profileImage
-    } else {
-        $chatTitleImg.src = '/src/assets/img/profile_temp.png'
+    if(room_target.leader) {
+        $chatTitleImg.src = '/src/assets/img/study.png'
+    } else{
+        if(room_target.profileImage){
+            $chatTitleImg.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ room_target.profileImage
+        } else {
+            $chatTitleImg.src = '/src/assets/img/profile_temp.png'
+        }
     }
 
-    $chatTitle.innerText = room_target.nickname
+    if(room_target.leader) {
+        $chatTitle.innerText = room_target.title
+    } else {
+        $chatTitle.innerText = room_target.nickname
+    }
 
     const chatlist = document.querySelector(".chat-room-list");
     const rooms = chatlist.querySelectorAll(".room_div");
@@ -355,7 +435,11 @@ const chatjoin = (event,room_target) => {
     let is_action = false;
     target.classList.add('joined')
     const title = target.id.toString()
-    socket = new WebSocket(`ws://127.0.0.1:10250/chat/${title}`)
+    if(room_target.leader) {
+        socket = new WebSocket(`ws://127.0.0.1:10250/groupchat/${title}`)
+    } else {
+        socket = new WebSocket(`ws://127.0.0.1:10250/chat/${title}`)
+    }
 
     socket.onopen = function (e) {
         socket.send(JSON.stringify({
