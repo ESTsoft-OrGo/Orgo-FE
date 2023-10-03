@@ -207,6 +207,38 @@ export const create_blackuser = (data) => {
     return blackuser
 }
 
+export const create_studychat = (data) => {
+    const studychat = document.createElement('div')
+    const studychat_img_div = document.createElement('div')
+    const studychat_img = document.createElement('img')
+    const studychat_info = document.createElement('div')
+    const studychat_info_p1 = document.createElement('p')
+    const studychat_info_p2 = document.createElement('p')
+    const studychat_btn_div = document.createElement('div')
+    const studychat_btn = document.createElement('button')
+
+    studychat.className = 'studychat'
+    studychat_img_div.className = 'studychat_img'
+    studychat_img.src = '/src/assets/img/study.png'
+    
+    studychat_img_div.append(studychat_img)
+
+    studychat_info.className = 'studychat_info'
+    studychat_info_p1.innerText = data.title
+    studychat_info_p2.innerText = '스터디원들과 대화를 시작해보세요!'
+    studychat_info.append(studychat_info_p1,studychat_info_p2)
+
+    studychat_btn_div.className = 'studychat_btn_div'
+    studychat_btn.innerText = 'Chat'
+
+    studychat_btn.id = data.id
+    studychat_btn_div.append(studychat_btn)
+
+    studychat.append(studychat_img_div,studychat_info,studychat_btn_div)
+
+    return studychat
+}
+
 export const create_notify = (data) => {
     const notify = document.createElement('div')
     const sender_img_div = document.createElement('div')
