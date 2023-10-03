@@ -518,7 +518,7 @@ const joinPrintMessage = (day,messages) => {
     messages.forEach(data => {
         const writer = data.writer
         const login_user = user.id
-        if (writer == login_user) {
+        if (writer.id == login_user) {
             const ms = sendMessage(data)
             $message_section.append(ms)
         } else {
@@ -535,7 +535,7 @@ const printMessage = (data) => {
     const writer = data.writer
     const login_user = user.id
 
-    if (writer == login_user) {
+    if (writer.id == login_user) {
         const ms = sendMessage(data)
         $message_section.append(ms)
     } else {
@@ -563,16 +563,29 @@ const sendMessage = (data) => {
 
 const getMssage = (data) => {
     const div = document.createElement('div')
+    const ms_div = document.createElement('div')
+    const name = document.createElement('p')
     const p1 = document.createElement('p')
     const p2 = document.createElement('p')
-    
+    const img = document.createElement('img')
+
+    div.className = 'get-message'
+
+    if (data.writer.profileImage){
+        img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.writer.profileImage
+    } else {
+        img.src = '/src/assets/img/profile_temp.png'
+    }
+
+    name.innerText = data.writer.nickname
+    name.className = 'message-writer'
     p1.innerText = data.content
     p1.className = 'message-bubble'
     p2.innerText = timeRead(data.created_at)
     p2.className = 'message-time'
-    
-    div.className = 'get-message'
-    div.append(p1,p2)
+
+    ms_div.append(name,p1,p2)
+    div.append(img,ms_div)
 
     return div
 }
