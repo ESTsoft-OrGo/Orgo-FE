@@ -1,5 +1,5 @@
-import { getCookie, getWithExpire } from "./util.js"
-import { create_follow } from "./createElement.js"
+import { getCookie, getWithExpire, profile} from "./util.js"
+import { create_follow,create_blackuser,create_studychat } from "./createElement.js"
 
 const $chat_room_list = document.querySelector('.chat-room-list')
 const $chat_add_btn = document.querySelector('.chat-list-header button')
@@ -7,14 +7,17 @@ const user = JSON.parse(getWithExpire('user'))
 const $modal = document.querySelector('.modal')
 const $modalClose = document.querySelector('.modal_close')
 const $search_input = document.querySelector(".chat-list-search > input");
+const $relatedBtn = document.querySelectorAll('.related');
 
 let is_first = false
 let socket;
 
-const folloingList = async() => {
+const chatRelatedSettings = async() => {
     const $following_list = document.querySelector('.following_list')
+    const $black_list = document.querySelector('.black_list')
+    const $study_list = document.querySelector('.study_list')
     const access = getCookie('access')
-    const url = 'https://api.withorgo.site/chat/following/'
+    const url = 'https://chat.withorgo.site/chat/following/'
     const $myName = document.querySelector('.myName')
 
     $myName.innerText = user.nickname
@@ -27,17 +30,42 @@ const folloingList = async() => {
     })
     .then((res) => res.json())
     .then((data) => {
+
+        const studylist = data.study
+        studylist.forEach(study => {
+            const element = create_studychat(study)
+            $study_list.append(element)
+        });
+
+        const blacklists = data.blacklist.blacklist.blacklist_profile
+        blacklists.forEach(blacklist => {
+            const element = create_blackuser(blacklist)
+            $black_list.append(element)
+        });
+
         const followings = data.following
         followings.forEach(following => {
             const element = create_follow(following,'Chat')
             $following_list.append(element)
         });
 
+        const $unblockBtns = document.querySelectorAll('.blackuser_btn_div > button')
+        const $studyChats = document.querySelectorAll('.studychat_btn_div > button')
         const $followChats = document.querySelectorAll('.followChat')
+
+        $unblockBtns.forEach(btn => {
+            btn.addEventListener('click',unblackUser)
+        });
 
         $followChats.forEach(btn => {
             btn.addEventListener('click',addChat)
         });
+        
+        $studyChats.forEach(btn => {
+            btn.addEventListener('click',joinStudyChat)
+        });
+
+        profile()
     })
     .catch((err) => {
         console.log(err);
@@ -47,7 +75,7 @@ const folloingList = async() => {
 const chatlist = async () => {
     // event.preventDefault()
     const access = getCookie('access')
-    const url = 'https://api.withorgo.site/chat/'
+    const url = 'https://chat.withorgo.site/chat/'
 
     await fetch(url, {
         method: "POST",
@@ -59,7 +87,6 @@ const chatlist = async () => {
     .then((data) => {
 
         const rooms = data.rooms
-
         rooms.forEach(element => {
             const room = create_roomdiv(element)
             const room_target = element.target
@@ -69,6 +96,8 @@ const chatlist = async () => {
 
         const $room_more_btns = document.querySelectorAll('.room_more_btn')
         const $room_delete_btn = document.querySelectorAll('.room_delete')
+        const $room_leave_btn = document.querySelectorAll('.room_leave')
+        const $black_user_btn = document.querySelectorAll('.black_user')
 
         $room_more_btns.forEach(btn => {
             btn.addEventListener('click',roomMore)
@@ -76,6 +105,14 @@ const chatlist = async () => {
 
         $room_delete_btn.forEach(btn => {
             btn.addEventListener('click',removeChat)
+        });
+
+        $room_leave_btn.forEach(btn => {
+            btn.addEventListener('click',leaveStudyChat)
+        });
+
+        $black_user_btn.forEach(btn => {
+            btn.addEventListener('click',blackUser)
         });
 
         $search_input.addEventListener('input',searchRoom)
@@ -88,6 +125,7 @@ const chatlist = async () => {
 
 const create_roomdiv = (element) => {
     const room = document.createElement('a')
+    const unread_ms_count = document.createElement('div')
     const room_img_div = document.createElement('div')
     const room_img = document.createElement('img')
     const room_info = document.createElement('div')
@@ -98,20 +136,32 @@ const create_roomdiv = (element) => {
     const room_more_btn_i = document.createElement('i')
     const room_menu = document.createElement('div')
     const room_delete = document.createElement('button')
+    const black_user = document.createElement('button')
+    
+    unread_ms_count.className = 'ms_count'
+    unread_ms_count.innerText = element.unread_message
 
     room.className = 'room_div'
     room.id = element.room.title
     room_img_div.className = 'room_img'
 
-    if(element.target.profileImage){
-        room_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ element.target.profileImage
+    if(element.room.title.includes('study')) {
+        room_img.src = '/src/assets/img/study.png'
     } else {
-        room_img.src = '/src/assets/img/profile_temp.png'
+        if(element.target.profileImage){
+            room_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ element.target.profileImage
+        } else {
+            room_img.src = '/src/assets/img/profile_temp.png'
+        }
     }
 
     room_info.className = 'room_info'
     room_info_p.className = 'room_info_nickname'
-    room_info_p.innerText = element.target.nickname
+    if(element.room.title.includes('study')) {
+        room_info_p.innerText = element.target.title
+    } else {
+        room_info_p.innerText = element.target.nickname
+    }
     room_info_p2.innerText = element.recent.content
 
     room_img_div.append(room_img)
@@ -120,15 +170,32 @@ const create_roomdiv = (element) => {
     room_more_btn_i.classList = 'fa-solid fa-ellipsis'
     room_more_btn.classList = 'room_more_btn'
     room_more_btn.append(room_more_btn_i)
-    room_delete.innerText = '채팅방 삭제'
-    room_delete.classList = 'room_delete'
+    if(element.room.title.includes('study')) {
+        room_delete.innerText = '채팅방 떠나기'
+        room_delete.classList = 'room_leave'
+    } else {
+        room_delete.innerText = '채팅방 삭제'
+        room_delete.classList = 'room_delete'
+    }
     room_delete.id = element.room.id
+    black_user.innerText = '채팅 차단'
+    black_user.classList = 'black_user'
+    black_user.id = element.room.id
     room_menu.classList = 'room_menu hidden'
-    room_menu.append(room_delete)
+    if(element.room.title.includes('study')) {
+        room_menu.append(room_delete)
+    } else {
+        room_menu.append(room_delete,black_user)
+    }
     room_more.classList = 'room_more'
     room_more.append(room_more_btn,room_menu)
 
-    room.append(room_img_div,room_info,room_more)
+    if (element.unread_message > 0){
+        room.append(unread_ms_count,room_img_div,room_info,room_more)
+    } else {
+        room.append(room_img_div,room_info,room_more)
+    }
+
     return room
 }
 
@@ -136,7 +203,34 @@ const addChat = async (event) => {
     event.preventDefault()
 
     const access = getCookie('access')
-    const url = 'https://api.withorgo.site/chat/join/'
+    const url = 'https://chat.withorgo.site/chat/join/'
+    const chatTarget = event.target.id
+    const formData = new FormData();
+
+    formData.append('target', chatTarget);
+
+    await fetch(url, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${access}`,
+        },
+        body: formData,
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        alert(data.message)
+        location.reload()
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
+const joinStudyChat = async (event) => {
+    event.preventDefault()
+
+    const access = getCookie('access')
+    const url = 'https://chat.withorgo.site/chat/studychatjoin/'
     const chatTarget = event.target.id
     const formData = new FormData();
 
@@ -163,7 +257,88 @@ const removeChat = async (event) => {
     event.preventDefault()
 
     const access = getCookie('access')
-    const url = 'https://api.withorgo.site/chat/delete/'
+    const url = 'https://chat.withorgo.site/chat/delete/'
+    const chatTarget = event.target.id
+    const formData = new FormData();
+
+    formData.append('target', chatTarget);
+
+    await fetch(url, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${access}`,
+        },
+        body: formData,
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        alert(data.message)
+        location.reload()
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
+const leaveStudyChat = async (event) => {
+    event.preventDefault()
+
+    const access = getCookie('access')
+    const url = 'https://chat.withorgo.site/chat/studychatleave/'
+    const chatTarget = event.target.id
+    const formData = new FormData();
+
+    formData.append('group_chat_id', chatTarget);
+
+    await fetch(url, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${access}`,
+        },
+        body: formData,
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        alert(data.message)
+        location.reload()
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
+const blackUser = async (event) => {
+    event.preventDefault()
+
+    const access = getCookie('access')
+    const url = 'https://chat.withorgo.site/chat/blacklist/add/'
+    const chatTarget = event.target.id
+    const formData = new FormData();
+
+    formData.append('target', chatTarget);
+
+    await fetch(url, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${access}`,
+        },
+        body: formData,
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        alert(data.message)
+        location.reload()
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
+const unblackUser = async (event) => {
+    event.preventDefault()
+
+    const access = getCookie('access')
+    const url = 'https://chat.withorgo.site/chat/blacklist/del/'
     const chatTarget = event.target.id
     const formData = new FormData();
 
@@ -220,20 +395,31 @@ const chatjoin = (event,room_target) => {
     while (target.classList != 'room_div'){
         target = target.parentNode
     }
-
+    const $ms_count = target.querySelector('.ms_count')
+    if($ms_count){
+        $ms_count.remove()
+    }
     const $chatTitleImg = document.querySelector('.chat-room-header > img')
     const $chatTitle = document.querySelector('.chat-room-header > p')
     const $chatMessageList = document.querySelector('.chat-message-list')
     chatViewSet()
     $chatMessageList.innerHTML = ''
 
-    if(room_target.profileImage){
-        $chatTitleImg.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ room_target.profileImage
-    } else {
-        $chatTitleImg.src = '/src/assets/img/profile_temp.png'
+    if(room_target.leader) {
+        $chatTitleImg.src = '/src/assets/img/study.png'
+    } else{
+        if(room_target.profileImage){
+            $chatTitleImg.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ room_target.profileImage
+        } else {
+            $chatTitleImg.src = '/src/assets/img/profile_temp.png'
+        }
     }
 
-    $chatTitle.innerText = room_target.nickname
+    if(room_target.leader) {
+        $chatTitle.innerText = room_target.title
+    } else {
+        $chatTitle.innerText = room_target.nickname
+    }
 
     const chatlist = document.querySelector(".chat-room-list");
     const rooms = chatlist.querySelectorAll(".room_div");
@@ -249,7 +435,11 @@ const chatjoin = (event,room_target) => {
     let is_action = false;
     target.classList.add('joined')
     const title = target.id.toString()
-    socket = new WebSocket(`ws://api.withorgo.site/chat/${title}`)
+    if(room_target.leader) {
+        socket = new WebSocket(`wss://chat.withorgo.site/groupchat/${title}`)
+    } else {
+        socket = new WebSocket(`wss://chat.withorgo.site/chat/${title}`)
+    }
 
     socket.onopen = function (e) {
         socket.send(JSON.stringify({
@@ -306,7 +496,6 @@ const chatjoin = (event,room_target) => {
     };
 
     $message_submit.addEventListener('click',msSend)
-
 }
 
 const joinPrintMessage = (day,messages) => {
@@ -329,7 +518,7 @@ const joinPrintMessage = (day,messages) => {
     messages.forEach(data => {
         const writer = data.writer
         const login_user = user.id
-        if (writer == login_user) {
+        if (writer.id == login_user) {
             const ms = sendMessage(data)
             $message_section.append(ms)
         } else {
@@ -346,7 +535,7 @@ const printMessage = (data) => {
     const writer = data.writer
     const login_user = user.id
 
-    if (writer == login_user) {
+    if (writer.id == login_user) {
         const ms = sendMessage(data)
         $message_section.append(ms)
     } else {
@@ -374,25 +563,35 @@ const sendMessage = (data) => {
 
 const getMssage = (data) => {
     const div = document.createElement('div')
+    const ms_div = document.createElement('div')
+    const name = document.createElement('p')
     const p1 = document.createElement('p')
     const p2 = document.createElement('p')
-    
+    const img = document.createElement('img')
+
+    div.className = 'get-message'
+
+    if (data.writer.profileImage){
+        img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.writer.profileImage
+    } else {
+        img.src = '/src/assets/img/profile_temp.png'
+    }
+
+    name.innerText = data.writer.nickname
+    name.className = 'message-writer'
     p1.innerText = data.content
     p1.className = 'message-bubble'
     p2.innerText = timeRead(data.created_at)
     p2.className = 'message-time'
-    
-    div.className = 'get-message'
-    div.append(p1,p2)
+
+    ms_div.append(name,p1,p2)
+    div.append(img,ms_div)
 
     return div
 }
 
 const timeRead = (data) => {
     const time = new Date(data)
-    const year = time.getFullYear();
-    const month = time.getMonth() +1;
-    const date = time.getDate();
     const hours = time.getHours();
     const minutes = time.getMinutes();
     // ${year}년 ${month}월 ${date}일 
@@ -429,8 +628,38 @@ const searchRoom = () => {
     
 }
 
+const relatedClick = (e) => {
+    e.preventDefault()
 
-folloingList()
+    const target = e.target
+    const $following_list = document.querySelector('.following_list')
+    const $black_list = document.querySelector('.black_list')
+    const $study_list = document.querySelector('.study_list')
+
+    $following_list.classList = 'following_list hidden'
+    $black_list.classList = 'black_list hidden'
+    $study_list.classList = 'study_list hidden'
+
+    if(target.innerText == '팔로잉'){
+        $following_list.classList = 'following_list'
+    } else if(target.innerText == '스터디') {
+        $study_list.classList = 'study_list'
+    } else {
+        $black_list.classList = 'black_list'
+    }
+
+    $relatedBtn.forEach(element => {
+        element.classList = 'related'
+    });
+
+    target.classList = 'related clicked'
+}
+
+
+chatRelatedSettings()
 chatlist()
 $chat_add_btn.addEventListener('click',modalOpenBtn)
 $modalClose.addEventListener('click',modalCloseBtn)
+$relatedBtn.forEach(element => {
+    element.addEventListener('click', relatedClick)
+});

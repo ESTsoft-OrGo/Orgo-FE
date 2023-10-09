@@ -128,6 +128,13 @@ main {
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
+    display:-webkit-box; 
+    word-wrap:break-word; 
+    -webkit-line-clamp:1; 
+    -webkit-box-orient:vertical; 
+    overflow:hidden; 
+    text-overflow:ellipsis; 
+    width: 250px;
 }
 
 .room_info p:last-child {
@@ -168,6 +175,8 @@ main {
     cursor:auto;
 }
 
+.black_user,
+.room_leave,
 .room_delete {
     border: none;
     background: none;
@@ -200,6 +209,13 @@ main {
 .chat-room-header p {
     font-size: 20px;
     font-weight: bold;
+    display:-webkit-box; 
+    word-wrap:break-word; 
+    -webkit-line-clamp:1; 
+    -webkit-box-orient:vertical; 
+    overflow:hidden; 
+    text-overflow:ellipsis; 
+    width: 350px;
 }
 
 .chat-message-section {
@@ -277,10 +293,16 @@ main {
 
 .get-message {
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
     margin-bottom: 10px;
     width: auto;
+}
+
+.get-message img {
+    width: 44px;
+    height: 44px;
+    margin-right: 10px;
+    border-radius: 10px;
 }
 
 .send-message {
@@ -297,6 +319,8 @@ main {
 
 .send-message  .message-bubble {
     border-bottom-right-radius: 0px;
+    color: black;
+    background-color: rgb(235, 246, 255);
 }
 
 .message-bubble {
@@ -305,9 +329,16 @@ main {
     padding: 10px;
 }
 
+.message-writer {
+    font-size: 16px;
+    color: rgb(119, 119, 119);
+    margin-bottom: 4px;
+}
+
 .message-time {
     margin-top: 5px;
     color: rgb(167, 167, 167);
+    font-size: 11px;
 }
 
 .hidden {
@@ -379,14 +410,6 @@ main {
     cursor: pointer;
 }
 
-.my_following {
-    border-bottom: 2px solid rgb(133, 133, 133);
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 .myName {
     display: block;
     width: 100%;
@@ -399,25 +422,41 @@ main {
     color: black;
     padding-bottom: 20px;
 }
+.my_related {
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
 
 .related {
     display: block;
-    width: 100%;
+    width: 50%;
     height: 30px;
     text-decoration: none;
     line-height: 30px;
     text-align: center;
+    color: rgb(158, 158, 158);
     font-weight: bold;
-    font-size: 15px;
-    color: black;
-    padding-bottom: 10px;
+    font-size: 18px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0);
+    cursor: pointer;
 }
 
+.my_related .clicked {
+    color: black;
+    border-bottom: 2px solid black;
+}
+
+.study_list,
+.black_list,
 .following_list {
     overflow-y: auto;
     height: 400px;
 }
 
+.studychat,
+.blackuser,
 .follow {
     position: relative;
     height: 35px;
@@ -426,6 +465,8 @@ main {
     margin-bottom: 20px;
 }
 
+.studychat img,
+.blackuser_img img,
 .follow_img img {
     width: 35px;
     height: 35px;
@@ -433,22 +474,45 @@ main {
     margin-right: 15px;
 }
 
-.follow_info p:first-child {
+.studychat_info,
+.blackuser_info,
+.follow_info {
+    line-height: 18px;
+}
+
+.studychat_info p:first-child,
+.blackuser_info p:first-child,
+.follow_info a:first-child {
+    text-decoration: none;
+    color: black;
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 5px;
+    display:-webkit-box; 
+    word-wrap:break-word; 
+    -webkit-line-clamp:1; 
+    -webkit-box-orient:vertical; 
+    overflow:hidden; 
+    text-overflow:ellipsis; 
+    width: 250px;
 }
 
+.studychat_info p:last-child,
+.blackuser_info p:last-child,
 .follow_info p:last-child {
     font-size: 12px;
     color: rgb(114, 114, 114);
 }
 
+.studychat_btn_div,
+.blackuser_btn_div,
 .followChat {
     position: absolute;
     right: 15px;
 }
 
+.studychat_btn_div button,
+.blackuser_btn_div button,
 .followChat button {
     background-color: var(--maincolor);
     border: none;
@@ -461,8 +525,26 @@ main {
     cursor: pointer;
 }
 
+.studychat_btn_div button:hover,
+.blackuser_btn_div button:hover,
 .followChat button:hover {
     color: white;
     background-color: rgb(15, 144, 183);
 }
 
+.ms_count {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(247, 87, 38);
+    border-radius: 50%;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    top: 15px;
+    left: 60px;
+    padding: 1px;
+    font-size: 12px;
+}

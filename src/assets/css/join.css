@@ -18,6 +18,7 @@
 }
 
 .join_input_wrap {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -55,7 +56,23 @@
 	text-decoration: none;
 }
 
+.join_btn:disabled {
+	background-color: rgb(196, 196, 196);
+}
 
+.user-join__otp_generate {
+	position: absolute;
+	top: 14px;
+	right: -170px;
+	font-weight: bold;
+	border: none;
+	background: var(--maincolor);
+	padding: 0.5rem 1.8rem 0.5rem 1.8rem;
+	border-radius: 5px;
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+}
 
 /* .github_btn {
 	margin-top: 1rem;

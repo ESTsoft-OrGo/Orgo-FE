@@ -4,7 +4,7 @@ export const create_post = (post,owner,where,likes) => {
     const post_owner_div = document.createElement('div');
     const post_owner_img = document.createElement('img');
     const post_owner_info = document.createElement('div');
-    const post_owner_info_p1 = document.createElement('p');
+    const post_owner_info_p1 = document.createElement('a');
     const post_owner_info_p2 = document.createElement('p');
     const post_owner_follow = document.createElement('div');
     const post_owner_follow_btn = document.createElement('button');
@@ -19,10 +19,13 @@ export const create_post = (post,owner,where,likes) => {
     const reaction_info_div1 = document.createElement('div');
     const reaction_info_div1_p1 = document.createElement('p');
     const reaction_info_div1_p2 = document.createElement('p');
+    const reaction_info_div1_p3 = document.createElement('p');
+    const reaction_info_div1_p4 = document.createElement('p');
     const reaction_info_div2 = document.createElement('div');
     const reaction_info_div2_p1 = document.createElement('p');
     const reaction_info_div2_p2 = document.createElement('p');
-
+    
+    const profileUrl = '/src/view/profile.html'
     post_div.className = 'post'
     post_owner.className = 'post_owner';
     post_owner_div.className = 'post_owner_img'
@@ -35,6 +38,9 @@ export const create_post = (post,owner,where,likes) => {
     }
     post_owner_info.className = 'post_owner_info'
     post_owner_info_p1.innerText = owner.nickname
+    post_owner_info_p1.className = 'userprofile'
+    post_owner_info_p1.id = owner.id
+    post_owner_info_p1.href = profileUrl
     post_owner_info_p2.innerText = owner.about
 
     post_owner_follow.className = 'follow_btn_div'
@@ -104,11 +110,14 @@ export const create_post = (post,owner,where,likes) => {
     reaction_info_div1_p1.innerText = '좋아요'
     reaction_info_div1_p2.className = 'like_count'
     reaction_info_div1_p2.innerText = likes
+    reaction_info_div1_p3.innerText = '댓글'
+    reaction_info_div1_p4.className = 'comments_count'
+    reaction_info_div1_p4.innerText = post.commnet_count
     reaction_info_div2.className = 'reaction_info_div'
     reaction_info_div2_p1.innerText = '조회'
     reaction_info_div2_p2.className = 'view_count'
     reaction_info_div2_p2.innerText = post.views
-    reaction_info_div1.append(reaction_info_div1_p1,reaction_info_div1_p2)
+    reaction_info_div1.append(reaction_info_div1_p1,reaction_info_div1_p2,reaction_info_div1_p3,reaction_info_div1_p4)
     reaction_info_div2.append(reaction_info_div2_p1,reaction_info_div2_p2)
     post_reaction_info.append(reaction_info_div1,reaction_info_div2)
 
@@ -122,11 +131,13 @@ export const create_follow = (data,type) => {
     const follow_img_div = document.createElement('div')
     const follow_img = document.createElement('img')
     const follow_info = document.createElement('div')
-    const follow_info_p1 = document.createElement('p')
-    const follow_info_p2 = document.createElement('p')
+    const follow_info_a = document.createElement('a')
+    const follow_info_p = document.createElement('p')
     const follow_btn_div = document.createElement('div')
     const follow_btn = document.createElement('button')
-
+    follow_info_a.id = data.id
+    follow_info_a.className = 'userprofile'
+    follow_info_a.href = 'profile.html'
     follow.className = 'follow'
     follow_img_div.className = 'follow_img'
 
@@ -139,9 +150,9 @@ export const create_follow = (data,type) => {
     follow_img_div.append(follow_img)
 
     follow_info.className = 'follow_info'
-    follow_info_p1.innerText = data.nickname
-    follow_info_p2.innerText = data.about
-    follow_info.append(follow_info_p1,follow_info_p2)
+    follow_info_a.innerText = data.nickname
+    follow_info_p.innerText = data.about
+    follow_info.append(follow_info_a,follow_info_p)
 
     if (type == 'Chat'){
         follow_btn_div.className = 'followChat'
@@ -157,6 +168,75 @@ export const create_follow = (data,type) => {
     follow.append(follow_img_div,follow_info,follow_btn_div)
 
     return follow
+}
+
+export const create_blackuser = (data) => {
+    const blackuser = document.createElement('div')
+    const blackuser_img_div = document.createElement('div')
+    const blackuser_img = document.createElement('img')
+    const blackuser_info = document.createElement('div')
+    const blackuser_info_p1 = document.createElement('p')
+    const blackuser_info_p2 = document.createElement('p')
+    const blackuser_btn_div = document.createElement('div')
+    const blackuser_btn = document.createElement('button')
+
+    blackuser.className = 'blackuser'
+    blackuser_img_div.className = 'blackuser_img'
+
+    if (data.profileImage){
+        blackuser_img.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.profileImage
+    } else {
+        blackuser_img.src = '/src/assets/img/profile_temp.png'
+    }
+    
+    blackuser_img_div.append(blackuser_img)
+
+    blackuser_info.className = 'blackuser_info'
+    blackuser_info_p1.innerText = data.nickname
+    blackuser_info_p2.innerText = data.about
+    blackuser_info.append(blackuser_info_p1,blackuser_info_p2)
+
+    blackuser_btn_div.className = 'blackuser_btn_div'
+    blackuser_btn.innerText = 'Unblock'
+
+    blackuser_btn.id = data.id
+    blackuser_btn_div.append(blackuser_btn)
+
+    blackuser.append(blackuser_img_div,blackuser_info,blackuser_btn_div)
+
+    return blackuser
+}
+
+export const create_studychat = (data) => {
+    const studychat = document.createElement('div')
+    const studychat_img_div = document.createElement('div')
+    const studychat_img = document.createElement('img')
+    const studychat_info = document.createElement('div')
+    const studychat_info_p1 = document.createElement('p')
+    const studychat_info_p2 = document.createElement('p')
+    const studychat_btn_div = document.createElement('div')
+    const studychat_btn = document.createElement('button')
+
+    studychat.className = 'studychat'
+    studychat_img_div.className = 'studychat_img'
+    studychat_img.src = '/src/assets/img/study.png'
+    
+    studychat_img_div.append(studychat_img)
+
+    studychat_info.className = 'studychat_info'
+    studychat_info_p1.innerText = data.title
+    studychat_info_p2.innerText = '스터디원들과 대화를 시작해보세요!'
+    studychat_info.append(studychat_info_p1,studychat_info_p2)
+
+    studychat_btn_div.className = 'studychat_btn_div'
+    studychat_btn.innerText = 'Chat'
+
+    studychat_btn.id = data.id
+    studychat_btn_div.append(studychat_btn)
+
+    studychat.append(studychat_img_div,studychat_info,studychat_btn_div)
+
+    return studychat
 }
 
 export const create_notify = (data) => {
@@ -267,3 +347,4 @@ export const create_study = (data) => {
     `
     return study
 }
+

@@ -1,7 +1,5 @@
 import { getCookie, detail_page, getWithExpire,setWithExpire} from "./util.js"
 import { create_notify } from "./createElement.js"
-import { followFunc } from "./follow.js"
-
 
 const myNotification = async () => {
     const $notify_list = document.querySelector('.notify_list')

@@ -1,6 +1,8 @@
-import { detail_page,getWithExpire,slide_func } from "./util.js"
+import { detail_page,getWithExpire,slide_func,user_page } from "./util.js"
 import { create_post } from "./createElement.js"
 import { followFunc } from "./follow.js"
+
+
 
 const post_list = async () => {
     const url = 'https://api.withorgo.site/post/'
@@ -26,6 +28,12 @@ const post_list = async () => {
 
         articles.forEach(article => {
             article.addEventListener('click',detail_page)
+        });
+
+        const userarticles = document.querySelectorAll('.userprofile')
+
+        userarticles.forEach(userarticles => {
+            userarticles.addEventListener('click',user_page)
         });
 
         const $follow_btns = document.querySelectorAll('.follow_btn_div > button')
@@ -60,7 +68,7 @@ const post_list = async () => {
 }
 
 const api_recent = async() => {
-    const url = 'https://api.withorgo.site/post/recent/'
+    const url = 'https://api.withorgo.site/post/recommended/'
 
     await fetch(url, {
         method: "POST",
@@ -69,14 +77,14 @@ const api_recent = async() => {
     .then((res) => res.json())
     .then((data) => {
         const $board_side = document.querySelector('.board_side')
-        const recent_posts = data.recent_posts
+        const recommended_posts = data.recommended_posts
         
         let n = 0
         
-        recent_posts.forEach(post=> {
+        recommended_posts.forEach(post=> {
             n = n + 1
             const side = create_sidepost(post,n)
-            side.addEventListener('click', recent_page)
+            side.addEventListener('click', recommended_page)
             $board_side.append(side)
         })
     })
@@ -85,8 +93,8 @@ const api_recent = async() => {
     });
 }
 
-// 최근 게시물 뷰 들어가기
-const recent_page = (event) => {
+// 추천 게시물 뷰 들어가기
+const recommended_page = (event) => {
     let target = event.target
     const pages = {
         'pages': target.id

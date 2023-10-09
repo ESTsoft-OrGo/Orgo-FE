@@ -1,4 +1,4 @@
-import { getCookie, detail_page, getWithExpire,setWithExpire,slide_func} from "./util.js"
+import { getCookie, detail_page,setWithExpire,slide_func,profile} from "./util.js"
 import { create_post,create_follow } from "./createElement.js"
 import { followFunc } from "./follow.js"
 
@@ -9,34 +9,42 @@ const $user_name = document.querySelector('.user-name')
 const $user_about = document.querySelector('.user-about')
 const $profileimg = document.querySelector('.user-profile-img')
 const $profile_save = document.querySelector('.user-profile-save')
-const user = getWithExpire('user');
-const user_profile = JSON.parse(user)
-    
-const profile_setting = () => {
-    
-    $user_name.value = user_profile.nickname
-    $user_about.value = user_profile.about
 
-    if (user_profile.profileImage){
-        $profileimg.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ user_profile.profileImage
-    } else {
-        $profileimg.src = '/src/assets/img/profile_temp.png'
-    }
-}
+const userProfileData = JSON.parse(localStorage.getItem('userprofile'));
 
 const mypost_list = async () => {
-
+    
     const access = getCookie('access')
     const url = 'https://api.withorgo.site/user/profile/'
-
+    
     await fetch(url, {
         method: "POST",
         headers: {
             "Authorization": `Bearer ${access}`,
+            "Content-Type": "application/json",
         },
+        body: JSON.stringify(userProfileData),
     })
     .then((res) => res.json())
     .then((data) => {
+        $user_name.value = data.serializer.nickname
+        $user_about.value = data.serializer.about
+
+        if (data.user.profileImage){
+            $profileimg.src = 'https://myorgobucket.s3.ap-northeast-2.amazonaws.com'+ data.user.profileImage
+        } else {
+            $profileimg.src = '/src/assets/img/profile_temp.png'
+        }
+        if (Number(userProfileData.user_profile) !== data.user_id){
+            const $save_btn = document.querySelector('.user-profile-save')
+            const $profile_image = document.querySelector('.post-image-div')
+            const $user_name = document.querySelector('.user-name')
+            const $user_about = document.querySelector('.user-about')
+            $save_btn.remove();
+            $profile_image.remove();
+            $user_name.disabled = true;
+            $user_about.disabled = true;
+        }
         const $post_list = document.querySelector('.post_list')
         const $follower_list = document.querySelector('.follower_list')
         const $following_list = document.querySelector('.following_list')
@@ -46,7 +54,6 @@ const mypost_list = async () => {
         const posts = data.my_posts
         const followers = data.follower
         const followings = data.following
-
         $user_posts.innerText = '게시물 ' + data.my_posts.length
         $user_follower.innerText = '팔로워 ' + data.follower.length
         $user_following.innerText = '팔로잉 ' + data.following.length
@@ -55,7 +62,8 @@ const mypost_list = async () => {
             const $post_none = document.querySelector('.post_none')
             $post_none.remove()
             posts.forEach(post => {
-                const element = create_post(post.post,user_profile,'profile',post.likes)
+                console.log(post)
+                const element = create_post(post.post,data.user,'profile',post.likes)
                 if(post.post.images.length > 0){
                     slide_func(element)
                 }
@@ -103,6 +111,7 @@ const mypost_list = async () => {
                 }
             });
         });
+        profile();
     })
     .catch((err) => {
         console.log(err);
@@ -192,13 +201,9 @@ const relatedClick = (e) => {
     target.classList = 'related clicked'
 }
 
-profile_setting()
 mypost_list()
-
 $imageInput.addEventListener("change", previewImage);
-
 $relatedBtn.forEach(element => {
     element.addEventListener('click', relatedClick)
 });
-
 $profile_save.addEventListener('click', profile_save)

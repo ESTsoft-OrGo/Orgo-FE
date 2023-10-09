@@ -94,6 +94,7 @@ main {
 .img_box {
     width: 150px;
     height: 150px;
+    position: relative;
 }
 
 .post-image {
@@ -101,4 +102,20 @@ main {
     height: 100%;
     object-fit:cover;
     border-radius: 5px;
+}
+
+.delete-image-button {
+    position: absolute;
+    right: -7px;
+    top: -7px;
+    background-color: rgb(83, 83, 83);
+    color: white;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    border-radius: 50%;
+    border: 2px solid white;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
 }

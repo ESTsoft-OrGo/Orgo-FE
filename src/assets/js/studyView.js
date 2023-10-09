@@ -1,4 +1,4 @@
-import { getCookie, getWithExpire,slide_func } from "./util.js";
+import { getCookie, getWithExpire, profile } from "./util.js";
 import { followFunc } from "./follow.js"
 
 const studyPage = JSON.parse(localStorage.getItem("studyPage"));
@@ -96,7 +96,23 @@ const studyLoad = async () => {
                 const participant_div = create_participant(participant)
                 $study_in_people.append(participant_div)
             });
-            $loading.style.display = "none"
+
+            const follow_list = JSON.parse(localStorage.getItem('follow'))
+            const $follow_btn_divs = document.querySelectorAll('.follow_btn_div > button')
+        
+            $follow_btn_divs.forEach(btn => {
+                btn.addEventListener('click',(event) => followFunc(event,'view'))
+                if (btn.id == user_profile.id) {
+                    btn.remove()
+                }
+                follow_list.forEach(follow => {
+                    if (follow.target_id_id == btn.id) {
+                        btn.innerText = 'Unfollow'
+                    }
+                });
+            });
+            profile()
+            $loading.remove()
         })
         .catch((err) => {
             console.log(err);
@@ -106,9 +122,7 @@ const studyLoad = async () => {
 const create_participant = (data) => {
 
     const div = document.createElement('div')
-
     let pf_img;
-
     if(data.profileImage) {
         pf_img = `https://myorgobucket.s3.ap-northeast-2.amazonaws.com${data.profileImage}`
     } else {
@@ -121,8 +135,11 @@ const create_participant = (data) => {
         <img src="${pf_img}">
     </div>
     <div class="participant_info">
-        <p>${data.nickname}</p>
+        <a id="${data.id}" class="userprofile" href="profile.html">${data.nickname}</a>
         <p>${data.about}</p>
+    </div>
+    <div class="follow_btn_div">
+        <button id="${data.id}">Follow</button>
     </div>`
 
     return div
@@ -213,5 +230,6 @@ const studyCancle = async () => {
 };
 
 studyLoad()
+
 $study_join.addEventListener('click',studyJoin)
 $study_cancle.addEventListener('click',studyCancle)
