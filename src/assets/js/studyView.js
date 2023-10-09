@@ -102,14 +102,21 @@ const studyLoad = async () => {
         
             $follow_btn_divs.forEach(btn => {
                 btn.addEventListener('click',(event) => followFunc(event,'view'))
-                if (btn.id == user_profile.id) {
+ 
+                if(!user){
                     btn.remove()
-                }
-                follow_list.forEach(follow => {
-                    if (follow.target_id_id == btn.id) {
-                        btn.innerText = 'Unfollow'
+                } else {
+                    if (btn.id == user_profile.id) {
+                        btn.remove()
                     }
-                });
+                }
+                if(follow_list) {
+                    follow_list.forEach(follow => {
+                        if (follow.target_id_id == btn.id) {
+                            btn.innerText = 'Unfollow'
+                        }
+                    });
+                }
             });
             profile()
             $loading.remove()
