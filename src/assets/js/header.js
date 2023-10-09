@@ -32,7 +32,7 @@ const is_logined = async() => {
 
         let notisocket;
 
-        notisocket = new WebSocket(`ws://api.withorgo.site/notify/${profile.id}`)
+        notisocket = new WebSocket(`wss://api.withorgo.site/notify/${profile.id}`)
         notisocket.onmessage = (e) => {
             const receiveData = JSON.parse(e.data)
             localStorage.setItem('myNotify', JSON.stringify(receiveData.message));
