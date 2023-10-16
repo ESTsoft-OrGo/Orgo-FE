@@ -177,6 +177,12 @@ const postLoad = async () => {
 
                 $follow_btn.remove()
                 $comment_write_btn.remove()
+                $comment_delete_buttons.forEach(btn => {
+                    btn.remove()
+                });
+                $recomment_delete_buttons.forEach(btn => {
+                    btn.remove()
+                });
                 $comment_replys.forEach(element => {
                     element.remove()
                 });
