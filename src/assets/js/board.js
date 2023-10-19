@@ -8,7 +8,7 @@ const post_list = async () => {
     const url = 'http://127.0.0.1:8000/post/'
 
     await fetch(url, {
-        method: "POST",
+        method: "GET",
         headers: {},
     })
     .then((res) => res.json())
@@ -71,7 +71,7 @@ const api_recent = async() => {
     const url = 'http://127.0.0.1:8000/post/recommended/'
 
     await fetch(url, {
-        method: "POST",
+        method: "GET",
         headers: {},
     })
     .then((res) => res.json())
